@@ -1,4 +1,4 @@
-#J yaquinas Github Page
+# Jyaquinas Github Page
 
 Repository for my [github page](https://jyaquinas.github.io).
 
