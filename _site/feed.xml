@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-07T14:04:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Trie Data Structure</title><link href="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html" rel="alternate" type="text/html" title="Trie Data Structure" /><published>2022-02-07T13:18:00+09:00</published><updated>2022-02-07T13:18:00+09:00</updated><id>http://localhost:4000/data%20structures/2022/02/07/trie-data-structure</id><content type="html" xml:base="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html"><![CDATA[<p>I think I first came across the concept of a trie (pronounced <em>try</em>) when I was reading the book <em>Cracking the Coding Interview</em>. But I never really gave it much thought. Plus, I never came across a problem on <a href="https://www.leetcode.com">Leet Code</a> where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-09T22:20:25+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">SQL Crash Course</title><link href="http://localhost:4000/database/2022/02/09/sql_crash_course.html" rel="alternate" type="text/html" title="SQL Crash Course" /><published>2022-02-09T22:03:00+09:00</published><updated>2022-02-09T22:03:00+09:00</updated><id>http://localhost:4000/database/2022/02/09/sql_crash_course</id><content type="html" xml:base="http://localhost:4000/database/2022/02/09/sql_crash_course.html"><![CDATA[<h3 id="select">Select</h3>
+
+<p>Let’s say this is our table.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>CUSTOMERS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FIRST_NAME<br />LAST_NAME<br />BIRTHDAY<br />ADDRESS<br />AGE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The basic format is:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">exp</span> <span class="k">FROM</span> <span class="k">table_name</span> <span class="p">[</span><span class="k">WHERE</span> <span class="n">condition</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">exp</code>: use * for selecting all columns, or list the specific columns you want<br />
+<code class="language-plaintext highlighter-rouge">table_name</code>: at least one table required<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup><br />
+<code class="language-plaintext highlighter-rouge">condition</code>: returns all rows if no condition is used</p>
+
+<p>ex)</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>If multiple tables are used without any join operations, it will simply do a cross join (or a <a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a>) to create all possible combinations. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>jyaquinas</name></author><category term="Database" /><category term="sql" /><category term="oracle" /><category term="database" /><summary type="html"><![CDATA[Select]]></summary></entry><entry><title type="html">Trie Data Structure</title><link href="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html" rel="alternate" type="text/html" title="Trie Data Structure" /><published>2022-02-07T13:18:00+09:00</published><updated>2022-02-07T13:18:00+09:00</updated><id>http://localhost:4000/data%20structures/2022/02/07/trie-data-structure</id><content type="html" xml:base="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html"><![CDATA[<p>I think I first came across the concept of a trie (pronounced <em>try</em>) when I was reading the book <em>Cracking the Coding Interview</em>. But I never really gave it much thought. Plus, I never came across a problem on <a href="https://www.leetcode.com">Leet Code</a> where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.</p>
 
 <p>Let’s briefly go over the basics.</p>
 

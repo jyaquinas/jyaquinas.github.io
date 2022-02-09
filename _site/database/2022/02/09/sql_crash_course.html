@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>
-    Categories - Jyaquinas
+    SQL Crash Course - Jyaquinas
     
   </title>
 
-  <meta name="description" content="Personal Blog Space">
+  <meta name="description" content="Select">
 
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -20,7 +20,7 @@
   <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/categories/">
+  <link rel="canonical" href="http://localhost:4000/database/2022/02/09/sql_crash_course.html">
   <link rel="alternate" type="application/rss+xml" title="Jyaquinas" href="/feed.xml">
 
 </head>
@@ -71,9 +71,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>Categories</h1>
+          <div class="post-heading">
+            <h1>SQL Crash Course</h1>
             
+            <h2 class="subheading">Quick overview of the basics</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">jyaquinas</a>
+              on February 09, 2022 &middot; <span class="reading-time" title="Estimated read time">
+  
+   1 min  read </span>
+
+            </span>
           </div>
         </div>
       </div>
@@ -84,54 +93,80 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
 
-        <!-- Forked from https://github.com/codinfox/codinfox-lanyon -->
+        <h3 id="select">Select</h3>
 
+<p>Let’s say this is our table.</p>
 
+<table>
+  <thead>
+    <tr>
+      <th>CUSTOMERS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FIRST_NAME<br />LAST_NAME<br />BIRTHDAY<br />ADDRESS<br />AGE</td>
+    </tr>
+  </tbody>
+</table>
 
+<p>The basic format is:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">exp</span> <span class="k">FROM</span> <span class="k">table_name</span> <span class="p">[</span><span class="k">WHERE</span> <span class="n">condition</span><span class="p">];</span>
+</code></pre></div></div>
 
+<p><code class="language-plaintext highlighter-rouge">exp</code>: use * for selecting all columns, or list the specific columns you want<br />
+<code class="language-plaintext highlighter-rouge">table_name</code>: at least one table required<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup><br />
+<code class="language-plaintext highlighter-rouge">condition</code>: returns all rows if no condition is used</p>
 
+<p>ex)</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre></div></div>
 
-
-
-
-<div class="tags-expo">
-  <div class="tags-expo-list">
-    
-    <a href="#data-structures" class="post-tag">[Data Structures]</a>
-    
-    <a href="#database" class="post-tag">[Database]</a>
-    
-  </div>
-  <hr/>
-  <div class="tags-expo-section">
-    
-    <h2 id="data-structures">Data Structures</h2>
-    <ul class="tags-expo-posts">
-      
-        <a class="post-title" href="/data%20structures/2022/02/07/trie-data-structure.html">
-      <li>
-        Trie Data Structure
-      <small class="post-date">07 Feb 2022</small>
-      </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="database">Database</h2>
-    <ul class="tags-expo-posts">
-      
-        <a class="post-title" href="/database/2022/02/09/sql_crash_course.html">
-      <li>
-        SQL Crash Course
-      <small class="post-date">09 Feb 2022</small>
-      </li>
-      </a>
-      
-    </ul>
-    
-  </div>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>If multiple tables are used without any join operations, it will simply do a cross join (or a <a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a>) to create all possible combinations. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
 </div>
 
+
+        <!-- 
+          
+          <a class="tag-link"
+            href=//tags/sql/
+            rel="category tag">
+            #sql
+          </a>
+        
+          
+          <a class="tag-link"
+            href=//tags/oracle/
+            rel="category tag">
+            #oracle
+          </a>
+        
+          
+          <a class="tag-link"
+            href=//tags/database/
+            rel="category tag">
+            #database
+          </a>
+         -->
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/data%20structures/2022/02/07/trie-data-structure.html" data-toggle="tooltip" data-placement="top" title="Trie Data Structure">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
 
       </div>
     </div>

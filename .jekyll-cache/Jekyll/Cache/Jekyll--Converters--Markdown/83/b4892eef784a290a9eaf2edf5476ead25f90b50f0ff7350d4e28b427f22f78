@@ -1,0 +1,22 @@
+I"j<h3 id="select">Select</h3>
+<p>Let’s say this is our table.
+| CUSTOMERS |
+| — |
+| FIRST_NAME<br />LAST_NAME<br />BIRTHDAY<br />ADDRESS<br />AGE |</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">exp</span> <span class="k">FROM</span> <span class="k">table_name</span> <span class="p">[</span><span class="k">WHERE</span> <span class="n">condition</span><span class="p">];</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">exp</code>: use * for selecting all columns, or list the specific columns you want</p>
+
+<p><code class="language-plaintext highlighter-rouge">table_name</code>: at least one table required[^1]</p>
+
+<p><code class="language-plaintext highlighter-rouge">condition</code>: returns all rows if no condition is used</p>
+
+<p>ex)</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>[^1] If multiple tables are used without any join operations, it will simply do a cross join (or a <a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a>) to create all possible combinations.</p>
+:ET
