@@ -30,7 +30,8 @@ ex)
 ```sql
 SELECT * FROM customers;
 SELECT first_name, last_name FROM customers;
-SELECT first_name, last_name FROM customers WHERE age > 20;
+SELECT first_name, last_name FROM customers
+  WHERE age > 20;
 ```
 
 If you want to return only distinct values, you can use `SELECT DISTINCT` instead.
@@ -46,8 +47,10 @@ SELECT * FROM customers WHERE age = 1;
 
 You can also use multiple conditions using `AND` and `OR`.
 ```sql
-SELECT * FROM customers WHERE first_name = 'John' AND age > 20;
-SELECT * FROM customers WHERE first_name = 'John' AND (age < 10 OR age > 30);
+SELECT * FROM customers
+  WHERE first_name = 'John' AND age > 20;
+SELECT * FROM customers
+  WHERE first_name = 'John' AND (age < 10 OR age > 30);
 ```
 
 These are the comparison operators that can be used with `WHERE`:  
@@ -93,7 +96,7 @@ Here are a few examples:
 *Note: This also works with numbers. `WHERE num LIKE '32_'` will find 320, 321, 322, 323...*
 
 ### EXISTS
-As mentioned above, this operator is used with a subquery, where the condition is if the subquery returns at least one row. A subquery is a select statement that is nested inside another query.
+As mentioned above, this operator is used with a subquery, where the condition is if the subquery returns at least one row. A subquery is a select statement that is nested inside another query (more info below).
 
 Say we have another table USERNAME.
 | ACCOUNTS |
@@ -102,18 +105,34 @@ Say we have another table USERNAME.
 
 We can then query something like this:
 ```sql
-SELECT username FROM accounts WHERE EXISTS (SELECT * FROM customers WHERE customers.customer_id = accounts.customer_id);
+SELECT username FROM accounts
+  WHERE EXISTS (SELECT * FROM customers
+                WHERE customers.customer_id = accounts.customer_id);
 ```
 And it will return all the usernames where it has matching customer_id in both tables.
 
 *Note:* The query above can be similarly achieved with an inner join, such as:
 ```sql
-SELECT username FROM  customers c INNER JOIN accounts a ON c.customer_id = a.customer_id;
+SELECT username FROM customers c
+  INNER JOIN accounts a ON c.customer_id = a.customer_id;
 ```
 
 The difference is that the one using `EXISTS` simply returns results from the CUSTOMERS table when the condition matches, and the `INNER JOIN` combines two tables first and returns results from the combined table. Having duplicates can lead to having repeated rows if the inner join is used.
 
 ### Subqueries
+Subqueries can be used inside `SELECT`, `WHERE`, and `FROM` clauses.
+
+It executes the inner subquery first and uses that result to perform the outer queries.
+
+```sql
+SELECT username FROM accounts a
+  WHERE a.customer_id IN
+    (SELECT c.customer_id FROM customers c
+      WHERE c.age > 20);
+```
+It first executes the subquery to obtain the results. Let's say the customer id for those above the age of 20 turned out to be 1, 5, 7, and 30. Now the outer query will try to find records that have a match with these customer ids.
+
+Note that there can be multiple nested subqueries. But there is a limit of 255 levels of subqueries for the `WHERE` clause, and no limit for the `FROM` clause. (This is for Oracle SQL)
 
 ### ORDER BY
 
