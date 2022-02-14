@@ -1,4 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-09T22:20:25+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">SQL Crash Course</title><link href="http://localhost:4000/database/2022/02/09/sql_crash_course.html" rel="alternate" type="text/html" title="SQL Crash Course" /><published>2022-02-09T22:03:00+09:00</published><updated>2022-02-09T22:03:00+09:00</updated><id>http://localhost:4000/database/2022/02/09/sql_crash_course</id><content type="html" xml:base="http://localhost:4000/database/2022/02/09/sql_crash_course.html"><![CDATA[<h3 id="select">Select</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-14T20:54:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Linux File Permissions</title><link href="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html" rel="alternate" type="text/html" title="Linux File Permissions" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/linux-file-permissions</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html"><![CDATA[<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
+
+<p>The first column will look something like this: <code class="language-plaintext highlighter-rouge">drwxr-xr-x</code></p>
+
+<p>The first character represents the file type, such as <code class="language-plaintext highlighter-rouge">-</code> for regular files and <code class="language-plaintext highlighter-rouge">d</code> for directories. Then it’s followed by 3 sets of 3 characters, each character representing read, write, and execute permissions, in the respective order. A <code class="language-plaintext highlighter-rouge">-</code> means it has no permission for that action.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">rwx</code>: has full read, write, and execute permissions</li>
+  <li><code class="language-plaintext highlighter-rouge">rw-</code>: can only read and write</li>
+  <li><code class="language-plaintext highlighter-rouge">---</code>: has no permissions at all</li>
+</ul>]]></content><author><name>jyaquinas</name></author><category term="Linux" /><category term="linux" /><summary type="html"><![CDATA[When you see the contents of a directory in long format (ls -l), you’ll be able to see their permissions.]]></summary></entry><entry><title type="html">Basic Linux Commands</title><link href="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html" rel="alternate" type="text/html" title="Basic Linux Commands" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/basic-linux-commands</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html"><![CDATA[<h3 id="pwd">pwd</h3>
+<p>This will print out the current working directory that you’re in. It will usually be something like <code class="language-plaintext highlighter-rouge">/home/user</code>.</p>
+
+<h3 id="cd">cd</h3>
+<p>This is the command used for navigating through the directories. You can either input the absolute path, or relative to your current directory.</p>
+
+<p>Let’s say our current directory is <code class="language-plaintext highlighter-rouge">/home/user</code>, and we have a folder named “a” in there.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cd a</code> or <code class="language-plaintext highlighter-rouge">cd /home/user/a</code> will take us to <code class="language-plaintext highlighter-rouge">/home/user/a</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cd ..</code> will move one directory up</li>
+  <li><code class="language-plaintext highlighter-rouge">cd -</code> will move to the previous directory</li>
+</ul>
+
+<h3 id="ls">ls</h3>
+<p>Use this to print out the contents in your current directory<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. So if we have the following files in our home directory: a.txt, b.txt, c.txt</p>
+
+<p><code class="language-plaintext highlighter-rouge">ls</code> will print out <code class="language-plaintext highlighter-rouge">a.txt b.txt c.txt</code>.<br />
+This command has a couple of command options. Here are a few important ones.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ls -a</code>: list all files including hidden ones</li>
+  <li><code class="language-plaintext highlighter-rouge">ls -l'</code> list all files in long format (includes infomation like date created and permissions)</li>
+  <li><code class="language-plaintext highlighter-rouge">ls -R</code>: recursively lists all files in directory and subdirectory</li>
+</ul>
+
+<p>You can also combine the commands together, such as <code class="language-plaintext highlighter-rouge">ls -la</code>, which will list all files including the hidden ones in long format.</p>
+
+<h3 id="mkdir--rmdir">mkdir &amp; rmdir</h3>
+<p>This is used to create and delete folders. Just append the folder name at the end, like <code class="language-plaintext highlighter-rouge">mkdir foldername</code>.</p>
+
+<p><em>Note: <code class="language-plaintext highlighter-rouge">rmdir</code> only lets you remove empty directories. To remove all of the subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r foldername</code>.</em></p>
+
+<h3 id="mv">mv</h3>
+<p>This is mostly used for moving files around, but it can also be used for renaming files.<br />
+To move a file, simply write the file name, followed by the destination path. <code class="language-plaintext highlighter-rouge">mv filename.txt /home/user/a</code>.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup><br />
+To rename a file, write the old file name, followed by the new file name. <code class="language-plaintext highlighter-rouge">mv oldfilename.txt newfilename.txt</code></p>
+
+<h3 id="cp">cp</h3>
+<p>Use this command to copy files to a target destination.<br />
+<code class="language-plaintext highlighter-rouge">cp filename.txt /home/user/a</code></p>
+
+<h3 id="rm">rm</h3>
+<p>Use this to remove files and directories. As mentioned before, to delete a directory and all of contents/subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r</code>.</p>
+
+<h3 id="touch">touch</h3>
+<p>This commmand is used to create a new file. This can by anything from a simple txt file to an html file.<br />
+<code class="language-plaintext highlighter-rouge">touch filename.txt</code></p>
+
+<h3 id="echo">echo</h3>
+<p>This is used to move some data into some file, usually some text.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt; filename.txt</code>: Use a single greater-than sign to overwrite the file. So this will replace the old data with the new data.</li>
+  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt;&gt; filename.txt</code>: Use two greater-than signs to add data to the file. New data will be added on a new line.</li>
+</ul>
+
+<p><em>Note: If you use a filename that doesn’t exist, a new file with the content inside will be created.</em></p>
+
+<h3 id="vi--nano">vi | nano</h3>
+<p>These are text editors in linux. But since nano is newer and easier to use, let’s focus on nano.</p>
+
+<p>Typing <code class="language-plaintext highlighter-rouge">nano filename.txt</code> will take you to the editor mode. Make the necessary changes, and then save by pressing <strong>Ctrl+O</strong>, exit by pressing <strong>Ctrl+X</strong>.<br />
+You can see the other options you can use on the bottom of the terminal window.</p>
+
+<h3 id="cat">cat</h3>
+<p>If you want to know what kind of content is inside a file, use <code class="language-plaintext highlighter-rouge">cat</code> to print out the content. Simply type <code class="language-plaintext highlighter-rouge">cat filename.txt</code>.</p>
+
+<p>You can create a new file by using <code class="language-plaintext highlighter-rouge">cat &gt; newfilename.txt</code>. You can then type the content you want into the file, then exit by pressing <strong>Ctrl+Z</strong>.</p>
+
+<h3 id="grep">grep</h3>
+<p>Use this command to find certain words or phrases within a text.</p>
+
+<p>For instance, if we want to find if the word “hello” exists somewhere in the file, we can use <code class="language-plaintext highlighter-rouge">grep hello filename.txt</code>.<br />
+This will then display all the lines that contain the word.</p>
+
+<p>For phrases, place them inside quotes, like <code class="language-plaintext highlighter-rouge">grep 'target phrase' filename.txt</code>.</p>
+
+<h3 id="sudo">sudo</h3>
+<p><code class="language-plaintext highlighter-rouge">sudo</code> stands for “SuperUser Do”. Use this to run commands with administrative or root privileges.</p>
+
+<h3 id="chmod">chmod</h3>
+<p>This is used for changing the read, write, and execute permissions of files and directories.
+I’ll provide more info about this on a separate post.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>You can list the contents of another directory if you append the directory’s path at the end. <code class="language-plaintext highlighter-rouge">ls /home/user/a</code> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Note that you can also move folders around. Use the folder name instead of the file name. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>jyaquinas</name></author><category term="Linux" /><category term="linux" /><summary type="html"><![CDATA[pwd This will print out the current working directory that you’re in. It will usually be something like /home/user.]]></summary></entry><entry><title type="html">SQL Crash Course</title><link href="http://localhost:4000/database/2022/02/09/sql_crash_course.html" rel="alternate" type="text/html" title="SQL Crash Course" /><published>2022-02-09T22:03:00+09:00</published><updated>2022-02-09T22:03:00+09:00</updated><id>http://localhost:4000/database/2022/02/09/sql_crash_course</id><content type="html" xml:base="http://localhost:4000/database/2022/02/09/sql_crash_course.html"><![CDATA[<h3 id="select">Select</h3>
 
 <p>Let’s say this is our table.</p>
 
@@ -10,7 +111,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>FIRST_NAME<br />LAST_NAME<br />BIRTHDAY<br />ADDRESS<br />AGE</td>
+      <td>CUSTOMER_ID<br />FIRST_NAME<br />LAST_NAME<br />BIRTHDAY<br />ADDRESS<br />AGE</td>
     </tr>
   </tbody>
 </table>
@@ -29,10 +130,165 @@
 <span class="k">SELECT</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
 </code></pre></div></div>
 
+<p>If you want to return only distinct values, you can use <code class="language-plaintext highlighter-rouge">SELECT DISTINCT</code> instead.</p>
+
+<h3 id="where">Where</h3>
+<p>The <code class="language-plaintext highlighter-rouge">WHERE</code> clause is used to filter the records and extract only the ones that meet a certain condition. This can be used for all <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">INSERT</code>, <code class="language-plaintext highlighter-rouge">UPDATE</code>, and <code class="language-plaintext highlighter-rouge">DELETE</code> statements.</p>
+
+<p>Strings must be enclosed in single quotes, while numbers do not.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s1">'Jack'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>You can also use multiple conditions using <code class="language-plaintext highlighter-rouge">AND</code> and <code class="language-plaintext highlighter-rouge">OR</code>.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s1">'John'</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">first_name</span> <span class="o">=</span> <span class="s1">'John'</span> <span class="k">AND</span> <span class="p">(</span><span class="n">age</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">OR</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>These are the comparison operators that can be used with <code class="language-plaintext highlighter-rouge">WHERE</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operator</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>=</td>
+      <td>Equal</td>
+    </tr>
+    <tr>
+      <td>&lt;&gt; or !=</td>
+      <td>Not equal</td>
+    </tr>
+    <tr>
+      <td>&gt;</td>
+      <td>Greater than</td>
+    </tr>
+    <tr>
+      <td>&gt;=</td>
+      <td>Greater than or equal to</td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>Less than</td>
+    </tr>
+    <tr>
+      <td>&lt;=</td>
+      <td>Less than or equal to</td>
+    </tr>
+    <tr>
+      <td>NOT</td>
+      <td>negate a condition</td>
+    </tr>
+    <tr>
+      <td>BETWEEN</td>
+      <td>Between a range (inclusive)<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></td>
+    </tr>
+    <tr>
+      <td>IS NULL</td>
+      <td>is NULL value</td>
+    </tr>
+    <tr>
+      <td>NOT NULL</td>
+      <td>is  non-NULL value</td>
+    </tr>
+    <tr>
+      <td>IN()</td>
+      <td>Matches a value inside the IN, mostly used to avoid using multiple OR conditions</td>
+    </tr>
+    <tr>
+      <td>LIKE</td>
+      <td>Pattern matching</td>
+    </tr>
+    <tr>
+      <td>EXISTS()</td>
+      <td>True if subquery returns at least one row</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="in">IN</h3>
+<p>Mostly used to avoid using multiple <code class="language-plaintext highlighter-rouge">OR</code> conditions.</p>
+
+<p><code class="language-plaintext highlighter-rouge">SELECT * FROM customers WHERE first_name = 'Jack' OR name = 'John' OR name = 'Jane';</code> is equivalent to <br />
+<code class="language-plaintext highlighter-rouge">SELECT * FROM customers WHERE first_name IN ('Jack', 'John', 'Jane);</code></p>
+
+<h3 id="like">LIKE</h3>
+<p>This operator is used in a <code class="language-plaintext highlighter-rouge">WHERE</code> clause for pattern matching using the following wildcards:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">'%'</code>: represents any character of any length, including the length of zero</li>
+  <li><code class="language-plaintext highlighter-rouge">'_'</code>: represents a single character</li>
+</ul>
+
+<p>Here are a few examples:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expression</th>
+      <th>Example matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">'a%'</code></td>
+      <td>apple, at, a, are</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">'%s'</code></td>
+      <td>cars, mats, bats, s</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">'c_t'</code></td>
+      <td>cat, cot, cut</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">'_r%'</code></td>
+      <td>arp, art, articulate, bracket</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Note: This also works with numbers. <code class="language-plaintext highlighter-rouge">WHERE num LIKE '32_'</code> will find 320, 321, 322, 323…</em></p>
+
+<h3 id="exists">EXISTS</h3>
+<p>As mentioned above, this operator is used with a subquery, where the condition is if the subquery returns at least one row. A subquery is a select statement that is nested inside another query.</p>
+
+<p>Say we have another table USERNAME.
+| ACCOUNTS |
+| — |
+| CUSTOMER_ID<br />USERNAME<br />PASSWORD |</p>
+
+<p>We can then query something like this:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">username</span> <span class="k">FROM</span> <span class="n">accounts</span> <span class="k">WHERE</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">customers</span> <span class="k">WHERE</span> <span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">.</span><span class="n">customer_id</span><span class="p">);</span>
+</code></pre></div></div>
+<p>And it will return all the usernames where it has matching customer_id in both tables.</p>
+
+<p><em>Note:</em> The query above can be similarly achieved with an inner join, such as:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">username</span> <span class="k">FROM</span>  <span class="n">customers</span> <span class="k">c</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">accounts</span> <span class="n">a</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The difference is that the one using <code class="language-plaintext highlighter-rouge">EXISTS</code> simply returns results from the CUSTOMERS table when the condition matches, and the <code class="language-plaintext highlighter-rouge">INNER JOIN</code> combines two tables first and returns results from the combined table. Having duplicates can lead to having repeated rows if the inner join is used.</p>
+
+<h3 id="subqueries">Subqueries</h3>
+
+<h3 id="order-by">ORDER BY</h3>
+
+<h3 id="group-by">GROUP BY</h3>
+
+<h3 id="join">JOIN</h3>
+
+<hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
       <p>If multiple tables are used without any join operations, it will simply do a cross join (or a <a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a>) to create all possible combinations. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><code class="language-plaintext highlighter-rouge">WHERE age BETWEEN 20 and 30</code> is equal to <code class="language-plaintext highlighter-rouge">WHERE age &gt;= 20 AND age &lt;= 30</code> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>]]></content><author><name>jyaquinas</name></author><category term="Database" /><category term="sql" /><category term="oracle" /><category term="database" /><summary type="html"><![CDATA[Select]]></summary></entry><entry><title type="html">Trie Data Structure</title><link href="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html" rel="alternate" type="text/html" title="Trie Data Structure" /><published>2022-02-07T13:18:00+09:00</published><updated>2022-02-07T13:18:00+09:00</updated><id>http://localhost:4000/data%20structures/2022/02/07/trie-data-structure</id><content type="html" xml:base="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html"><![CDATA[<p>I think I first came across the concept of a trie (pronounced <em>try</em>) when I was reading the book <em>Cracking the Coding Interview</em>. But I never really gave it much thought. Plus, I never came across a problem on <a href="https://www.leetcode.com">Leet Code</a> where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.</p>

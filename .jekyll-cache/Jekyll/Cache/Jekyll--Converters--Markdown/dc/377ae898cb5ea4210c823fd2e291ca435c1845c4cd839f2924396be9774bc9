@@ -1,0 +1,99 @@
+I"}<h3 id="pwd">pwd</h3>
+<p>This will print out the current working directory that you’re in. It will usually be something like <code class="language-plaintext highlighter-rouge">/home/user</code>.</p>
+
+<h3 id="cd">cd</h3>
+<p>This is the command used for navigating through the directories. You can either input the absolute path, or relative to your current directory.</p>
+
+<p>Let’s say our current directory is <code class="language-plaintext highlighter-rouge">/home/user</code>, and we have a folder named “a” in there.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cd a</code> or <code class="language-plaintext highlighter-rouge">cd /home/user/a</code> will take us to <code class="language-plaintext highlighter-rouge">/home/user/a</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cd ..</code> will move one directory up</li>
+  <li><code class="language-plaintext highlighter-rouge">cd -</code> will move to the previous directory</li>
+</ul>
+
+<h3 id="ls">ls</h3>
+<p>Use this to print out the contents in your current directory<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. So if we have the following files in our home directory: a.txt, b.txt, c.txt</p>
+
+<p><code class="language-plaintext highlighter-rouge">ls</code> will print out <code class="language-plaintext highlighter-rouge">a.txt b.txt c.txt</code>.<br />
+This command has a couple of command options. Here are a few important ones.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ls -a</code>: list all files including hidden ones</li>
+  <li><code class="language-plaintext highlighter-rouge">ls -l'</code> list all files in long format (includes infomation like date created and permissions)</li>
+  <li><code class="language-plaintext highlighter-rouge">ls -R</code>: recursively lists all files in directory and subdirectory</li>
+</ul>
+
+<p>You can also combine the commands together, such as <code class="language-plaintext highlighter-rouge">ls -la</code>, which will list all files including the hidden ones in long format.</p>
+
+<h3 id="mkdir--rmdir">mkdir &amp; rmdir</h3>
+<p>This is used to create and delete folders. Just append the folder name at the end, like <code class="language-plaintext highlighter-rouge">mkdir foldername</code>.</p>
+
+<p><em>Note: <code class="language-plaintext highlighter-rouge">rmdir</code> only lets you remove empty directories. To remove all of the subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r foldername</code>.</em></p>
+
+<h3 id="mv">mv</h3>
+<p>This is mostly used for moving files around, but it can also be used for renaming files.<br />
+To move a file, simply write the file name, followed by the destination path. <code class="language-plaintext highlighter-rouge">mv filename.txt /home/user/a</code>.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup><br />
+To rename a file, write the old file name, followed by the new file name. <code class="language-plaintext highlighter-rouge">mv oldfilename.txt newfilename.txt</code></p>
+
+<h3 id="cp">cp</h3>
+<p>Use this command to copy files to a target destination.<br />
+<code class="language-plaintext highlighter-rouge">cp filename.txt /home/user/a</code></p>
+
+<h3 id="rm">rm</h3>
+<p>Use this to remove files and directories. As mentioned before, to delete a directory and all of contents/subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r</code>.</p>
+
+<h3 id="touch">touch</h3>
+<p>This commmand is used to create a new file. This can by anything from a simple txt file to an html file.<br />
+<code class="language-plaintext highlighter-rouge">touch filename.txt</code></p>
+
+<h3 id="echo">echo</h3>
+<p>This is used to move some data into some file, usually some text.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt; filename.txt</code>: Use a single greater-than sign to overwrite the file. So this will replace the old data with the new data.</li>
+  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt;&gt; filename.txt</code>: Use two greater-than signs to add data to the file. New data will be added on a new line.</li>
+</ul>
+
+<p><em>Note: If you use a filename that doesn’t exist, a new file with the content inside will be created.</em></p>
+
+<h3 id="vi--nano">vi | nano</h3>
+<p>These are text editors in linux. But since nano is newer and easier to use, let’s focus on nano.</p>
+
+<p>Typing <code class="language-plaintext highlighter-rouge">nano filename.txt</code> will take you to the editor mode. Make the necessary changes, and then save by pressing <strong>Ctrl+O</strong>, exit by pressing <strong>Ctrl+X</strong>.<br />
+You can see the other options you can use on the bottom.</p>
+
+<h3 id="cat">cat</h3>
+<p>If you want to know what kind of content is inside a file, use <code class="language-plaintext highlighter-rouge">cat</code> to print out the content.</p>
+
+<p>Simply type <code class="language-plaintext highlighter-rouge">cat filename.txt</code>.<br />
+You can create a new file by using <code class="language-plaintext highlighter-rouge">cat &gt; newfilename.txt</code>. You can then type the content you want into the file, then exit by pressing <strong>Ctrl+Z</strong>.</p>
+
+<h3 id="grep">grep</h3>
+<p>Use this command to find certain words or phrases within a text.</p>
+
+<p>For instance, if we want to find if the word “hello” exists somewhere in the file, we can use <code class="language-plaintext highlighter-rouge">grep hello filename.txt</code>.<br />
+This will then display all the lines that contain the word or phrase.</p>
+
+<p>For phrases, place then inside quotes, like <code class="language-plaintext highlighter-rouge">grep 'target phrase' filename.txt</code>.</p>
+
+<h3 id="sudo">sudo</h3>
+<p><code class="language-plaintext highlighter-rouge">sudo</code> stands for “SuperUser Do”. Use this to run commands with administrative or root privileges.</p>
+
+<h3 id="chmod">chmod</h3>
+<p>This is used for changing the read, write, and execute permissions of files and directories.</p>
+
+<h4 id="for-more-information-please-check-out">For more information, please check out:</h4>
+<ul>
+  <li>https://www.hostinger.com/tutorials/linux-commands</li>
+  <li>https://maker.pro/linux/tutorial/basic-linux-commands-for-beginners</li>
+</ul>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>You can list the contents of another directory if you append the directory’s path at the end. <code class="language-plaintext highlighter-rouge">ls /home/user/a</code> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Note that you can also move folders around. Use the folder name instead of the file name. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

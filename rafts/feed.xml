@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-13T09:24:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Trie Data Structure</title><link href="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html" rel="alternate" type="text/html" title="Trie Data Structure" /><published>2022-02-07T13:18:00+09:00</published><updated>2022-02-07T13:18:00+09:00</updated><id>http://localhost:4000/data%20structures/2022/02/07/trie-data-structure</id><content type="html" xml:base="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html"><![CDATA[<p>I think I first came across the concept of a trie (pronounced <em>try</em>) when I was reading the book <em>Cracking the Coding Interview</em>. But I never really gave it much thought. Plus, I never came across a problem on <a href="https://www.leetcode.com">Leet Code</a> where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.</p>
+
+<p>Let’s briefly go over the basics.</p>
+
+<p>A trie is a special type of tree that can compactly store strings. This is especially true if the words are very similar, i.e. having overlapping parts, like prefixes.</p>
+
+<p>Each node contains a boolean flag, <code class="language-plaintext highlighter-rouge">isEndOfWord</code>, that can be used to indicate the end of a word. Now, this can vary depending on the implementation. If you’d like to associate a value for each word, you’d simply replace the bool variable with something like an int to store the value.</p>
+
+<p>The node’s children consist of all the possible characters of a word. So if we limit it to lowercase alphabets, a-z, it can have up to 26 children (stored in an array).</p>
+
+<p><strong>Pros</strong></p>
+<ul>
+  <li>space-efficient if storing similar words</li>
+  <li>efficient for looking up prefixes</li>
+  <li>relatively fast insert and lookup</li>
+</ul>
+
+<p><strong>Cons</strong></p>
+<ul>
+  <li>space inefficient for non-overlapping words</li>
+  <li>slower than hash table (depends on how the hash value is calculated)</li>
+</ul>
+
+<p>Here is the implementation in python.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TrieNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">26</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">isEndOfWord</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
+                <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">node</span><span class="p">.</span><span class="n">isEndOfWord</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">isEndOfWord</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">node</span><span class="p">.</span><span class="n">isEndOfWord</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+</code></pre></div></div>
+
+<p>Let’s test it.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'camp'</span><span class="p">,</span> <span class="s">'camper'</span><span class="p">,</span> <span class="s">'cat'</span><span class="p">,</span> <span class="s">'cater'</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Inserting words: '</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">'is in trie?'</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
+
+<span class="n">deletewords</span> <span class="o">=</span> <span class="p">[</span><span class="s">'car'</span><span class="p">,</span> <span class="s">'camper'</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Delete words: '</span><span class="p">,</span> <span class="n">deletewords</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">deletewords</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">'deleted?'</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">'is in trie?'</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Outputs:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inserting words:  ['camp', 'camper', 'cat', 'cater']
+camp is in trie? True
+camper is in trie? True
+cat is in trie? True
+cater is in trie? True
+Delete words:  ['car', 'camper']
+car deleted? False
+camper deleted? True
+camp is in trie? True
+camper is in trie? False
+cat is in trie? True
+cater is in trie? True
+</code></pre></div></div>]]></content><author><name>jyaquinas</name></author><category term="Data Structures" /><category term="data structures" /><category term="algorithms" /><category term="trie" /><summary type="html"><![CDATA[I think I first came across the concept of a trie (pronounced try) when I was reading the book Cracking the Coding Interview. But I never really gave it much thought. Plus, I never came across a problem on Leet Code where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.]]></summary></entry></feed>
