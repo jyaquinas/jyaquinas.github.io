@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Basic Linux Commands
-subtitle: Quick overview
+subtitle: A quick overview
 date: 2022-02-13 09:44:00 +0900
 background: '/img/bg-post.jpg'
 category: "Linux"
