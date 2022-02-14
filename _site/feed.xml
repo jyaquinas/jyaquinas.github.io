@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-14T20:54:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Linux File Permissions</title><link href="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html" rel="alternate" type="text/html" title="Linux File Permissions" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/linux-file-permissions</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html"><![CDATA[<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-14T21:02:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Linux File Permissions</title><link href="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html" rel="alternate" type="text/html" title="Linux File Permissions" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/linux-file-permissions</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html"><![CDATA[<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
 
 <p>The first column will look something like this: <code class="language-plaintext highlighter-rouge">drwxr-xr-x</code></p>
 
@@ -11,7 +11,7 @@
 <p>This will print out the current working directory that you’re in. It will usually be something like <code class="language-plaintext highlighter-rouge">/home/user</code>.</p>
 
 <h3 id="cd">cd</h3>
-<p>This is the command used for navigating through the directories. You can either input the absolute path, or relative to your current directory.</p>
+<p>This is the command used for navigating through the directories. You can either input the absolute path or relative to your current directory.</p>
 
 <p>Let’s say our current directory is <code class="language-plaintext highlighter-rouge">/home/user</code>, and we have a folder named “a” in there.</p>
 <ul>
@@ -27,11 +27,11 @@
 This command has a couple of command options. Here are a few important ones.</p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">ls -a</code>: list all files including hidden ones</li>
-  <li><code class="language-plaintext highlighter-rouge">ls -l'</code> list all files in long format (includes infomation like date created and permissions)</li>
+  <li><code class="language-plaintext highlighter-rouge">ls -l'</code> list all files in long format (includes information like date created and permissions)</li>
   <li><code class="language-plaintext highlighter-rouge">ls -R</code>: recursively lists all files in directory and subdirectory</li>
 </ul>
 
-<p>You can also combine the commands together, such as <code class="language-plaintext highlighter-rouge">ls -la</code>, which will list all files including the hidden ones in long format.</p>
+<p>You can also combine the commands, such as <code class="language-plaintext highlighter-rouge">ls -la</code>, which will list all files including the hidden ones in long format.</p>
 
 <h3 id="mkdir--rmdir">mkdir &amp; rmdir</h3>
 <p>This is used to create and delete folders. Just append the folder name at the end, like <code class="language-plaintext highlighter-rouge">mkdir foldername</code>.</p>
@@ -48,17 +48,17 @@ To rename a file, write the old file name, followed by the new file name. <code 
 <code class="language-plaintext highlighter-rouge">cp filename.txt /home/user/a</code></p>
 
 <h3 id="rm">rm</h3>
-<p>Use this to remove files and directories. As mentioned before, to delete a directory and all of contents/subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r</code>.</p>
+<p>Use this to remove files and directories. As mentioned before, to delete a directory and all of contents or subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r</code>.</p>
 
 <h3 id="touch">touch</h3>
-<p>This commmand is used to create a new file. This can by anything from a simple txt file to an html file.<br />
+<p>This command is used to create a new file. This can be anything from a simple txt file to an html file.<br />
 <code class="language-plaintext highlighter-rouge">touch filename.txt</code></p>
 
 <h3 id="echo">echo</h3>
 <p>This is used to move some data into some file, usually some text.</p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt; filename.txt</code>: Use a single greater-than sign to overwrite the file. So this will replace the old data with the new data.</li>
-  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt;&gt; filename.txt</code>: Use two greater-than signs to add data to the file. New data will be added on a new line.</li>
+  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt;&gt; filename.txt</code>: Use two greater-than signs to add data to the file. New data will be added to a new line.</li>
 </ul>
 
 <p><em>Note: If you use a filename that doesn’t exist, a new file with the content inside will be created.</em></p>
@@ -66,7 +66,7 @@ To rename a file, write the old file name, followed by the new file name. <code 
 <h3 id="vi--nano">vi | nano</h3>
 <p>These are text editors in linux. But since nano is newer and easier to use, let’s focus on nano.</p>
 
-<p>Typing <code class="language-plaintext highlighter-rouge">nano filename.txt</code> will take you to the editor mode. Make the necessary changes, and then save by pressing <strong>Ctrl+O</strong>, exit by pressing <strong>Ctrl+X</strong>.<br />
+<p>Typing <code class="language-plaintext highlighter-rouge">nano filename.txt</code> will take you to editor mode. Make the necessary changes, and then save by pressing <strong>Ctrl+O</strong>, exit by pressing <strong>Ctrl+X</strong>.<br />
 You can see the other options you can use on the bottom of the terminal window.</p>
 
 <h3 id="cat">cat</h3>
@@ -87,7 +87,7 @@ This will then display all the lines that contain the word.</p>
 
 <h3 id="chmod">chmod</h3>
 <p>This is used for changing the read, write, and execute permissions of files and directories.
-I’ll provide more info about this on a separate post.</p>
+I’ll provide more info about this in a separate post.</p>
 
 <hr />
 <div class="footnotes" role="doc-endnotes">
