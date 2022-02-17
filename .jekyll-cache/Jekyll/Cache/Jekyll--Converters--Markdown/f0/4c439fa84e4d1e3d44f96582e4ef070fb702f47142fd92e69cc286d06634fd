@@ -1,0 +1,109 @@
+I"�<h3 id="understanding-permissions">Understanding Permissions</h3>
+
+<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
+
+<p>The first column will look something like this: <code class="language-plaintext highlighter-rouge">drwxr-xr-x</code></p>
+
+<p>The first character represents the file type, such as <code class="language-plaintext highlighter-rouge">-</code> for regular files and <code class="language-plaintext highlighter-rouge">d</code> for directories. Then it’s followed by 3 sets of 3 characters, each character representing read, write, and execute permissions, in the respective order. A <code class="language-plaintext highlighter-rouge">-</code> means it has no permission for that action.</p>
+
+<p>The 3 sets will correspond to the different permissions: user (file owner), group (group members), and other (everyone else) permissions.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">rwxrwxrwx</code>: all users have full read, write, and execute permissions</li>
+  <li><code class="language-plaintext highlighter-rouge">rwxrw-r--</code>: owner can read, write, and execute, but group users can only read and write, and the rest can only read</li>
+  <li><code class="language-plaintext highlighter-rouge">rwx------</code>: owner has full permission, but the rest have none</li>
+</ul>
+
+<h3 id="modifying-permissions">Modifying Permissions</h3>
+<p>There are two ways we can modify permissions, the symbolic (text) and numeric methods.</p>
+
+<h4 id="symbolic">Symbolic</h4>
+<p>The basic syntax is:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod</span> <span class="o">[</span>USERFLAG][+-<span class="o">=][</span>rwx] FILE
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[USERFLAG]</code>: You can use a, u, g, o, for all, user, group, and other, respectively. Multiple flags can be used at the same time.</li>
+  <li><code class="language-plaintext highlighter-rouge">[+-=]</code>: You can use +, -, and = for adding, removing, and replacing (overrides old permissions) the specified permissions. If only <code class="language-plaintext highlighter-rouge">=</code> is used without any permissions, it will simply remove all permissions.</li>
+  <li><code class="language-plaintext highlighter-rouge">[rwx]</code>: You can select one or multiple permissions</li>
+  <li><code class="language-plaintext highlighter-rouge">FILE</code>: It can be either a file or directory, as well as files with a certain extension by using <code class="language-plaintext highlighter-rouge">*.extension</code>, such as <code class="language-plaintext highlighter-rouge">*.txt</code></li>
+</ul>
+
+<p>Here are a few examples:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>g+w file.txt      <span class="c"># adds write permission to group</span>
+<span class="nb">chmod </span>o+rw file.txt     <span class="c"># adds read and write permission to others</span>
+<span class="nb">chmod </span>og-rwx file.txt   <span class="c"># removes all permissions from group and others</span>
+<span class="nb">chmod </span><span class="nv">og</span><span class="o">=</span> file.txt      <span class="c"># achieves the same as above</span>
+<span class="nb">chmod </span><span class="nv">a</span><span class="o">=</span>r file.txt      <span class="c"># gives only read permission to everyone</span>
+<span class="nb">chmod </span>u+x, <span class="nv">g</span><span class="o">=</span>r file.txt <span class="c"># adds execute permision to user and gives only read permission to group</span>
+<span class="nb">chmod </span><span class="nv">a</span><span class="o">=</span>r <span class="k">*</span>.txt         <span class="c"># gives write permission to all for all txt files</span>
+</code></pre></div></div>
+
+<h4 id="numerical">Numerical</h4>
+<p>The basic syntax is the same as the symbolic method, but instead of the <code class="language-plaintext highlighter-rouge">g+w</code> portion, we will use a numeric representation for it.</p>
+
+<p>Three digits are used, each representing the permission for the user, group, and other.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number Representation</th>
+      <th>Permission</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 (000)</td>
+      <td>No permission</td>
+    </tr>
+    <tr>
+      <td>1 (001)</td>
+      <td>Execute permission</td>
+    </tr>
+    <tr>
+      <td>2 (010)</td>
+      <td>Write permission</td>
+    </tr>
+    <tr>
+      <td>3 (011)</td>
+      <td>Write and execute permission</td>
+    </tr>
+    <tr>
+      <td>4 (100)</td>
+      <td>Read permission</td>
+    </tr>
+    <tr>
+      <td>5 (101)</td>
+      <td>Read and execute permission</td>
+    </tr>
+    <tr>
+      <td>6 (110)</td>
+      <td>Read and write permission</td>
+    </tr>
+    <tr>
+      <td>7 (111)</td>
+      <td>Read, write, and execute permission</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So if we have 764, <em>user</em> has full permission, <em>group</em> has read and write permissions, and <em>other</em> only have read permission.</p>
+
+<p>Here are a few examples:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>666 file.txt    <span class="c"># gives read and write permissions to all</span>
+<span class="nb">chmod </span>740 <span class="k">*</span>.txt       <span class="c"># gives full permission to user, read permission to group, and no permission to others for txt files</span>
+<span class="nb">chmod </span>777 directory   <span class="c"># gives full permission to all for the directory</span>
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="bonus">Bonus</h3>
+<p>You can change the permissions for all the files and subdirectories of a folder by using the <code class="language-plaintext highlighter-rouge">-R</code>.</p>
+<pre><code class="language-linux">chmod 755 -R directoryname
+</code></pre>
+<p>This will change the permissions of all files and subdirectories.</p>
+
+<p>But say you want to change all the files contained in the folder and subfolders with a certain extension. We can do that with the help of <code class="language-plaintext highlighter-rouge">find</code>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*.txt'</span> <span class="nt">-exec</span> <span class="nb">chmod </span>755 <span class="o">{}</span> <span class="se">\;</span>
+</code></pre></div></div>
+<p>This will change the permission of all the txt files in the directory and subdirectories, but not the directories themselves.</p>
+:ET

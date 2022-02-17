@@ -1,13 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-15T22:48:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Linux File Permissions</title><link href="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html" rel="alternate" type="text/html" title="Linux File Permissions" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/linux-file-permissions</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/linux-file-permissions.html"><![CDATA[<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-17T21:10:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">Linux File Permissions</title><link href="http://localhost:4000/linux/2022/02/17/linux-file-permissions.html" rel="alternate" type="text/html" title="Linux File Permissions" /><published>2022-02-17T20:59:00+09:00</published><updated>2022-02-17T20:59:00+09:00</updated><id>http://localhost:4000/linux/2022/02/17/linux-file-permissions</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/17/linux-file-permissions.html"><![CDATA[<h3 id="understanding-permissions">Understanding Permissions</h3>
+
+<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
 
 <p>The first column will look something like this: <code class="language-plaintext highlighter-rouge">drwxr-xr-x</code></p>
 
 <p>The first character represents the file type, such as <code class="language-plaintext highlighter-rouge">-</code> for regular files and <code class="language-plaintext highlighter-rouge">d</code> for directories. Then it’s followed by 3 sets of 3 characters, each character representing read, write, and execute permissions, in the respective order. A <code class="language-plaintext highlighter-rouge">-</code> means it has no permission for that action.</p>
+
+<p>The 3 sets will correspond to the different permissions: <em>user</em> (file owner), <em>group</em> (group members), and <em>other</em> (everyone else) permissions.</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">rwx</code>: has full read, write, and execute permissions</li>
-  <li><code class="language-plaintext highlighter-rouge">rw-</code>: can only read and write</li>
-  <li><code class="language-plaintext highlighter-rouge">---</code>: has no permissions at all</li>
-</ul>]]></content><author><name>jyaquinas</name></author><category term="Linux" /><category term="linux" /><summary type="html"><![CDATA[When you see the contents of a directory in long format (ls -l), you’ll be able to see their permissions.]]></summary></entry><entry><title type="html">Basic Linux Commands</title><link href="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html" rel="alternate" type="text/html" title="Basic Linux Commands" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/basic-linux-commands</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html"><![CDATA[<h3 id="pwd">pwd</h3>
+  <li><code class="language-plaintext highlighter-rouge">rwxrwxrwx</code>: all users have full read, write, and execute permissions</li>
+  <li><code class="language-plaintext highlighter-rouge">rwxrw-r--</code>: owner can read, write, and execute, but <em>group</em> users can only read and write, and the rest can only read</li>
+  <li><code class="language-plaintext highlighter-rouge">rwx------</code>: owner has full permission, but the rest have none</li>
+</ul>
+
+<h3 id="modifying-permissions">Modifying Permissions</h3>
+<p>There are two ways we can modify permissions, the symbolic (text) and numeric methods.</p>
+
+<h4 id="symbolic">Symbolic</h4>
+<p>The basic syntax is:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod</span> <span class="o">[</span>USERFLAG][+-<span class="o">=][</span>rwx] FILE
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[USERFLAG]</code>: You can use a, u, g, o, for all, <em>user</em>, <em>group</em>, and <em>other</em>, respectively. Multiple flags can be used at the same time.</li>
+  <li><code class="language-plaintext highlighter-rouge">[+-=]</code>: You can use +, -, and = for adding, removing, and replacing (overrides old permissions) the specified permissions. If only <code class="language-plaintext highlighter-rouge">=</code> is used without any permissions, it will simply remove all permissions.</li>
+  <li><code class="language-plaintext highlighter-rouge">[rwx]</code>: You can select one or multiple permissions</li>
+  <li><code class="language-plaintext highlighter-rouge">FILE</code>: It can be either a file or directory, as well as files with a certain extension by using <code class="language-plaintext highlighter-rouge">*.extension</code>, such as <code class="language-plaintext highlighter-rouge">*.txt</code></li>
+</ul>
+
+<p>Here are a few examples:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>g+w file.txt      <span class="c"># adds write permission to group</span>
+<span class="nb">chmod </span>o+rw file.txt     <span class="c"># adds read and write permission to others</span>
+<span class="nb">chmod </span>og-rwx file.txt   <span class="c"># removes all permissions from group and others</span>
+<span class="nb">chmod </span><span class="nv">og</span><span class="o">=</span> file.txt      <span class="c"># achieves the same as above</span>
+<span class="nb">chmod </span><span class="nv">a</span><span class="o">=</span>r file.txt      <span class="c"># gives only read permission to everyone</span>
+<span class="nb">chmod </span>u+x, <span class="nv">g</span><span class="o">=</span>r file.txt <span class="c"># adds execute permision to user and gives only read permission to group</span>
+<span class="nb">chmod </span><span class="nv">a</span><span class="o">=</span>r <span class="k">*</span>.txt         <span class="c"># gives write permission to all for all txt files</span>
+</code></pre></div></div>
+
+<h4 id="numerical">Numerical</h4>
+<p>The basic syntax is the same as the symbolic method, but instead of the <code class="language-plaintext highlighter-rouge">g+w</code> portion, we will use a numeric representation for it.</p>
+
+<p>Three digits are used, each representing the permission for the <em>user</em>, <em>group</em>, and <em>other</em>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number Representation</th>
+      <th>Permission</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 (000)</td>
+      <td>No permission</td>
+    </tr>
+    <tr>
+      <td>1 (001)</td>
+      <td>Execute permission</td>
+    </tr>
+    <tr>
+      <td>2 (010)</td>
+      <td>Write permission</td>
+    </tr>
+    <tr>
+      <td>3 (011)</td>
+      <td>Write and execute permission</td>
+    </tr>
+    <tr>
+      <td>4 (100)</td>
+      <td>Read permission</td>
+    </tr>
+    <tr>
+      <td>5 (101)</td>
+      <td>Read and execute permission</td>
+    </tr>
+    <tr>
+      <td>6 (110)</td>
+      <td>Read and write permission</td>
+    </tr>
+    <tr>
+      <td>7 (111)</td>
+      <td>Read, write, and execute permission</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So if we have 764, <em>user</em> has full permission, <em>group</em> has read and write permissions, and <em>other</em> only has read permission.</p>
+
+<p>Here are a few examples:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>666 file.txt    <span class="c"># gives read and write permissions to all</span>
+<span class="nb">chmod </span>740 <span class="k">*</span>.txt       <span class="c"># gives full permission to *user*, read permission to group, and no permission to others for txt files</span>
+<span class="nb">chmod </span>777 directory   <span class="c"># gives full permission to all for the directory</span>
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="bonus">Bonus</h3>
+<p>You can change the permissions for all the files and subdirectories of a folder by using the <code class="language-plaintext highlighter-rouge">-R</code>.</p>
+<pre><code class="language-linux">chmod 755 -R directoryname
+</code></pre>
+<p>This will change the permissions of all files and subdirectories.</p>
+
+<p>But say you want to change all the files contained in the folder and subfolders with a certain extension. We can do that with the help of <code class="language-plaintext highlighter-rouge">find</code>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*.txt'</span> <span class="nt">-exec</span> <span class="nb">chmod </span>755 <span class="o">{}</span> <span class="se">\;</span>
+</code></pre></div></div>
+<p>This will change the permission of all the txt files in the directory and subdirectories, but not the directories themselves.</p>]]></content><author><name>jyaquinas</name></author><category term="Linux" /><category term="linux" /><summary type="html"><![CDATA[Understanding Permissions]]></summary></entry><entry><title type="html">Basic Linux Commands</title><link href="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html" rel="alternate" type="text/html" title="Basic Linux Commands" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/basic-linux-commands</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html"><![CDATA[<h3 id="pwd">pwd</h3>
 <p>This will print out the current working directory that you’re in. It will usually be something like <code class="language-plaintext highlighter-rouge">/home/user</code>.</p>
 
 <h3 id="cd">cd</h3>
@@ -424,6 +522,49 @@ So for the example below:</p>
 
 <p><br /></p>
 <h3 id="join">JOIN</h3>
+<h4 id="inner-join">Inner Join</h4>
+<p>Inner join is probably the most common type of join you’ll be using. It returns results in which the condition is met for both tables. If we look at them in a venn diagram, we’re talking about the middle overlapping area, where the two tables intersect.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">customers</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">accounts</span><span class="p">.</span><span class="n">username</span>
+  <span class="k">FROM</span> <span class="n">customers</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">accounts</span>
+  <span class="k">ON</span> <span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre></div></div>
+<p>So only the rows that have matching customer ids in both tables will be returned.</p>
+
+<p>There’s another way to perform this inner join, using the older syntax.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">customers</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">accounts</span><span class="p">.</span><span class="n">username</span>
+  <span class="k">FROM</span> <span class="n">customer</span><span class="p">,</span> <span class="n">accounts</span>
+  <span class="k">WHERE</span> <span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre></div></div>
+<p>But recognizing this as an inner join is not as obvious, so try to avoid this older syntax.</p>
+
+<p>You can also use the <code class="language-plaintext highlighter-rouge">USING</code> instead of <code class="language-plaintext highlighter-rouge">ON</code>, but this is only true for <strong>equijoins</strong> (join conditions using an equality operator):</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">customers</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">accounts</span><span class="p">.</span><span class="n">username</span>
+  <span class="k">FROM</span> <span class="n">customers</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">accounts</span>
+  <span class="k">USING</span> <span class="p">(</span><span class="n">customer_id</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="outer-join">Outer Join</h4>
+<p>We have left outer join and right outer join. Left outer join will return all of the rows from the left table, and only those that match the join condition from the right table.
+The opposite will be true for the right outer join.</p>
+
+<p>This can result in some rows with null values.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">customers</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">accounts</span><span class="p">.</span><span class="n">username</span>
+ <span class="k">FROM</span> <span class="n">customers</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">accounts</span>
+ <span class="k">ON</span> <span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre></div></div>
+<p>Use <code class="language-plaintext highlighter-rouge">RIGHT OUTER JOIN</code> for right join.</p>
+
+<p>Note that we can achieve right join using the <code class="language-plaintext highlighter-rouge">LEFT OUTER JOIN</code> by simply switching the order of tables. So the following query is equivalent to the one above.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">customers</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">accounts</span><span class="p">.</span><span class="n">username</span>
+ <span class="k">FROM</span> <span class="n">accounts</span> <span class="k">RIGHT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">customers</span>
+ <span class="k">ON</span> <span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>You can also perform join operations on multiple columns or conditions. <br />
+<code class="language-plaintext highlighter-rouge">ON t1.col1 = t2.col2 AND t1.col2 = t2.col2 ...</code><br />
+or<br />
+<code class="language-plaintext highlighter-rouge">USING (col1, col2, ...)</code></p>
 
 <hr />
 <div class="footnotes" role="doc-endnotes">
