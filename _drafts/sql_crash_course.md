@@ -8,7 +8,7 @@ category: "Database"
 tags: [sql, oracle, database]
 ---
 
-### Select
+### SELECT
 
 Let's say this is our table.
 
@@ -36,7 +36,7 @@ SELECT first_name, last_name FROM customers
 
 If you want to return only distinct values, you can use `SELECT DISTINCT` instead.
 
-### Where
+### WHERE
 The `WHERE` clause is used to filter the records and extract only the ones that meet a certain condition. This can be used for all `SELECT`, `INSERT`, `UPDATE`, and `DELETE` statements.
 
 Strings must be enclosed in single quotes, while numbers do not.
@@ -71,12 +71,23 @@ These are the comparison operators that can be used with `WHERE`:
 | LIKE | Pattern matching |
 | EXISTS() | True if subquery returns at least one row |  
 
-
+<br>
 ### IN
 Mostly used to avoid using multiple `OR` conditions.
 
-`SELECT * FROM customers WHERE first_name = 'Jack' OR name = 'John' OR name = 'Jane';` is equivalent to   
-`SELECT * FROM customers WHERE first_name IN ('Jack', 'John', 'Jane);`
+```sql
+SELECT * FROM customers
+  WHERE first_name = 'Jack'
+    OR name = 'John'
+    OR name = 'Jane';
+```
+
+is equivalent to
+
+```sql
+SELECT * FROM customers
+  WHERE first_name IN ('Jack', 'John', 'Jane');
+```
 
 ### LIKE
 This operator is used in a `WHERE` clause for pattern matching using the following wildcards:
@@ -98,7 +109,8 @@ Here are a few examples:
 ### EXISTS
 As mentioned above, this operator is used with a subquery, where the condition is if the subquery returns at least one row. A subquery is a select statement that is nested inside another query (more info below).
 
-Say we have another table USERNAME.
+Say we have another table called ACCOUNTS.  
+
 | ACCOUNTS |
 | --- |
 | CUSTOMER_ID<br>USERNAME<br>PASSWORD |
@@ -135,9 +147,74 @@ It first executes the subquery to obtain the results. Let's say the customer id 
 Note that there can be multiple nested subqueries. But there is a limit of 255 levels of subqueries for the `WHERE` clause, and no limit for the `FROM` clause. (This is for Oracle SQL)
 
 ### ORDER BY
+This is used to sort the results, and it can only be used with `SELECT` queries.
+
+```sql
+SELECT * FROM customers ORDER BY customer_id;
+```
+
+It will order the results in ascending order by default even if you don't use the `ASC` keyword. For descending order, use the keyword `DESC`.
+
+You can also use multiple columns.
+
+```sql
+SELECT * FROM customers ORDER BY age, customer_id DESC;
+SELECT * FROM customers ORDER BY age ASC,
+  customer_id DESC; /* This is also possible */
+```
+
+This will simply use the following columns as the next sorting condition. So for the query above, if two rows have the same age, it will then sort by customer_id.
 
 ### GROUP BY
+This clause is used for grouping results based on matching values in specified columns, and usually in conjunction with an aggregate function (e.g. SUM, COUNT, MIN, MAX, AVG).
 
+The syntax is as follows:
+```sql
+SELECT exp1, exp2, ...
+    agg_func1(agg_exp1), agg_func2(agg_exp2), ...
+    [WHERE conditions]
+    GROUP BY exp1, exp2, ...;
+```
+`exp1, exp2, ...`: must be included in the `GROUP BY` clause, and excluded from the aggregate functions
+
+The reason why you don't want the same columns in the `GROUP BY` as in the aggregate functions is because it wouldn't make sense to perform some aggregate function on the rows in which all the values are the same. If you're grouping by "age", for example, and you try to get the max age value from a group of people with the same age, you'd just get the same value.
+
+I guess the only aggregate function that would make sense would be `COUNT`, as that will return the count number for each group value.
+
+Here's an example.
+
+```sql
+SELECT age, COUNT(customer_id) GROUP BY age;
+SELECT age, COUNT(age)
+  GROUP BY age; /* this also works */
+SELECT age, customer_id
+  GROUP BY age; /* this returns an error */
+```
+
+You can also group by multiple columns. So if we group by both age and gender, it will return all the existing combinations of the two columns.
+So for the example below:
+
+| customer_id | age | gender |
+| --- | --- | --- |
+| 1 | 20 | M |
+| 2 | 20 | F |
+| 3 | 25 | M |
+| 4 | 25 | M |
+
+```sql
+SELECT age, gender, COUNT(customer_id) as count
+  GROUP BY age, gender;
+```
+
+The result will be:
+
+| age | gender | count |
+| --- | --- | --- |
+| 20 | M | 1 |
+| 20 | F | 1 |
+| 25 | M | 2 |
+
+<br>
 ### JOIN
 
 
