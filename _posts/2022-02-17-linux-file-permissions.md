@@ -68,7 +68,7 @@ So if we have 764, *user* has full permission, *group* has read and write permis
 Here are a few examples:
 ```shell
 chmod 666 file.txt    # gives read and write permissions to all
-chmod 740 *.txt       # gives full permission to *user*, read permission to group, and no permission to others for txt files
+chmod 740 *.txt       # gives full permission to user, read permission to group, and no permission to others for txt files
 chmod 777 directory   # gives full permission to all for the directory
 ```
 
