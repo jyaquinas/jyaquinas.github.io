@@ -215,8 +215,10 @@ The result will be:
 | 25 | M | 2 |
 
 <br>
+
 ### JOIN
-#### Inner Join
+
+#### Inner Join  
 Inner join is probably the most common type of join you'll be using. It returns results in which the condition is met for both tables. If we look at them in a venn diagram, we're talking about the middle overlapping area, where the two tables intersect.
 
 ```sql
@@ -224,7 +226,7 @@ SELECT customers.first_name, customers.last_name, accounts.username
   FROM customers INNER JOIN accounts
   ON customers.customer_id = accounts.customer_id;
 ```
-So only the rows that have matching customer ids in both tables will be returned.
+So only the rows that have matching customer ids in both tables will be returned. The keyword `INNER` is optional.
 
 There's another way to perform this inner join, using the older syntax.
 ```sql
@@ -232,7 +234,7 @@ SELECT customers.first_name, customers.last_name, accounts.username
   FROM customer, accounts
   WHERE customers.customer_id = accounts.customer_id;
 ```
-But recognizing this as an inner join is not as obvious, so try to avoid this older syntax.
+But recognizing this as an inner join is not as obvious, so try to avoid this older syntax. 
 
 You can also use the `USING` instead of `ON`, but this is only true for **equijoins** (join conditions using an equality operator):
 ```sql
@@ -264,6 +266,8 @@ You can also perform join operations on multiple columns or conditions.
 `ON t1.col1 = t2.col2 AND t1.col2 = t2.col2 ...`  
 or  
 `USING (col1, col2, ...)`  
+
+There's also a **full outer join**, or a full join, where you combine both tables, regardless of whether on not they have a match. So in terms of the venn diagram, we're talking about the entire thing. The syntax is the same, but use the keyword `FULL JOIN` instead.
 
 
 ---
