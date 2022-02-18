@@ -269,6 +269,82 @@ or
 
 There's also a **full outer join**, or a full join, where you combine both tables, regardless of whether on not they have a match. So in terms of the venn diagram, we're talking about the entire thing. The syntax is the same, but use the keyword `FULL JOIN` instead.
 
+### INSERT
+This statement is used to insert records into a table. The basic syntax is:
+```sql
+INSERT INTO table_name (col1, col2, ...)
+  VALUES (val1, val2, ...);
+```
+You can omit the comma separated columns, but then you have to provide the values for all the columns in their respective orders. Not good practice. Also, certain values that have a default value or can be NULL can be omitted. 
+
+You can also use `SELECT` in conjunction with `INSERT` to insert multiple values into a table. This is especially useful for copying data into another table.
+```sql
+INSERT INTO table_name (col1, col2, ...)
+  SELECT exp1, exp2, ...
+    FROM source_table;
+```
+This will basically copy the values obtained from `exp1` and `exp2` into `col1` and `col2`, respectively. You can use literals instead of columns for the `exp` in order to set a constant value. 
+
+So lets say `col2` takes in a number, and instead of `exp2`, we input the value `0`. Then all the rows will have the value 0 for `col2`. 
+```sql
+INSERT INTO table_name (col1, col2)
+  SELECT exp1, 0
+    FROM source_table;
+```
+
+For inserting multiple rows into one or multiple tables using a single statement, use the following syntax: 
+```sql
+INSERT ALL
+  INTO table_name (col11, col12, ...) VALUES (val11, val12, ...)
+  INTO table_name (col21, col22, ...) VALUES (val21, val22, ...)
+  INTO table_name2 (col31, col32, ...) VALUES (val31, val32, ...)
+  [subquery];
+```
+This is the same as using 3 separate `INSERT INTO` statements.
+
+Notice that this statement requires a subquery. The values from `val11`, `val12`, `val21`, ... must correspond to the values obtained from the subquery. If you want to use the values stated in `val11`, `val12`, `val21`, ... as the literal values, then simply use `SELECT * FROM dual` for the subquery.
+
+For instance, say we have two new tables, called USERS1 and USERS2, with only 2 columns, `FIRST_NAME` and `LAST_NAME`. We have another table, CUSTOMERS, with all the user information and we want to copy them into these two new tables. We can do the following.
+```sql
+INSERT ALL
+  INTO users1 (first_name, last_name) values (user_first_name, user_last_name)
+  INTO users2 (first_name, last_name) values (user_first_name, user_last_name)
+  SELECT user_first_name, user_last_name FROM customers;
+```
+But say we only want to insert using the values themselves, without a subquery.
+```
+INSERT ALL
+  INTO users1 (first_name, last_name) values ('Elon', 'Musk')
+  INTO users2 (first_name, last_name) values ('Jack', 'Ma')
+  SELECT * FROM dual;
+```
+
+What is a dual table, you ask?
+> DUAL is a small table in the data dictionary that Oracle Database and user-written programs can reference to guarantee a known result. The dual table is useful when a value must be returned only once, for example, the current date and time. All database users have access to DUAL.
+
+You can think of it as a dummy query for this case.
+
+You can find more info [here](https://docs.oracle.com/cd/E11882_01/server.112/e40540/datadict.htm#CNCPT1210) and [here](https://asktom.oracle.com/pls/apex/f?p=100:11:0::::P11_QUESTION_ID:1562813956388).
+
+**Important**: Remember to use `commit;` after inserting all the rows to make the changes permanent.
+
+### UPDATE
+Use this statement to update existing records in a table. 
+```sql
+UPDATE table_name
+  SET 
+    col1 = val1,
+    col2 = val2,
+    ...
+  WHERE condition;
+```
+So we could do something like this:
+```sql
+SELECT customers
+  SET age = 30
+  WHERE customer_id = 1;
+```
+
 
 ---
 [^1]: If multiple tables are used without any join operations, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations.
