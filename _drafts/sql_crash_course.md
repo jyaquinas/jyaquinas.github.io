@@ -324,7 +324,7 @@ What is a dual table, you ask?
 
 You can think of it as a dummy query for this case.
 
-You can find more info [here](https://docs.oracle.com/cd/E11882_01/server.112/e40540/datadict.htm#CNCPT1210) and [here](https://asktom.oracle.com/pls/apex/f?p=100:11:0::::P11_QUESTION_ID:1562813956388).
+You can find more info [here](https://docs.oracle.com/cd/E11882_01/server.112/e40540/datadict.htm#CNCPT1210) or check out this [post](https://asktom.oracle.com/pls/apex/f?p=100:11:0::::P11_QUESTION_ID:1562813956388).
 
 **Important**: Remember to use `commit;` after inserting all the rows to make the changes permanent.
 
@@ -347,5 +347,5 @@ SELECT customers
 
 
 ---
-[^1]: If multiple tables are used without any join operations, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations.
+[^1]: If multiple tables are used without any join operations, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations.  
 [^2]: `WHERE age BETWEEN 20 and 30` is equal to `WHERE age >= 20 AND age <= 30`
