@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-18T19:54:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jyaquinas</title><subtitle>Personal Blog Space</subtitle><author><name>jyaquinas</name></author><entry><title type="html">SQL Crash Course</title><link href="http://localhost:4000/database/2022/02/18/sql-crash-course.html" rel="alternate" type="text/html" title="SQL Crash Course" /><published>2022-02-18T19:54:00+09:00</published><updated>2022-02-18T19:54:00+09:00</updated><id>http://localhost:4000/database/2022/02/18/sql-crash-course</id><content type="html" xml:base="http://localhost:4000/database/2022/02/18/sql-crash-course.html"><![CDATA[<h3 id="select">SELECT</h3>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    SQL Crash Course - Jyaquinas
+    
+  </title>
+
+  <meta name="description" content="SELECT">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/database/2022/02/18/sql-crash-course.html">
+  <link rel="alternate" type="application/rss+xml" title="Jyaquinas" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Jyaquinas</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navbarDropdownMenuLink" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            href="#">Filter By</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="nav-link dropdown-item" href="/categories">Categories</a>
+            <a class="nav-link dropdown-item" href="/tags">Tags</a>
+          </div>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/bg-post.jpg')">
+  
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>SQL Crash Course</h1>
+            
+            <h2 class="subheading">Quick overview of the basics</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">jyaquinas</a>
+              on February 18, 2022 &middot; <span class="reading-time" title="Estimated read time">
+  
+   21 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <h3 id="select">SELECT</h3>
 
 <p>Let’s say this is our table.</p>
 
@@ -451,306 +546,102 @@ or<br />
       <p><code class="language-plaintext highlighter-rouge">WHERE age BETWEEN 20 and 30</code> is equal to <code class="language-plaintext highlighter-rouge">WHERE age &gt;= 20 AND age &lt;= 30</code> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name>jyaquinas</name></author><category term="Database" /><category term="sql" /><category term="oracle" /><category term="database" /><summary type="html"><![CDATA[SELECT]]></summary></entry><entry><title type="html">Linux File Permissions</title><link href="http://localhost:4000/linux/2022/02/17/linux-file-permissions.html" rel="alternate" type="text/html" title="Linux File Permissions" /><published>2022-02-17T20:59:00+09:00</published><updated>2022-02-17T20:59:00+09:00</updated><id>http://localhost:4000/linux/2022/02/17/linux-file-permissions</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/17/linux-file-permissions.html"><![CDATA[<h3 id="understanding-permissions">Understanding Permissions</h3>
+</div>
 
-<p>When you see the contents of a directory in long format (<code class="language-plaintext highlighter-rouge">ls -l</code>), you’ll be able to see their permissions.</p>
 
-<p>The first column will look something like this: <code class="language-plaintext highlighter-rouge">drwxr-xr-x</code></p>
+        <!-- 
+          
+          <a class="tag-link"
+            href=//tags/sql/
+            rel="category tag">
+            #sql
+          </a>
+        
+          
+          <a class="tag-link"
+            href=//tags/oracle/
+            rel="category tag">
+            #oracle
+          </a>
+        
+          
+          <a class="tag-link"
+            href=//tags/database/
+            rel="category tag">
+            #database
+          </a>
+         -->
 
-<p>The first character represents the file type, such as <code class="language-plaintext highlighter-rouge">-</code> for regular files and <code class="language-plaintext highlighter-rouge">d</code> for directories. Then it’s followed by 3 sets of 3 characters, each character representing read, write, and execute permissions, in the respective order. A <code class="language-plaintext highlighter-rouge">-</code> means it has no permission for that action.</p>
+        <hr>
 
-<p>The 3 sets will correspond to the different permissions: <em>user</em> (file owner), <em>group</em> (group members), and <em>other</em> (everyone else) permissions.</p>
+        <div class="clearfix">
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">rwxrwxrwx</code>: all users have full read, write, and execute permissions</li>
-  <li><code class="language-plaintext highlighter-rouge">rwxrw-r--</code>: owner can read, write, and execute, but <em>group</em> users can only read and write, and the rest can only read</li>
-  <li><code class="language-plaintext highlighter-rouge">rwx------</code>: owner has full permission, but the rest have none</li>
-</ul>
+          
+          <a class="btn btn-primary float-left" href="/linux/2022/02/17/linux-file-permissions.html" data-toggle="tooltip" data-placement="top" title="Linux File Permissions">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
 
-<h3 id="modifying-permissions">Modifying Permissions</h3>
-<p>There are two ways we can modify permissions, the symbolic (text) and numeric methods.</p>
+        </div>
 
-<h4 id="symbolic">Symbolic</h4>
-<p>The basic syntax is:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod</span> <span class="o">[</span>USERFLAG][+-<span class="o">=][</span>rwx] FILE
-</code></pre></div></div>
+      </div>
+    </div>
+  </div>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">[USERFLAG]</code>: You can use a, u, g, o, for all, <em>user</em>, <em>group</em>, and <em>other</em>, respectively. Multiple flags can be used at the same time.</li>
-  <li><code class="language-plaintext highlighter-rouge">[+-=]</code>: You can use +, -, and = for adding, removing, and replacing (overrides old permissions) the specified permissions. If only <code class="language-plaintext highlighter-rouge">=</code> is used without any permissions, it will simply remove all permissions.</li>
-  <li><code class="language-plaintext highlighter-rouge">[rwx]</code>: You can select one or multiple permissions</li>
-  <li><code class="language-plaintext highlighter-rouge">FILE</code>: It can be either a file or directory, as well as files with a certain extension by using <code class="language-plaintext highlighter-rouge">*.extension</code>, such as <code class="language-plaintext highlighter-rouge">*.txt</code></li>
-</ul>
 
-<p>Here are a few examples:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>g+w file.txt      <span class="c"># adds write permission to group</span>
-<span class="nb">chmod </span>o+rw file.txt     <span class="c"># adds read and write permission to others</span>
-<span class="nb">chmod </span>og-rwx file.txt   <span class="c"># removes all permissions from group and others</span>
-<span class="nb">chmod </span><span class="nv">og</span><span class="o">=</span> file.txt      <span class="c"># achieves the same as above</span>
-<span class="nb">chmod </span><span class="nv">a</span><span class="o">=</span>r file.txt      <span class="c"># gives only read permission to everyone</span>
-<span class="nb">chmod </span>u+x, <span class="nv">g</span><span class="o">=</span>r file.txt <span class="c"># adds execute permision to user and gives only read permission to group</span>
-<span class="nb">chmod </span><span class="nv">a</span><span class="o">=</span>r <span class="k">*</span>.txt         <span class="c"># gives write permission to all for all txt files</span>
-</code></pre></div></div>
+  <!-- Footer -->
 
-<h4 id="numerical">Numerical</h4>
-<p>The basic syntax is the same as the symbolic method, but instead of the <code class="language-plaintext highlighter-rouge">g+w</code> portion, we will use a numeric representation for it.</p>
+<hr>
 
-<p>Three digits are used, each representing the permission for the <em>user</em>, <em>group</em>, and <em>other</em>.</p>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/jyaquinas">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; jyaquinas 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
-<table>
-  <thead>
-    <tr>
-      <th>Number Representation</th>
-      <th>Permission</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0 (000)</td>
-      <td>No permission</td>
-    </tr>
-    <tr>
-      <td>1 (001)</td>
-      <td>Execute permission</td>
-    </tr>
-    <tr>
-      <td>2 (010)</td>
-      <td>Write permission</td>
-    </tr>
-    <tr>
-      <td>3 (011)</td>
-      <td>Write and execute permission</td>
-    </tr>
-    <tr>
-      <td>4 (100)</td>
-      <td>Read permission</td>
-    </tr>
-    <tr>
-      <td>5 (101)</td>
-      <td>Read and execute permission</td>
-    </tr>
-    <tr>
-      <td>6 (110)</td>
-      <td>Read and write permission</td>
-    </tr>
-    <tr>
-      <td>7 (111)</td>
-      <td>Read, write, and execute permission</td>
-    </tr>
-  </tbody>
-</table>
 
-<p>So if we have 764, <em>user</em> has full permission, <em>group</em> has read and write permissions, and <em>other</em> only has read permission.</p>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
 
-<p>Here are a few examples:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>666 file.txt    <span class="c"># gives read and write permissions to all</span>
-<span class="nb">chmod </span>740 <span class="k">*</span>.txt       <span class="c"># gives full permission to user, read permission to group, and no permission to others for txt files</span>
-<span class="nb">chmod </span>777 directory   <span class="c"># gives full permission to all for the directory</span>
-</code></pre></div></div>
+<script src="/assets/scripts.js"></script>
 
-<p><br /></p>
-<h3 id="bonus">Bonus</h3>
-<p>You can change the permissions for all the files and subdirectories of a folder by using the <code class="language-plaintext highlighter-rouge">-R</code>.</p>
-<pre><code class="language-linux">chmod 755 -R directoryname
-</code></pre>
-<p>This will change the permissions of all files and subdirectories.</p>
 
-<p>But say you want to change all the files contained in the folder and subfolders with a certain extension. We can do that with the help of <code class="language-plaintext highlighter-rouge">find</code>.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*.txt'</span> <span class="nt">-exec</span> <span class="nb">chmod </span>755 <span class="o">{}</span> <span class="se">\;</span>
-</code></pre></div></div>
-<p>This will change the permission of all the txt files in the directory and subdirectories, but not the directories themselves.</p>]]></content><author><name>jyaquinas</name></author><category term="Linux" /><category term="linux" /><summary type="html"><![CDATA[Understanding Permissions]]></summary></entry><entry><title type="html">Basic Linux Commands</title><link href="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html" rel="alternate" type="text/html" title="Basic Linux Commands" /><published>2022-02-13T09:44:00+09:00</published><updated>2022-02-13T09:44:00+09:00</updated><id>http://localhost:4000/linux/2022/02/13/basic-linux-commands</id><content type="html" xml:base="http://localhost:4000/linux/2022/02/13/basic-linux-commands.html"><![CDATA[<h3 id="pwd">pwd</h3>
-<p>This will print out the current working directory that you’re in. It will usually be something like <code class="language-plaintext highlighter-rouge">/home/user</code>.</p>
 
-<h3 id="cd">cd</h3>
-<p>This is the command used for navigating through the directories. You can either input the absolute path or relative to your current directory.</p>
 
-<p>Let’s say our current directory is <code class="language-plaintext highlighter-rouge">/home/user</code>, and we have a folder named “a” in there.</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">cd a</code> or <code class="language-plaintext highlighter-rouge">cd /home/user/a</code> will take us to <code class="language-plaintext highlighter-rouge">/home/user/a</code></li>
-  <li><code class="language-plaintext highlighter-rouge">cd ..</code> will move one directory up</li>
-  <li><code class="language-plaintext highlighter-rouge">cd -</code> will move to the previous directory</li>
-</ul>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-<h3 id="ls">ls</h3>
-<p>Use this to print out the contents in your current directory<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. So if we have the following files in our home directory: a.txt, b.txt, c.txt</p>
+  gtag('config', '');
+</script>
 
-<p><code class="language-plaintext highlighter-rouge">ls</code> will print out <code class="language-plaintext highlighter-rouge">a.txt b.txt c.txt</code>.<br />
-This command has a couple of command options. Here are a few important ones.</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">ls -a</code>: list all files including hidden ones</li>
-  <li><code class="language-plaintext highlighter-rouge">ls -l'</code> list all files in long format (includes information like date created and permissions)</li>
-  <li><code class="language-plaintext highlighter-rouge">ls -R</code>: recursively lists all files in directory and subdirectory</li>
-</ul>
 
-<p>You can also combine the commands, such as <code class="language-plaintext highlighter-rouge">ls -la</code>, which will list all files including the hidden ones in long format.</p>
 
-<h3 id="mkdir--rmdir">mkdir &amp; rmdir</h3>
-<p>This is used to create and delete folders. Just append the folder name at the end, like <code class="language-plaintext highlighter-rouge">mkdir foldername</code>.</p>
+</body>
 
-<p><em>Note: <code class="language-plaintext highlighter-rouge">rmdir</code> only lets you remove empty directories. To remove all of the subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r foldername</code>.</em></p>
-
-<h3 id="mv">mv</h3>
-<p>This is mostly used for moving files around, but it can also be used for renaming files.<br />
-To move a file, simply write the file name, followed by the destination path. <code class="language-plaintext highlighter-rouge">mv filename.txt /home/user/a</code>.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup><br />
-To rename a file, write the old file name, followed by the new file name. <code class="language-plaintext highlighter-rouge">mv oldfilename.txt newfilename.txt</code></p>
-
-<h3 id="cp">cp</h3>
-<p>Use this command to copy files to a target destination.<br />
-<code class="language-plaintext highlighter-rouge">cp filename.txt /home/user/a</code></p>
-
-<h3 id="rm">rm</h3>
-<p>Use this to remove files and directories. As mentioned before, to delete a directory and all of contents or subdirectories that it contains, use <code class="language-plaintext highlighter-rouge">rm -r</code>.</p>
-
-<h3 id="touch">touch</h3>
-<p>This command is used to create a new file. This can be anything from a simple txt file to an html file.<br />
-<code class="language-plaintext highlighter-rouge">touch filename.txt</code></p>
-
-<h3 id="echo">echo</h3>
-<p>This is used to move some data into some file, usually some text.</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt; filename.txt</code>: Use a single greater-than sign to overwrite the file. So this will replace the old data with the new data.</li>
-  <li><code class="language-plaintext highlighter-rouge">echo 'text' &gt;&gt; filename.txt</code>: Use two greater-than signs to add data to the file. New data will be added to a new line.</li>
-</ul>
-
-<p><em>Note: If you use a filename that doesn’t exist, a new file with the content inside will be created.</em></p>
-
-<h3 id="vi--nano">vi | nano</h3>
-<p>These are text editors in linux. But since nano is newer and easier to use, let’s focus on nano.</p>
-
-<p>Typing <code class="language-plaintext highlighter-rouge">nano filename.txt</code> will take you to editor mode. Make the necessary changes, and then save by pressing <strong>Ctrl+O</strong>, exit by pressing <strong>Ctrl+X</strong>.<br />
-You can see the other options you can use on the bottom of the terminal window.</p>
-
-<h3 id="cat">cat</h3>
-<p>If you want to know what kind of content is inside a file, use <code class="language-plaintext highlighter-rouge">cat</code> to print out the content. Simply type <code class="language-plaintext highlighter-rouge">cat filename.txt</code>.</p>
-
-<p>You can create a new file by using <code class="language-plaintext highlighter-rouge">cat &gt; newfilename.txt</code>. You can then type the content you want into the file, then exit by pressing <strong>Ctrl+Z</strong>.</p>
-
-<h3 id="grep">grep</h3>
-<p>Use this command to find certain words or phrases within a text.</p>
-
-<p>For instance, if we want to find if the word “hello” exists somewhere in the file, we can use <code class="language-plaintext highlighter-rouge">grep hello filename.txt</code>.<br />
-This will then display all the lines that contain the word.</p>
-
-<p>For phrases, place them inside quotes, like <code class="language-plaintext highlighter-rouge">grep 'target phrase' filename.txt</code>.</p>
-
-<h3 id="sudo">sudo</h3>
-<p><code class="language-plaintext highlighter-rouge">sudo</code> stands for “SuperUser Do”. Use this to run commands with administrative or root privileges.</p>
-
-<h3 id="chmod">chmod</h3>
-<p>This is used for changing the read, write, and execute permissions of files and directories.
-I’ll provide more info about this in a separate post.</p>
-
-<hr />
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>You can list the contents of another directory if you append the directory’s path at the end. <code class="language-plaintext highlighter-rouge">ls /home/user/a</code> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2" role="doc-endnote">
-      <p>Note that you can also move folders around. Use the folder name instead of the file name. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name>jyaquinas</name></author><category term="Linux" /><category term="linux" /><summary type="html"><![CDATA[pwd This will print out the current working directory that you’re in. It will usually be something like /home/user.]]></summary></entry><entry><title type="html">Versioning with Conventional Commits</title><link href="http://localhost:4000/git/2022/02/09/versioning_with_git.html" rel="alternate" type="text/html" title="Versioning with Conventional Commits" /><published>2022-02-09T22:03:00+09:00</published><updated>2022-02-09T22:03:00+09:00</updated><id>http://localhost:4000/git/2022/02/09/versioning_with_git</id><content type="html" xml:base="http://localhost:4000/git/2022/02/09/versioning_with_git.html"><![CDATA[<ul>
-  <li>https://nvie.com/posts/a-successful-git-branching-model/</li>
-  <li>https://www.conventionalcommits.org/en/v1.0.0/#specification</li>
-  <li>https://semver.org/</li>
-  <li>https://keepachangelog.com/en/1.0.0/</li>
-  <li>https://datasift.github.io/gitflow/IntroducingGitFlow.html</li>
-</ul>]]></content><author><name>jyaquinas</name></author><category term="git" /><category term="git" /><category term="versioning" /><category term="database" /><summary type="html"><![CDATA[https://nvie.com/posts/a-successful-git-branching-model/ https://www.conventionalcommits.org/en/v1.0.0/#specification https://semver.org/ https://keepachangelog.com/en/1.0.0/ https://datasift.github.io/gitflow/IntroducingGitFlow.html]]></summary></entry><entry><title type="html">Trie Data Structure</title><link href="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html" rel="alternate" type="text/html" title="Trie Data Structure" /><published>2022-02-07T13:18:00+09:00</published><updated>2022-02-07T13:18:00+09:00</updated><id>http://localhost:4000/data%20structures/2022/02/07/trie-data-structure</id><content type="html" xml:base="http://localhost:4000/data%20structures/2022/02/07/trie-data-structure.html"><![CDATA[<p>I think I first came across the concept of a trie (pronounced <em>try</em>) when I was reading the book <em>Cracking the Coding Interview</em>. But I never really gave it much thought. Plus, I never came across a problem on <a href="https://www.leetcode.com">Leet Code</a> where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.</p>
-
-<p>Let’s briefly go over the basics.</p>
-
-<p>A trie is a special type of tree that can compactly store strings. This is especially true if the words are very similar, i.e. having overlapping parts, like prefixes.</p>
-
-<p>Each node contains a boolean flag, <code class="language-plaintext highlighter-rouge">isEndOfWord</code>, that can be used to indicate the end of a word. Now, this can vary depending on the implementation. If you’d like to associate a value for each word, you’d simply replace the bool variable with something like an int to store the value.</p>
-
-<p>The node’s children consist of all the possible characters of a word. So if we limit it to lowercase alphabets, a-z, it can have up to 26 children (stored in an array).</p>
-
-<p><strong>Pros</strong></p>
-<ul>
-  <li>space-efficient if storing similar words</li>
-  <li>efficient for looking up prefixes</li>
-  <li>relatively fast insert and lookup</li>
-</ul>
-
-<p><strong>Cons</strong></p>
-<ul>
-  <li>space inefficient for non-overlapping words</li>
-  <li>slower than hash table (depends on how the hash value is calculated)</li>
-</ul>
-
-<p>Here is the implementation in python.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TrieNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">26</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">isEndOfWord</span> <span class="o">=</span> <span class="bp">False</span>
-
-<span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
-                <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="n">node</span><span class="p">.</span><span class="n">isEndOfWord</span> <span class="o">=</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">isEndOfWord</span>
-
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">root</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="n">node</span><span class="p">.</span><span class="n">isEndOfWord</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">return</span> <span class="bp">True</span>
-
-</code></pre></div></div>
-
-<p>Let’s test it.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
-<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'camp'</span><span class="p">,</span> <span class="s">'camper'</span><span class="p">,</span> <span class="s">'cat'</span><span class="p">,</span> <span class="s">'cater'</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'Inserting words: '</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-    <span class="n">t</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">'is in trie?'</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
-
-<span class="n">deletewords</span> <span class="o">=</span> <span class="p">[</span><span class="s">'car'</span><span class="p">,</span> <span class="s">'camper'</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'Delete words: '</span><span class="p">,</span> <span class="n">deletewords</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">deletewords</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">'deleted?'</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">'is in trie?'</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
-</code></pre></div></div>
-
-<p>Outputs:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inserting words:  ['camp', 'camper', 'cat', 'cater']
-camp is in trie? True
-camper is in trie? True
-cat is in trie? True
-cater is in trie? True
-Delete words:  ['car', 'camper']
-car deleted? False
-camper deleted? True
-camp is in trie? True
-camper is in trie? False
-cat is in trie? True
-cater is in trie? True
-</code></pre></div></div>]]></content><author><name>jyaquinas</name></author><category term="Data Structures" /><category term="data structures" /><category term="algorithms" /><category term="trie" /><summary type="html"><![CDATA[I think I first came across the concept of a trie (pronounced try) when I was reading the book Cracking the Coding Interview. But I never really gave it much thought. Plus, I never came across a problem on Leet Code where I had to use one (at least for me). But I recently came across a problem where using a trie was the only way to efficiently solve the problem.]]></summary></entry></feed>
+</html>

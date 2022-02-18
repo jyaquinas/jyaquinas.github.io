@@ -1,99 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>
-    SQL Crash Course - Jyaquinas
-    
-  </title>
-
-  <meta name="description" content="SELECT">
-
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/database/2022/02/09/sql_crash_course.html">
-  <link rel="alternate" type="application/rss+xml" title="Jyaquinas" href="/feed.xml">
-
-</head>
-
-
-<body>
-
-  <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand" href="/">Jyaquinas</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fa fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="navbarDropdownMenuLink" href="/posts">Posts</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            href="#">Filter By</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="nav-link dropdown-item" href="/categories">Categories</a>
-            <a class="nav-link dropdown-item" href="/tags">Tags</a>
-          </div>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li> -->
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-  <!-- Page Header -->
-
-<header class="masthead" style="background-image: url('/img/bg-post.jpg')">
-  
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1>SQL Crash Course</h1>
-            
-            <h2 class="subheading">Quick overview of the basics</h2>
-            
-            <span class="meta">Posted by
-              <a href="#">jyaquinas</a>
-              on February 09, 2022 &middot; <span class="reading-time" title="Estimated read time">
-  
-   15 mins  read </span>
-
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-
-        <h3 id="select">SELECT</h3>
+I"�<h3 id="select">SELECT</h3>
 
 <p>Let’s say this is our table.</p>
 
@@ -262,7 +167,7 @@
 <p><em>Note: This also works with numbers. <code class="language-plaintext highlighter-rouge">WHERE num LIKE '32_'</code> will find 320, 321, 322, 323…</em></p>
 
 <h3 id="exists">EXISTS</h3>
-<p>As mentioned above, this operator is used with a subquery, where the condition is if the subquery returns at least one row. A subquery is a select statement that is nested inside another query (more info below).</p>
+<p>As mentioned above, this operator is used with a subquery, where the condition is met if the subquery returns at least one row. A subquery is a select statement that is nested inside another query (more info below).</p>
 
 <p>Say we have another table called ACCOUNTS.</p>
 
@@ -291,7 +196,7 @@
   <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">accounts</span> <span class="n">a</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>The difference is that the one using <code class="language-plaintext highlighter-rouge">EXISTS</code> simply returns results from the CUSTOMERS table when the condition matches, and the <code class="language-plaintext highlighter-rouge">INNER JOIN</code> combines two tables first and returns results from the combined table. Having duplicates can lead to having repeated rows if the inner join is used.</p>
+<p>The difference is that the one using <code class="language-plaintext highlighter-rouge">EXISTS</code> simply returns results from the CUSTOMERS table when the condition matches and the <code class="language-plaintext highlighter-rouge">INNER JOIN</code> combines two tables first and returns results from the combined table. Having duplicates can lead to having repeated rows if the inner join is used.</p>
 
 <h3 id="subqueries">Subqueries</h3>
 <p>Subqueries can be used inside <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">WHERE</code>, and <code class="language-plaintext highlighter-rouge">FROM</code> clauses.</p>
@@ -417,7 +322,9 @@ So for the example below:</p>
 </table>
 
 <p><br /></p>
+
 <h3 id="join">JOIN</h3>
+
 <h4 id="inner-join">Inner Join</h4>
 <p>Inner join is probably the most common type of join you’ll be using. It returns results in which the condition is met for both tables. If we look at them in a venn diagram, we’re talking about the middle overlapping area, where the two tables intersect.</p>
 
@@ -425,7 +332,7 @@ So for the example below:</p>
   <span class="k">FROM</span> <span class="n">customers</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">accounts</span>
   <span class="k">ON</span> <span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </code></pre></div></div>
-<p>So only the rows that have matching customer ids in both tables will be returned.</p>
+<p>So only the rows that have matching customer ids in both tables will be returned. The keyword <code class="language-plaintext highlighter-rouge">INNER</code> is optional.</p>
 
 <p>There’s another way to perform this inner join, using the older syntax.</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">customers</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">accounts</span><span class="p">.</span><span class="n">username</span>
@@ -462,6 +369,78 @@ The opposite will be true for the right outer join.</p>
 or<br />
 <code class="language-plaintext highlighter-rouge">USING (col1, col2, ...)</code></p>
 
+<p>There’s also a <strong>full outer join</strong>, or a full join, where you combine both tables, regardless of whether on not they have a match. So in terms of the venn diagram, we’re talking about the entire thing. The syntax is the same, but use the keyword <code class="language-plaintext highlighter-rouge">FULL JOIN</code> instead.</p>
+
+<h3 id="insert">INSERT</h3>
+<p>This statement is used to insert records into a table. The basic syntax is:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table_name</span> <span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="k">VALUES</span> <span class="p">(</span><span class="n">val1</span><span class="p">,</span> <span class="n">val2</span><span class="p">,</span> <span class="p">...);</span>
+</code></pre></div></div>
+<p>You can omit the comma-separated columns, but then you have to provide the values for all the columns in their respective orders. Not good practice. Also, certain values that have a default value or can be NULL can be omitted.</p>
+
+<p>You can also use <code class="language-plaintext highlighter-rouge">SELECT</code> in conjunction with <code class="language-plaintext highlighter-rouge">INSERT</code> to insert multiple values into a table. This is especially useful for copying data into another table.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table_name</span> <span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="k">SELECT</span> <span class="n">exp1</span><span class="p">,</span> <span class="n">exp2</span><span class="p">,</span> <span class="p">...</span>
+    <span class="k">FROM</span> <span class="n">source_table</span><span class="p">;</span>
+</code></pre></div></div>
+<p>This will copy the values obtained from <code class="language-plaintext highlighter-rouge">exp1</code> and <code class="language-plaintext highlighter-rouge">exp2</code> into <code class="language-plaintext highlighter-rouge">col1</code> and <code class="language-plaintext highlighter-rouge">col2</code>, respectively. You can use literals instead of columns for the <code class="language-plaintext highlighter-rouge">exp</code> to set a constant value.</p>
+
+<p>So let’s say <code class="language-plaintext highlighter-rouge">col2</code> takes in a number, and instead of <code class="language-plaintext highlighter-rouge">exp2</code>, we input the value <code class="language-plaintext highlighter-rouge">0</code>. Then all the rows will have the value 0 for <code class="language-plaintext highlighter-rouge">col2</code>.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table_name</span> <span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">)</span>
+  <span class="k">SELECT</span> <span class="n">exp1</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">FROM</span> <span class="n">source_table</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For inserting multiple rows into one or multiple tables using a single statement, use the following syntax:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">ALL</span>
+  <span class="k">INTO</span> <span class="k">table_name</span> <span class="p">(</span><span class="n">col11</span><span class="p">,</span> <span class="n">col12</span><span class="p">,</span> <span class="p">...)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">val11</span><span class="p">,</span> <span class="n">val12</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="k">INTO</span> <span class="k">table_name</span> <span class="p">(</span><span class="n">col21</span><span class="p">,</span> <span class="n">col22</span><span class="p">,</span> <span class="p">...)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">val21</span><span class="p">,</span> <span class="n">val22</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="k">INTO</span> <span class="n">table_name2</span> <span class="p">(</span><span class="n">col31</span><span class="p">,</span> <span class="n">col32</span><span class="p">,</span> <span class="p">...)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">val31</span><span class="p">,</span> <span class="n">val32</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="p">[</span><span class="n">subquery</span><span class="p">];</span>
+</code></pre></div></div>
+<p>This is the same as using 3 separate <code class="language-plaintext highlighter-rouge">INSERT INTO</code> statements.</p>
+
+<p>Notice that this statement requires a subquery. The values from <code class="language-plaintext highlighter-rouge">val11</code>, <code class="language-plaintext highlighter-rouge">val12</code>, <code class="language-plaintext highlighter-rouge">val21</code>, … must correspond to the values obtained from the subquery. If you want to use the values stated in <code class="language-plaintext highlighter-rouge">val11</code>, <code class="language-plaintext highlighter-rouge">val12</code>, <code class="language-plaintext highlighter-rouge">val21</code>, … as the literal values, then simply use <code class="language-plaintext highlighter-rouge">SELECT * FROM dual</code> for the subquery.</p>
+
+<p>For instance, say we have two new tables, called USERS1 and USERS2, with only 2 columns, <code class="language-plaintext highlighter-rouge">FIRST_NAME</code> and <code class="language-plaintext highlighter-rouge">LAST_NAME</code>. We have another table, CUSTOMERS, with all the user information and we want to copy them into these two new tables. We can do the following.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">ALL</span>
+  <span class="k">INTO</span> <span class="n">users1</span> <span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="n">user_first_name</span><span class="p">,</span> <span class="n">user_last_name</span><span class="p">)</span>
+  <span class="k">INTO</span> <span class="n">users2</span> <span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="n">user_first_name</span><span class="p">,</span> <span class="n">user_last_name</span><span class="p">)</span>
+  <span class="k">SELECT</span> <span class="n">user_first_name</span><span class="p">,</span> <span class="n">user_last_name</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+</code></pre></div></div>
+<p>But say we only want to insert using the values themselves, without a subquery.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT ALL
+  INTO users1 (first_name, last_name) values ('Elon', 'Musk')
+  INTO users2 (first_name, last_name) values ('Jack', 'Ma')
+  SELECT * FROM dual;
+</code></pre></div></div>
+
+<p>What is a dual table, you ask?</p>
+<blockquote>
+  <p>DUAL is a small table in the data dictionary that Oracle Database and user-written programs can reference to guarantee a known result. The dual table is useful when a value must be returned only once, for example, the current date and time. All database users have access to DUAL.</p>
+</blockquote>
+
+<p>You can think of it as a dummy query for this case.</p>
+
+<p>You can find more info <a href="https://docs.oracle.com/cd/E11882_01/server.112/e40540/datadict.htm#CNCPT1210">here</a> or check out this <a href="https://asktom.oracle.com/pls/apex/f?p=100:11:0::::P11_QUESTION_ID:1562813956388">post</a>.</p>
+
+<p><strong>Important</strong>: Remember to use <code class="language-plaintext highlighter-rouge">commit;</code> after inserting all the rows to make the changes permanent.</p>
+
+<h3 id="update">UPDATE</h3>
+<p>Use this statement to update existing records in a table.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="k">table_name</span>
+  <span class="k">SET</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="n">val1</span><span class="p">,</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="n">val2</span><span class="p">,</span>
+    <span class="p">...</span>
+  <span class="k">WHERE</span> <span class="n">condition</span><span class="p">;</span>
+</code></pre></div></div>
+<p>So we could do something like this:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">customers</span>
+  <span class="k">SET</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+  <span class="k">WHERE</span> <span class="n">customer_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
@@ -473,104 +452,4 @@ or<br />
     </li>
   </ol>
 </div>
-
-
-        <!-- 
-          
-          <a class="tag-link"
-            href=//tags/sql/
-            rel="category tag">
-            #sql
-          </a>
-        
-          
-          <a class="tag-link"
-            href=//tags/oracle/
-            rel="category tag">
-            #oracle
-          </a>
-        
-          
-          <a class="tag-link"
-            href=//tags/database/
-            rel="category tag">
-            #database
-          </a>
-         -->
-
-        <hr>
-
-        <div class="clearfix">
-
-          
-          <a class="btn btn-primary float-left" href="/data%20structures/2022/02/07/trie-data-structure.html" data-toggle="tooltip" data-placement="top" title="Trie Data Structure">&larr; Previous<span class="d-none d-md-inline">
-              Post</span></a>
-          
-          
-          <a class="btn btn-primary float-right" href="/git/2022/02/09/versioning_with_git.html" data-toggle="tooltip" data-placement="top" title="Versioning with Conventional Commits">Next<span class="d-none d-md-inline">
-              Post</span> &rarr;</a>
-          
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Footer -->
-
-<hr>
-
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <ul class="list-inline text-center">
-          
-          
-          
-          
-          
-          <li class="list-inline-item">
-            <a href="https://github.com/jyaquinas">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-          
-        </ul>
-        <p class="copyright text-muted">Copyright &copy; jyaquinas 2022</p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
-
-<script src="/assets/scripts.js"></script>
-
-
-
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '');
-</script>
-
-
-
-</body>
-
-</html>
+:ET

@@ -2,7 +2,7 @@
 layout: post
 title: SQL Crash Course
 subtitle: Quick overview of the basics
-date: 2022-02-09 22:03:00 +0900
+date: 2022-02-18 19:54:00 +0900
 background: '/img/bg-post.jpg'
 category: "Database"
 tags: [sql, oracle, database]
@@ -107,7 +107,7 @@ Here are a few examples:
 *Note: This also works with numbers. `WHERE num LIKE '32_'` will find 320, 321, 322, 323...*
 
 ### EXISTS
-As mentioned above, this operator is used with a subquery, where the condition is if the subquery returns at least one row. A subquery is a select statement that is nested inside another query (more info below).
+As mentioned above, this operator is used with a subquery, where the condition is met if the subquery returns at least one row. A subquery is a select statement that is nested inside another query (more info below).
 
 Say we have another table called ACCOUNTS.  
 
@@ -129,7 +129,7 @@ SELECT username FROM customers c
   INNER JOIN accounts a ON c.customer_id = a.customer_id;
 ```
 
-The difference is that the one using `EXISTS` simply returns results from the CUSTOMERS table when the condition matches, and the `INNER JOIN` combines two tables first and returns results from the combined table. Having duplicates can lead to having repeated rows if the inner join is used.
+The difference is that the one using `EXISTS` simply returns results from the CUSTOMERS table when the condition matches and the `INNER JOIN` combines two tables first and returns results from the combined table. Having duplicates can lead to having repeated rows if the inner join is used.
 
 ### Subqueries
 Subqueries can be used inside `SELECT`, `WHERE`, and `FROM` clauses.
@@ -234,7 +234,7 @@ SELECT customers.first_name, customers.last_name, accounts.username
   FROM customer, accounts
   WHERE customers.customer_id = accounts.customer_id;
 ```
-But recognizing this as an inner join is not as obvious, so try to avoid this older syntax. 
+But recognizing this as an inner join is not as obvious, so try to avoid this older syntax.
 
 You can also use the `USING` instead of `ON`, but this is only true for **equijoins** (join conditions using an equality operator):
 ```sql
@@ -275,7 +275,7 @@ This statement is used to insert records into a table. The basic syntax is:
 INSERT INTO table_name (col1, col2, ...)
   VALUES (val1, val2, ...);
 ```
-You can omit the comma separated columns, but then you have to provide the values for all the columns in their respective orders. Not good practice. Also, certain values that have a default value or can be NULL can be omitted. 
+You can omit the comma-separated columns, but then you have to provide the values for all the columns in their respective orders. Not good practice. Also, certain values that have a default value or can be NULL can be omitted.
 
 You can also use `SELECT` in conjunction with `INSERT` to insert multiple values into a table. This is especially useful for copying data into another table.
 ```sql
@@ -283,16 +283,16 @@ INSERT INTO table_name (col1, col2, ...)
   SELECT exp1, exp2, ...
     FROM source_table;
 ```
-This will basically copy the values obtained from `exp1` and `exp2` into `col1` and `col2`, respectively. You can use literals instead of columns for the `exp` in order to set a constant value. 
+This will copy the values obtained from `exp1` and `exp2` into `col1` and `col2`, respectively. You can use literals instead of columns for the `exp` to set a constant value.
 
-So lets say `col2` takes in a number, and instead of `exp2`, we input the value `0`. Then all the rows will have the value 0 for `col2`. 
+So let's say `col2` takes in a number, and instead of `exp2`, we input the value `0`. Then all the rows will have the value 0 for `col2`.
 ```sql
 INSERT INTO table_name (col1, col2)
   SELECT exp1, 0
     FROM source_table;
 ```
 
-For inserting multiple rows into one or multiple tables using a single statement, use the following syntax: 
+For inserting multiple rows into one or multiple tables using a single statement, use the following syntax:
 ```sql
 INSERT ALL
   INTO table_name (col11, col12, ...) VALUES (val11, val12, ...)
@@ -329,10 +329,10 @@ You can find more info [here](https://docs.oracle.com/cd/E11882_01/server.112/e4
 **Important**: Remember to use `commit;` after inserting all the rows to make the changes permanent.
 
 ### UPDATE
-Use this statement to update existing records in a table. 
+Use this statement to update existing records in a table.
 ```sql
 UPDATE table_name
-  SET 
+  SET
     col1 = val1,
     col2 = val2,
     ...
@@ -347,5 +347,5 @@ SELECT customers
 
 
 ---
-[^1]: If multiple tables are used without any join operations, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations.  
+[^1]: If multiple tables are used without any join operations, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations. This is rarely used, so if you get this type of join unintentionally, double-check your syntax.  
 [^2]: `WHERE age BETWEEN 20 and 30` is equal to `WHERE age >= 20 AND age <= 30`

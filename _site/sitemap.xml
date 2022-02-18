@@ -13,10 +13,6 @@
 <lastmod>2022-02-07T13:18:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/database/2022/02/09/sql_crash_course.html</loc>
-<lastmod>2022-02-09T22:03:00+09:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/git/2022/02/09/versioning_with_git.html</loc>
 <lastmod>2022-02-09T22:03:00+09:00</lastmod>
 </url>
@@ -27,6 +23,10 @@
 <url>
 <loc>http://localhost:4000/linux/2022/02/17/linux-file-permissions.html</loc>
 <lastmod>2022-02-17T20:59:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/database/2022/02/18/sql-crash-course.html</loc>
+<lastmod>2022-02-18T19:54:00+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about.html</loc>
