@@ -8,7 +8,7 @@ category: "Database"
 tags: [sql, oracle, database]
 ---
 
-****Note***: syntax will be based on Oracle SQL*
+_**Note**: syntax will be based on Oracle SQL_
 
 ### SELECT
 
