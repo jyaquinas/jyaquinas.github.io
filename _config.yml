@@ -6,14 +6,14 @@ baseurl:            "/"
 url:                "https://jyaquinas.github.io"
 
 # Social Profiles
-# twitter_username:   SBootstrap
+# twitter_username:
 github_username:    jyaquinas
-# facebook_username:  StartBootstrap
+# facebook_username:
 # instagram_username:
 # linkedin_username:
 
 # Add your google-analytics ID here to activate google analytics
-google_analytics:   G-78SY0H1P85 # out your google-analytics code
+google_analytics:   UA-220919399-1 # out your google-analytics code
 
 collections:
   collection1:
@@ -31,10 +31,4 @@ plugins:
 
 highlighter: rouge
 kramdown:
-  # header_offset: 2
-  # auto_ids: true
   input: GFM
-  # syntax_highlighter_opts:
-    # css_class: 'highlight'
-    # line_numbers: table
-    # bold_every: 5
