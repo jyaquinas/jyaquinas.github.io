@@ -8,6 +8,8 @@ category: "Database"
 tags: [sql, oracle, database]
 ---
 
+****Note***: syntax will be based on Oracle SQL*
+
 ### SELECT
 
 Let's say this is our table.
