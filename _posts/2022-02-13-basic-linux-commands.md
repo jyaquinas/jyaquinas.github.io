@@ -82,7 +82,7 @@ For phrases, place them inside quotes, like `grep 'target phrase' filename.txt`.
 
 ### chmod
 This is used for changing the read, write, and execute permissions of files and directories.
-I'll provide more info about this in a separate post.
+I'll provide more info about this in a separate [post]({% link _posts/2022-02-17-linux-file-permissions.md %}).
 
 
 
