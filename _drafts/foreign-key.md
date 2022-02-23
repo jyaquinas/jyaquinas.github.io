@@ -30,7 +30,22 @@ CREATE TABLE child_table (
 )
 ```
 
-Note: using the keyword CONSTRAINT along with the constraint name is optional. If this part is omitted, oracle will automatically assign a name to it.
+***Note:*** using the keyword CONSTRAINT along with the constraint name is optional. If this part is omitted, oracle will automatically assign a name to it.  
+More info about referential actions below.
+
+You can also add or remove foreign keys for existing tables.
+```sql
+ALTER TABLE child_table
+    ADD CONSTRAINT fk_name
+        FOREIGN KEY (col1, col2, ...) REFERENCES 
+        parent_table (col1, col2, ...)
+        ON [DELETE | UPDATE] [referential_actions];
+
+ALTER TABLE child_table
+    [DROP | DISABLE | ENABLE ] CONSTRAINT fk_name;
+```
+
+
 
 For example:
 ```sql
@@ -54,10 +69,10 @@ CREATE TABLE articles (
 
 ### Referential Actions
 You can specify referential actions whenever there is a delete or update using the the `ON DELETE` and `ON UPDATE` clauses.
-* Cascade: if primary key is deleted, delete matching columns in the child table
-* Set null: if primary key is deleted/altered, set referencing values in child table to null
-* Restrict: primary key values in parent table cannot be deleted if it is still referenced by a foreign key
-* Set default: if primary key is deleted/altered, set referencing values in child table to a default value  
+* **Cascade**: if primary key is deleted, delete matching columns in the child table
+* **Set null**: if primary key is deleted/altered, set referencing values in child table to null
+* **Restrict**: primary key values in parent table cannot be deleted if it is still referenced by a foreign key
+* **Set default**: if primary key is deleted/altered, set referencing values in child table to a default value  
 
 It is set to `RESTRICT` by default (if `ON DELETE` and `ON UPDATE` clauses are ommitted).
 
