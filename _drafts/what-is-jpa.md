@@ -8,8 +8,8 @@ category: "java"
 tags: [java, spring, jpa, orm]
 ---
 
-### What is JPA?
---
+### What is Java Persistence API (JPA)?
+
 
 ### Why use JPA?
 * reduce repetitive code
