@@ -20,4 +20,4 @@ tags: [java, spring, jpa, orm]
 ### Spring Data JPA
 * wrapper class to facilitate use of JPA
 * recommended over using hibernate or jpa
-* easily switch between databases without modifying entire code base (due to abstraction layer and the use of interfaces)
+* easily switch between databases without modifying entire code base (due to the use of same CRUD operations in the interfaces)
