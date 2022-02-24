@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Foreign Keys
+title: Creating Tables in Oracle SQL
 subtitle: 
 date: 2022-02-22 22:03:00 +0900
 background: '/img/bg-post.jpg'
