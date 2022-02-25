@@ -1,11 +1,11 @@
 ---
 layout: post
 title: What is Lombok?
-subtitle: Saving your precious development time
-date: 2022-02-25 22:03:00 +0900
+subtitle: Be more productive with less boilerplate code
+date: 2022-02-25 12:55:00 +0900
 background: '/img/bg-post.jpg'
 category: "java"
-tags: [java, spring, jpa, orm]
+tags: [java, lombok]
 ---
 
 ### What is Lombok?
@@ -73,3 +73,20 @@ public class Person{
     // Person(String Name, Integer age)
 }
 ```
+
+### @ToString
+It will automatically implement `toString()` and print out the class name, with all the fields and their values, separated by a comma.
+
+```java
+@ToString
+@AllArgsConstructor
+public class Person{
+    private String name;
+    private Integer age;
+    // If we initialize Person("John", 20)
+    // toString() returns "Person(name=John, age=20)"
+}
+```
+
+### @Data
+Using `@Data` is the same as using `@Getter @Setter @EqualsAndHashCode @ToString @RequiredArgsConstructor` all at the same time. It bundles all of these into a single annotation. So if you don't intend on using them all, just use the specific annotations that you need.
