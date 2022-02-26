@@ -44,3 +44,12 @@ Identity columns are similar to the `AUTO_INCREMENT` column in MySQL. Here are t
 * `INCREMENT BY [num]`: specify the increment value between each identity (1 by default)  
 
 The full list of attributes can be found [here](https://docs.oracle.com/en/database/other-databases/nosql-database/19.1/java-driver-table/sequence-generator-attributes.html).
+
+
+### Tables vs Views
+Views are basically virtual tables that are composed from subset data, i.e. results from queries, obtained from one or more tables. 
+
+#### When to use views instead of tables?
+* We can use views to get a more consolidated view of the data by combining rows and columns from multiple tables. 
+* It can also be used for security reasons by giving users access to the data without direct access to the base tables.
+* It can also be a way to provide backwards compatibility to apps that are using the database

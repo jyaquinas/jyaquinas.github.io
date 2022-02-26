@@ -4,7 +4,7 @@ title: What is Gradle?
 subtitle: Building projects with Gradle
 date: 2022-02-24 23:39:00 +0900
 background: '/img/bg-post.jpg'
-category: "gradle"
+category: "Gradle"
 tags: [build tool, gradle, java]
 ---
 

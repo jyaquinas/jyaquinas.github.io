@@ -4,7 +4,7 @@ title: What is Lombok?
 subtitle: Be more productive with less boilerplate code
 date: 2022-02-25 12:55:00 +0900
 background: '/img/bg-post.jpg'
-category: "java"
+category: "Java"
 tags: [java, lombok]
 ---
 
@@ -22,8 +22,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 }
 ```
-
-### @Getters and @Setters
+### Annotations
+#### @Getters and @Setters
 You can use the `@Getter` and `@Setter` annotations both at the class and field levels. 
 
 ```java
@@ -46,11 +46,10 @@ public class Person{
 }
 ```
 
-
-### @NoArgsConstructor
+#### @NoArgsConstructor
 This automatically generates a constructor with no arguments. 
 
-### @RequiredArgsConstructor
+#### @RequiredArgsConstructor
 This generates a constructor with required arguments, with those arguments being variables with the `final` field or with `@NonNull` constraints. 
 
 ```java
@@ -62,7 +61,7 @@ public class Person{
 }
 ```
 
-### @AllArgsConstructor
+#### @AllArgsConstructor
 This will create a constructor that requires arguments for all the fields in the class, and will initialize them with the given values.
 
 ```java
@@ -74,7 +73,7 @@ public class Person{
 }
 ```
 
-### @ToString
+#### @ToString
 It will automatically implement `toString()` and print out the class name, with all the fields and their values, separated by a comma.
 
 ```java
@@ -88,5 +87,5 @@ public class Person{
 }
 ```
 
-### @Data
+#### @Data
 Using `@Data` is the same as using `@Getter @Setter @EqualsAndHashCode @ToString @RequiredArgsConstructor` all at the same time. It bundles all of these into a single annotation. So if you don't intend on using them all, just use the specific annotations that you need.
