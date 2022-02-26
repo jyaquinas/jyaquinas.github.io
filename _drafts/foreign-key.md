@@ -17,7 +17,7 @@ It helps maintain the referential integrity of your db, i.e. only existing value
 If you try to insert a non-existent value, you'll get an error.
 >ORA-02291: integrity constraint (ADMIN.SYS_C0028304) violated - parent key not found
 
-Of course, you can maintain this integrity yourself. But can we really be 100% sure that you, and everyone else, using the DB, will never ever make a mistake? Hmm.. 
+Of course, you can maintain this integrity yourself. But can we really be 100% sure that you, and everyone else using the DB, will never make a mistake? :shrug:
 
 ### Syntax
 ```sql

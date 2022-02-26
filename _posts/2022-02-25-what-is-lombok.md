@@ -89,3 +89,5 @@ public class Person{
 
 #### @Data
 Using `@Data` is the same as using `@Getter @Setter @EqualsAndHashCode @ToString @RequiredArgsConstructor` all at the same time. It bundles all of these into a single annotation. So if you don't intend on using them all, just use the specific annotations that you need.
+
+#### @Builder
