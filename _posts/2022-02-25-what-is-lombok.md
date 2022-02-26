@@ -91,3 +91,27 @@ public class Person{
 Using `@Data` is the same as using `@Getter @Setter @EqualsAndHashCode @ToString @RequiredArgsConstructor` all at the same time. It bundles all of these into a single annotation. So if you don't intend on using them all, just use the specific annotations that you need.
 
 #### @Builder
+This allows the class to be constructed using a [builder pattern](https://refactoring.guru/design-patterns/builder). 
+
+```java
+public class Person{
+    private String name;
+    private Integer age;
+    
+    @Builder
+    public Person(String name, Integer age){
+        this.name = name;
+        this.age = age;
+    }
+}
+```
+
+So for the example above, we would be able to construct a class like this:   
+
+```java
+Person person = Person.builder()
+        .name("John")
+        .age(20)
+        .build();
+```
+Of course, this would be more effective for classes with lots of fields so that we can avoid having monstruous constructors with tons of parameters. This also makes it easier to see what values correspond to which parameters, as opposed to using the typical constructors and having to input them in a specific order.
