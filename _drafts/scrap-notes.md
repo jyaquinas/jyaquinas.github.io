@@ -8,12 +8,7 @@ category: ""
 tags: []
 ---
 
-### Data Access Object (DAO) vs Data Transfer Object (DTO)
-* DAO -> class that has CRUD operations
-* DTO -> object that holds data
-* POJO (plain old java object) -> java object that defines an entity
-
-### Questions
+## Questions & Concepts To Cover
 * dao vs repository
     * https://www.baeldung.com/java-dao-vs-repository
     * https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns
@@ -25,7 +20,16 @@ tags: []
     * https://refactoring.guru/design-patterns/builder
     * https://projectlombok.org/features/Builder
 * How to change H2 language to mysql? -> mysql5innoDBdialect (depracated)
+* domain-driven design | domain model vs transaction script
+* different layers of application (web, service, repository, dto, domain)
+    * https://itzone.com.vn/en/article/entity-domain-model-and-dto-why-so-many/
 
+## Misc Subjects
+
+### Data Access Object (DAO) vs Data Transfer Object (DTO)
+* DAO -> class that has CRUD operations
+* DTO -> object that holds data
+* POJO (plain old java object) -> java object that defines an entity
 
 ### Running Tests With Spring
 ```java
