@@ -11,6 +11,9 @@ tags: [java, lombok]
 ### What is Lombok?
 Lombok is a java library that helps reduce boilerplate code, such as getters and setters, by automatically generating them at compile time. So because it's not in our source code, it saves space and improves readability.
 
+### Why use Lombok?
+Aside from improving code readability, it really helps not to have to edit all the constructors, getters/setters, and other boilerplate code every time there is a small change, which can happen a lot, especially during the early development phase. 
+
 ### Using Lombok with Gradle
 Add these 2 lines for your dependencies in your 'build.gradle' file. 
 

@@ -12,7 +12,6 @@ tags: []
 * dao vs repository
     * https://www.baeldung.com/java-dao-vs-repository
     * https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns
-* What is java bean?
 * Difference between using @Repository and extending JpaRepository<>, crudrepository
     * https://stackoverflow.com/questions/14014086/what-is-difference-between-crudrepository-and-jparepository-interfaces-in-spring
 * What does @builder do -> what is builder pattern
@@ -20,11 +19,40 @@ tags: []
     * https://refactoring.guru/design-patterns/builder
     * https://projectlombok.org/features/Builder
 * How to change H2 language to mysql? -> mysql5innoDBdialect (depracated)
-* domain-driven design | domain model vs transaction script
+* domain-driven design (evans 2003) | domain model vs transaction script
 * different layers of application (web, service, repository, dto, domain)
     * https://itzone.com.vn/en/article/entity-domain-model-and-dto-why-so-many/
+* @webmvctest vs @springboottest & testresttemplate
+    * jpa doesnt work in webmvctest? only inits controller and controller advice
+* Spring/JPA Annotations 
+    * @Transactional
+        * https://dzone.com/articles/how-does-spring-transactional
+    * @Autowired
+    * @Service
+* Dirty checking - JPA entity
+    * https://jojoldu.tistory.com/415
+* setting up h2-database using gradle
+    * application.properties, what each setting means
+    * if not specified in applications.properties `spring.datasource.url=jdbc:h2:mem:testdb`, then randomly generated. Can be checked in console output: `2022-02-27 21:02:53.192  INFO 5544 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:867794d1-6dd5-4b6e-a1f1-afeb1368f399'`
+* Auditing in JPA
+    * automatically tracks and logs events whenever there is a change in the entities. this can be used to automatically generate created or last updated timestamps. 
+    * EntityListeners(AutiditingEntityListener.class)
+* .class
+
+
 
 ## Misc Subjects
+* What is java bean?
+    * objects that are managed by spring IoC container
+    * 
+
+### Application Layers?
+* it is not recommended to use the entity class as the request/response class
+    * DB table is based on this entity class, and making many changes to the entity class can be costly
+    * recommended to separate the view and DB layer
+    * use a Dto class, and generate the entity class through it - `toEntity()`
+
+
 
 ### Data Access Object (DAO) vs Data Transfer Object (DTO)
 * DAO -> class that has CRUD operations
