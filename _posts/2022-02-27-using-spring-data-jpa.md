@@ -72,7 +72,7 @@ We can create a repository by creating an interface that extends `JpaRepository`
 
 We can achieve the same using the `CrudRepository` interface. But notice that `JpaRepository` extends `PagingAndSortingRepository`, which extends `CrudRepository`. So if you only want CRUD operations, you may use `CrudRepository` instead. 
 
-The annotation @Repository isn't required if we use the method mentioned above. This is only needed if we want to create custom DAOs (Data Access Objects)[1]. 
+The annotation @Repository isn't required if we use the method mentioned above. This is only needed if we want to create custom DAOs (Data Access Objects)[^1]. 
 
 ```java
 public interface PostsRepository extends JpaRepository<Posts, Long> {
@@ -105,4 +105,4 @@ public void saveAndGetPosts() {
 ```
 
 ---
-[1]: What's the difference between a repository and a DAO? They're similar in their objective to access data. But a repository acts like a collection, meaning that it is a DAO but limited to a single type (or single table). Check out this [stackoverflow post](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns) for more info.
+[^1]: What's the difference between a repository and a DAO? They're similar in their objective to access data. But a repository acts like a collection, meaning that it is a DAO but limited to a single type (or single table). Check out this [stackoverflow post](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns) for more info.

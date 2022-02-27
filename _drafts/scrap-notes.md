@@ -9,11 +9,6 @@ tags: []
 ---
 
 ## Questions & Concepts To Cover
-* dao vs repository
-    * https://www.baeldung.com/java-dao-vs-repository
-    * https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns
-* Difference between using @Repository and extending JpaRepository<>, crudrepository
-    * https://stackoverflow.com/questions/14014086/what-is-difference-between-crudrepository-and-jparepository-interfaces-in-spring
 * What does @builder do -> what is builder pattern
     * https://www.geeksforgeeks.org/builder-design-pattern/
     * https://refactoring.guru/design-patterns/builder
@@ -39,8 +34,7 @@ tags: []
     * EntityListeners(AutiditingEntityListener.class)
 * .class
 
-
-
+---
 ## Misc Subjects
 * What is java bean?
     * objects that are managed by spring IoC container
@@ -51,7 +45,6 @@ tags: []
     * DB table is based on this entity class, and making many changes to the entity class can be costly
     * recommended to separate the view and DB layer
     * use a Dto class, and generate the entity class through it - `toEntity()`
-
 
 
 ### Data Access Object (DAO) vs Data Transfer Object (DTO)
