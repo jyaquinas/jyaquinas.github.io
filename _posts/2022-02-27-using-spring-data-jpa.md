@@ -4,7 +4,7 @@ title: Using Spring Data JPA
 subtitle: Object Relational Mapping in Java
 date: 2022-02-27 01:06:00 +0900
 background: '/img/bg-post.jpg'
-category: "java"
+category: "Java"
 tags: [java, spring, jpa, orm]
 ---
 
