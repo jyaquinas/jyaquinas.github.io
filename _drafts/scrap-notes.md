@@ -15,6 +15,7 @@ tags: []
     * https://projectlombok.org/features/Builder
 * How to change H2 language to mysql? -> mysql5innoDBdialect (depracated)
 * domain-driven design (evans 2003) | domain model vs transaction script
+
 * different layers of application (web, service, repository, dto, domain)
     * https://itzone.com.vn/en/article/entity-domain-model-and-dto-why-so-many/
 * @webmvctest vs @springboottest & testresttemplate
@@ -32,13 +33,15 @@ tags: []
 * Auditing in JPA
     * automatically tracks and logs events whenever there is a change in the entities. this can be used to automatically generate created or last updated timestamps. 
     * EntityListeners(AutiditingEntityListener.class)
-* .class
+* why pass .class
+* Spring Tests
+    * HttpEntity
+    * ResponseEntity
 
 ---
 ## Misc Subjects
 * What is java bean?
     * objects that are managed by spring IoC container
-    * 
 
 ### Application Layers?
 * it is not recommended to use the entity class as the request/response class
