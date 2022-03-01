@@ -4,8 +4,8 @@ title: Using H2 Database with Spring and Gradle
 subtitle: In-memory Database for Testing
 date: 2022-03-02 08:45:00 +0900
 background: '/img/bg-post.jpg'
-category: ""
-tags: []
+category: "Java"
+tags: [h2-database, gradle, java, spring]
 ---
 
 H2 Database is a in-memory database that is typically used for testing.
