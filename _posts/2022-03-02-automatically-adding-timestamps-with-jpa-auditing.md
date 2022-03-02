@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Automatically Adding Timestamps With JPA Auditing
-subtitle: In-memory Database for Testing
+subtitle: Save time with JPA auditing
 date: 2022-03-02 22:06:00 +0900
 background: '/img/bg-post.jpg'
 category: "Java"
