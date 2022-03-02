@@ -19,17 +19,17 @@ dependencies {
 }
 ```
 
-If you don't have an 'application.properties' under src -> main -> resources, add one. 
+If you don't have an 'application.properties' file under src -> main -> resources, add one. 
 
 Add the following lines:
 
 `spring.h2.console.enabled=true`  
 
-This will let you access the DB through the console. You can access it through this link:  
+This will let you access the DB through the console. You can access it through `/h2-console`, like:  
 localhost:8080/h2-console
 
 `spring.datasource.url=jdbc:h2:mem:testdb
-`. 
+`
 
 This specifies the JDBC url you need to use for connecting to the DB. If this is not set, it will be automatically generated for you. You can then find the url in the console output, something like this:
 
