@@ -8,6 +8,7 @@ category: "Java"
 tags: [h2-database, gradle, java, spring]
 ---
 
+### What is H2 Database?
 H2 Database is a in-memory database that is typically used for testing.
 
 ### Setup
