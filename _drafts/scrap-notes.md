@@ -13,27 +13,61 @@ tags: []
     * https://www.geeksforgeeks.org/builder-design-pattern/
     * https://refactoring.guru/design-patterns/builder
     * https://projectlombok.org/features/Builder
-* How to change H2 language to mysql? -> mysql5innoDBdialect (depracated)
-* domain-driven design (evans 2003) | domain model vs transaction script
 
-* different layers of application (web, service, repository, dto, domain)
+* How to change H2 language to mysql? -> mysql5innoDBdialect (depracated)
+
+* domain-driven design (evans 2003) | domain model vs transaction script (web, service, repository, dto, domain)
+    * https://www.infoq.com/articles/ddd-in-practice/
+    * https://medium.com/microtica/the-concept-of-domain-driven-design-explained-3184c0fd7c3f
+    * https://lorenzo-dee.blogspot.com/2014/06/quantifying-domain-model-vs-transaction-script.html
+    * https://medium.com/hackernoon/making-a-case-for-domain-modeling-17cf47030732#:~:text=Transaction%20script%20is%20far%20from,much%20more%20extensible%2C%20maintainable%20code
     * https://itzone.com.vn/en/article/entity-domain-model-and-dto-why-so-many/
+    * https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model#:~:text=Entities%20represent%20domain%20objects%20and,the%20attributes%20that%20comprise%20them.
+    * Value Objects (are like complex data types): 
+        * structural equality: value objects are equal if values are equal (must redefine `equals` and `hashcode` func) - have no identity (unlike entities)
+        * they are immutable (no setters, only getters returning immutable objects - changing value requires creating new instance)
+        * doesnt have lifespan
+        * self validating -> if not valid, object should not be created (to avoid adding validation code here and there, only validate within the value object)
+        * examples: Length, Age, etc (instead of using general int)
+        * pros: type safety, reduce duplication (can be shared among multiple entities, etc), easier to read
+        * cons: can lead to too much code base if wrapping every primitive value to a value object
+        * JPA annotation -> `@Embeddable` (1:1) or `@ElementCollection` (1:n) used
+    * Entities (domain objects)
+        * identifier equality: has identity, if id equal, they are equal
+        * mutable
+        * has lifespan
+        * have corresponding tables in DB
+        * between service and repository layer
+        * JPA annotation -> `@Entity`
+    * DTO: 
+        * purpose is to transfer data
+        * helps separate service and UI layers
+        * contain no logic (domain objects can have logic)
+        * DTO <-> Entity conversion occurs within service layer - `@Service` annotation
+        * Why not use entity directly? making frequent changes to entity can be costly (updating the DB)
+        * easier to serialize/send this data structure than the more complex entity class
+    * Transaction script vs domain model
+        * Transaction scripts separate logic by transaction units, so it groups all the relevant business logic into this single transaction. This leads to having anemic domain objects (DOs without logic, only getters and setters), and implementic the logic at the transaction level -> not OOP
+        * domain model groups all relevant behaviors/logic with the relevant DO. Transactions then don't need to define logic, only decide the order of the actions already defined in the DOs -> OOP, much more manageable
+
 * @webmvctest vs @springboottest & testresttemplate
     * jpa doesnt work in webmvctest? only inits controller and controller advice
+
 * Spring/JPA Annotations 
     * @Transactional
         * https://dzone.com/articles/how-does-spring-transactional
     * @Autowired
     * @Service
+
 * Dirty checking - JPA entity
     * https://jojoldu.tistory.com/415
-* setting up h2-database using gradle
-    * application.properties, what each setting means
-    * if not specified in applications.properties `spring.datasource.url=jdbc:h2:mem:testdb`, then randomly generated. Can be checked in console output: `2022-02-27 21:02:53.192  INFO 5544 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:867794d1-6dd5-4b6e-a1f1-afeb1368f399'`
+
 * Auditing in JPA
     * automatically tracks and logs events whenever there is a change in the entities. this can be used to automatically generate created or last updated timestamps. 
     * EntityListeners(AutiditingEntityListener.class)
+
 * why pass .class
+
 * Spring Tests
     * HttpEntity
     * ResponseEntity

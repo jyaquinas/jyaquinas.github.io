@@ -105,4 +105,4 @@ public void saveAndGetPosts() {
 ```
 
 ---
-[^1]: What's the difference between a repository and a DAO? They're similar in their objective to access data. But a repository acts like a collection, meaning that it is a DAO but limited to a single type (or single table). Check out this [stackoverflow post](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns) for more info.
+[^1]: What's the difference between a repository and a DAO? They're similar in their objective, to access data from the DB. But a repository acts like a collection and is closer to the domain, meaning that it is a DAO but limited to a single type (or single table). Check out this [stackoverflow post](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns) for more info.
