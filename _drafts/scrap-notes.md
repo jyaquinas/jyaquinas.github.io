@@ -48,10 +48,19 @@ tags: []
         * easier to serialize/send this data structure than the more complex entity class
     * Transaction script vs domain model
         * Transaction scripts separate logic by transaction units, so it groups all the relevant business logic into this single transaction. This leads to having anemic domain objects (DOs without logic, only getters and setters), and implementic the logic at the transaction level -> not OOP
-        * domain model groups all relevant behaviors/logic with the relevant DO. Transactions then don't need to define logic, only decide the order of the actions already defined in the DOs -> OOP, much more manageable
+        * domain model groups all relevant behaviors/logic with the relevant DO (DO holds data and behavior). Transactions then don't need to define logic, only decide the order of the actions already defined in the DOs -> OOP, much more manageable
+    * application layers
+        * can also be viewed as Presentation layer (web layer), Business logic layer (service layer), Data Access layer (repository layer)
+        * Web layer: `@Controller` class - controllers, exception handlers, filters, view templates, etc
+        * Service Layer: `@Service` class - connects web/controller and dao/repository layer - application and infrastructure services (business logic?)
+        * Repository Layer: repository interfaces - access to DB
+        * DTO: transfer data between repository/service and web/controller
+        * Domain Layer: Entity classes, value objects, domain services, etc
 
 * @webmvctest vs @springboottest & testresttemplate
     * jpa doesnt work in webmvctest? only inits controller and controller advice
+    * HttpEntity
+    * ResponseEntity
 
 * Spring/JPA Annotations 
     * @Transactional
@@ -61,16 +70,11 @@ tags: []
 
 * Dirty checking - JPA entity
     * https://jojoldu.tistory.com/415
-
-* Auditing in JPA
-    * automatically tracks and logs events whenever there is a change in the entities. this can be used to automatically generate created or last updated timestamps. 
-    * EntityListeners(AutiditingEntityListener.class)
+    * https://www.netsurfingzone.com/hibernate/dirty-checking-in-hibernate/
+    * automatically checks if objects have been modified and will update regularly (when session flushed or transaction is commited)
 
 * why pass .class
 
-* Spring Tests
-    * HttpEntity
-    * ResponseEntity
 
 ---
 ## Misc Subjects
