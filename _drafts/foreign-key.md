@@ -2,7 +2,7 @@
 layout: post
 title: Foreign Keys
 subtitle: 
-date: 2022-02-22 22:03:00 +0900
+date: 2022-03-03 21:31:00 +0900
 background: '/img/bg-post.jpg'
 category: "database"
 tags: [oracle sql, sql, database]
@@ -12,12 +12,12 @@ tags: [oracle sql, sql, database]
 Foreign keys establish a relationship between two tables. A column from one table (child table) references the primary key from another table (parent table). The foreign key is defined in the child table. 
 
 ### Why use them?
-It helps maintain the referential integrity of your db, i.e. only existing values from the foreign table (the primary key being referenced) can be added as a foreign key.
+It helps maintain the referential integrity of your DB, i.e. only existing values from the foreign table (the primary key being referenced) can be added as a foreign key.
 
 If you try to insert a non-existent value, you'll get an error.
 >ORA-02291: integrity constraint (ADMIN.SYS_C0028304) violated - parent key not found
 
-Of course, you can maintain this integrity yourself. But can we really be 100% sure that you, and everyone else using the DB, will never make a mistake? :shrug:
+Of course, you can maintain this integrity yourself. But can we be 100% sure that you, and everyone else using the DB, will never make a mistake? :shrug:
 
 ### Syntax
 ```sql
@@ -66,13 +66,13 @@ CREATE TABLE articles (
 ```
 
 ### Referential Actions
-You can specify referential actions whenever there is a delete or update using the the `ON DELETE` and `ON UPDATE` clauses.
+You can specify referential actions whenever there is a *delete* or *update* using the `ON DELETE` and `ON UPDATE` clauses.
 * **Cascade**: if primary key is deleted, delete matching columns in the child table
-* **Set null**: if primary key is deleted/altered, set referencing values in child table to null
-* **Restrict**: primary key values in parent table cannot be deleted if it is still referenced by a foreign key
-* **Set default**: if primary key is deleted/altered, set referencing values in child table to a default value  
+* **Set null**: if primary key is deleted/altered, set referencing values in the child table to null
+* **Restrict**: primary key values in the parent table cannot be deleted if it is still referenced by a foreign key
+* **Set default**: if primary key is deleted/altered, set referencing values in the child table to a default value  
 
-It is set to `RESTRICT` by default (if `ON DELETE` and `ON UPDATE` clauses are ommitted).
+It is set to `RESTRICT` by default (if `ON DELETE` and `ON UPDATE` clauses are omitted).
 
 Trying to delete a row from the parent table in which its primary key is still being referenced, and the default `RESTRICT` constraint is set, will lead to the following error:
 > ORA-02292: integrity constraint (ADMIN.SYS_C0028304) violated - child record found

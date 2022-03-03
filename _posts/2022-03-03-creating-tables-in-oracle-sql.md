@@ -2,7 +2,7 @@
 layout: post
 title: Creating Tables in Oracle SQL
 subtitle: 
-date: 2022-02-22 22:03:00 +0900
+date: 2022-03-03 21:30:00 +0900
 background: '/img/bg-post.jpg'
 category: "database"
 tags: [oracle sql, sql, database]
@@ -47,9 +47,9 @@ The full list of attributes can be found [here](https://docs.oracle.com/en/datab
 
 
 ### Tables vs Views
-Views are basically virtual tables that are composed from subset data, i.e. results from queries, obtained from one or more tables. 
+Views are basically virtual tables that are composed of subset data, i.e. results from queries, obtained from one or more tables. 
 
 #### When to use views instead of tables?
 * We can use views to get a more consolidated view of the data by combining rows and columns from multiple tables. 
 * It can also be used for security reasons by giving users access to the data without direct access to the base tables.
-* It can also be a way to provide backwards compatibility to apps that are using the database
+* It can also be a way to provide backward compatibility to apps that are using the database
