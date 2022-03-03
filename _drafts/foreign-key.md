@@ -39,13 +39,11 @@ ALTER TABLE child_table
     ADD CONSTRAINT fk_name
         FOREIGN KEY (col1, col2, ...) REFERENCES 
         parent_table (col1, col2, ...)
-        ON [DELETE | UPDATE] [referential_actions];
+        ON [DELETE|UPDATE] [referential_actions];
 
 ALTER TABLE child_table
-    [DROP | DISABLE | ENABLE ] CONSTRAINT fk_name;
+    [DROP|DISABLE|ENABLE] CONSTRAINT fk_name;
 ```
-
-
 
 For example:
 ```sql
