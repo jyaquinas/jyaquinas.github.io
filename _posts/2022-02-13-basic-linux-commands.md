@@ -25,7 +25,7 @@ Use this to print out the contents in your current directory[^1]. So if we have 
 `ls` will print out `a.txt b.txt c.txt`.  
 This command has a couple of command options. Here are a few important ones.
 * `ls -a`: list all files including hidden ones
-* `ls -l'` list all files in long format (includes information like date created and permissions)
+* `ls -l'` list all files in long format (includes information like date created and permissions)[^ls]
 * `ls -R`: recursively lists all files in directory and subdirectory
 
 You can also combine the commands, such as `ls -la`, which will list all files including the hidden ones in long format.
@@ -87,5 +87,7 @@ I'll provide more info about this in a separate [post]({% link _posts/2022-02-17
 
 
 ---
-[^1]: You can list the contents of another directory if you append the directory's path at the end. `ls /home/user/a`
-[^2]: Note that you can also move folders around. Use the folder name instead of the file name.
+[^1]: You can list the contents of another directory if you append the directory's path at the end. `ls /home/user/a`  
+[^2]: Note that you can also move folders around. Use the folder name instead of the file name.  
+[^ls]: `ll` can be used as an alias for `ls -l`
+
