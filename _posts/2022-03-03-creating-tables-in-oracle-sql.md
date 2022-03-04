@@ -4,7 +4,7 @@ title: Creating Tables in Oracle SQL
 subtitle: Basic syntax overview
 date: 2022-03-03 21:30:00 +0900
 background: '/img/bg-post.jpg'
-category: "database"
+category: "Database"
 tags: [oracle sql, sql, database]
 ---
 
