@@ -39,7 +39,14 @@ tags: []
 ## Misc Subjects
 * What is java bean?
     * objects that are managed by spring IoC container
-
+* Linux wildcards -> file searching
+    * `*` match one or more occurrences of characters, including none
+    * `?` match single occurrence of character
+    * `[]` match any occurrence of characters in the enclosed bracket
+    * ./tmp/* matches files and folders in ./tmp
+    * ./tmp/** matches files, folders, and subfolders in ./tmp
+    * https://stackoverflow.com/questions/3529997/unix-wildcard-selectors-asterisks
+    
 ### Application Layers?
 * it is not recommended to use the entity class as the request/response class
     * DB table is based on this entity class, and making many changes to the entity class can be costly

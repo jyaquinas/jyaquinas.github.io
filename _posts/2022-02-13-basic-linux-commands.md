@@ -51,6 +51,10 @@ Use this to remove files and directories. As mentioned before, to delete a direc
 This command is used to create a new file. This can be anything from a simple txt file to an html file.  
 `touch filename.txt`
 
+To create multiple files, you can use the following command:  
+`touch filename{0..100}.txt`  
+This will create the files 'filename0.txt', ... , 'filename100.txt'.
+
 ### echo
 This is used to move some data into some file, usually some text.  
 * `echo 'text' > filename.txt`: Use a single greater-than sign to overwrite the file. So this will replace the old data with the new data.  
@@ -84,6 +88,31 @@ For phrases, place them inside quotes, like `grep 'target phrase' filename.txt`.
 This is used for changing the read, write, and execute permissions of files and directories.
 I'll provide more info about this in a separate [post]({% link _posts/2022-02-17-linux-file-permissions.md %}).
 
+### tar
+Use this command to compress and extract tar files.   
+This is the basic syntax.
+
+`tar <operation><options> <archive_name> <files_or_location>`
+
+Here are some of the operations and options you can use.
+
+| Command | Type | Description |
+| --- | --- | --- |
+| -c | operation | Creates new archive |
+| -x | operation | Extracts archive |
+| -t | operation | Lists archive's contents |
+| -v | option | Sets to verbose mode |
+| -f <archive> | option | Specifies the archive name |
+
+<br>
+
+For example:
+```shell
+# compress contents from directory_name into tarfilename.tar
+tar -cvf tarfilename.tar directory_name 
+# extract contents from tarfilename.tar
+tar -xvf tarfilename.tar 
+```
 
 
 ---
