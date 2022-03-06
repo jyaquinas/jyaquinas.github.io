@@ -14,8 +14,6 @@ tags: []
     * https://refactoring.guru/design-patterns/builder
     * https://projectlombok.org/features/Builder
 
-* How to change H2 language to mysql? -> mysql5innoDBdialect (depracated)
-
 * @webmvctest vs @springboottest & testresttemplate
     * jpa doesnt work in webmvctest? only inits controller and controller advice
     * HttpEntity
@@ -24,6 +22,8 @@ tags: []
 * Spring/JPA Annotations 
     * @Transactional
         * https://dzone.com/articles/how-does-spring-transactional
+        * https://stackoverflow.com/questions/26387399/javax-transaction-transactional-vs-org-springframework-transaction-annotation-tr
+        * Transactional (readOnly = true)
     * @Autowired
     * @Service
 
@@ -33,6 +33,9 @@ tags: []
     * automatically checks if objects have been modified and will update regularly (when session flushed or transaction is commited)
 
 * why pass .class
+* look into index.js file (mustache)
+    * ajax
+    * CRUD -> html func (post, get, put, delete)
 
 
 ---
@@ -46,6 +49,8 @@ tags: []
     * ./tmp/* matches files and folders in ./tmp
     * ./tmp/** matches files, folders, and subfolders in ./tmp
     * https://stackoverflow.com/questions/3529997/unix-wildcard-selectors-asterisks
+* for large projects with more complex data, it may be required to perform complex join operations for obtaining/searching for data
+    * it is common to use spring data jpa for CUD operations, and use other frameworks for read operations (querydsl, jooq, mybatis)
     
 ### Application Layers?
 * it is not recommended to use the entity class as the request/response class
