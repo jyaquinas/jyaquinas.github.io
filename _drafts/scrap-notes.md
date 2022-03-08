@@ -51,7 +51,40 @@ tags: []
     * https://stackoverflow.com/questions/3529997/unix-wildcard-selectors-asterisks
 * for large projects with more complex data, it may be required to perform complex join operations for obtaining/searching for data
     * it is common to use spring data jpa for CUD operations, and use other frameworks for read operations (querydsl, jooq, mybatis)
-    
+* Shell 
+    * ps -> lists processes
+        * https://linuxize.com/post/ps-command-in-linux/
+        * https://www.geeksforgeeks.org/ps-command-in-linux-with-examples/
+        * -e: list full process list
+        * -f: full format
+        * can be used with filter commands like `grep`
+    * awk
+        * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
+        * `awk '{print $2, $4}'` : prints 2nd and 4th word (whitespace separated) -> $0 represents entire line
+        * by default `awk {print} filename.txt` prints entire file line by line
+    * tput
+        * https://linuxcommand.org/lc3_adv_tput.php
+        * can manipulate the terminal's appearance, like color, etc
+        * `tput smso` start 'standout' mode
+        * `tput rmso` end 'standout' mode
+        * `tput sgr0` turn off all attributes
+    * set
+        * https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux
+        *  we will get a list of all shell variables, environmental variables, local variables, and shell functions
+    * `$$`
+        * https://tldp.org/LDP/abs/html/internalvariables.html
+        * process id of script itself
+    * assigning results of a command to a variable
+        * wrap around ``
+        * `` array=`find . -maxdepth 1 -name '*.txt'` ``
+        * results are saved into the array variable
+        * use the command `set` in csh
+            * `` set array=`find . -maxdepth 1 -name '*.txt'` ``
+    * find maxdepth
+        * https://www.geeksforgeeks.org/mindepth-maxdepth-linux-find-command-limiting-search-specific-directory/
+        
+        
+
 ### Application Layers?
 * it is not recommended to use the entity class as the request/response class
     * DB table is based on this entity class, and making many changes to the entity class can be costly

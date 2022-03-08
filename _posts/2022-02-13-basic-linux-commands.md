@@ -33,6 +33,10 @@ You can also combine the commands, such as `ls -la`, which will list all files i
 ### mkdir & rmdir
 This is used to create and delete folders. Just append the folder name at the end, like `mkdir foldername`.  
 
+When creating a directory that includes other parent directories that don't exist yet, such as /usr/a/b/c (assuming /a and /b directories don't exist), you can use the `-p` option to create the parent directories.  
+
+`mkdir -p /usr/a/b/c` will create the /c directory, along with the /a and /b parent directories. 
+
 *Note: `rmdir` only lets you remove empty directories. To remove all of the subdirectories that it contains, use `rm -r foldername`.*
 
 ### mv
@@ -59,6 +63,8 @@ This will create the files 'filename0.txt', ... , 'filename100.txt'.
 This is used to move some data into some file, usually some text.  
 * `echo 'text' > filename.txt`: Use a single greater-than sign to overwrite the file. So this will replace the old data with the new data.  
 * `echo 'text' >> filename.txt`: Use two greater-than signs to add data to the file. New data will be added to a new line.  
+
+If no filename is stated, e.g. `echo 'hello'`, it will simply print out to the terminal. 
 
 *Note: If you use a filename that doesn't exist, a new file with the content inside will be created.*
 
