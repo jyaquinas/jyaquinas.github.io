@@ -56,7 +56,7 @@ public class PostsService {
 }
 ```
 
-Notice how the service layer will only return DTOs, not the entity classes themselves. And when performing a task, like saving a post, it will receive the DTO, convert it to an entity, and save it to the DB through the repository class. 
+Notice how the service layer will only return DTOs and not the entity classes themselves. And when performing a task, like saving a post, it will receive the DTO, convert it to an entity, and save it to the DB through the repository class. 
 
 #### Repository Layer
 Access to the database is achieved through this layer. Using the `@Repository` annotation (or inheriting from the JpaRepository or other similar interfaces), you can read or write to the DB through the basic CRUD operations it provides.
