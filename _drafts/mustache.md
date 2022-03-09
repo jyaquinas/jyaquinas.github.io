@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Mustache
-subtitle: 
+subtitle:
 date: 2022-03-03 22:03:00 +0900
 background: '/img/bg-post.jpg'
-category: "java"
+category: "Java"
 tags: [mustache, java]
 ---
 
@@ -22,7 +22,7 @@ tags: [mustache, java]
     * same syntax for client/server templates (mustache.js, mustache.java)
     * no logic code? easy to separate view and server
     * supported in intellij community version
-    
+
 ### Setup
 * add `implementation 'org.springframework.boot:spring-boot-starter-mustache'` to the dependencies in build.gradle file
 * mustache files should be located in src/main/resources/templates so that spring boot can automatically detect them

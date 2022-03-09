@@ -9,7 +9,7 @@ tags: [oracle sql, sql, database]
 ---
 
 ### What is a foreign key?
-Foreign keys establish a relationship between two tables. A column from one table (child table) references the primary key from another table (parent table). The foreign key is defined in the child table. 
+Foreign keys establish a relationship between two tables. A column from one table (child table) references the primary key from another table (parent table). The foreign key is defined in the child table.
 
 ### Why use them?
 It helps maintain the referential integrity of your DB, i.e. only existing values from the foreign table (the primary key being referenced) can be added as a foreign key.
@@ -17,14 +17,14 @@ It helps maintain the referential integrity of your DB, i.e. only existing value
 If you try to insert a non-existent value, you'll get an error.
 >ORA-02291: integrity constraint (ADMIN.SYS_C0028304) violated - parent key not found
 
-Of course, you can maintain this integrity yourself. But can we be 100% sure that you, and everyone else using the DB, will never make a mistake? :shrug:
+Of course, you can maintain this integrity yourself. But can we be 100% sure that you, and everyone else using the DB, will never make a mistake? :smirk:
 
 ### Syntax
 ```sql
 CREATE TABLE child_table (
     ...
     CONSTRAINT fk_name
-    FOREIGN KEY (col1, col2, ...) REFERENCES 
+    FOREIGN KEY (col1, col2, ...) REFERENCES
         parent_table (col1, col2, ...)
         ON [DELETE|UPDATE] [referential_actions]
 )
@@ -37,7 +37,7 @@ You can also add or remove foreign keys for existing tables.
 ```sql
 ALTER TABLE child_table
     ADD CONSTRAINT fk_name
-        FOREIGN KEY (col1, col2, ...) REFERENCES 
+        FOREIGN KEY (col1, col2, ...) REFERENCES
         parent_table (col1, col2, ...)
         ON [DELETE|UPDATE] [referential_actions];
 
@@ -76,4 +76,3 @@ It is set to `RESTRICT` by default (if `ON DELETE` and `ON UPDATE` clauses are o
 
 Trying to delete a row from the parent table in which its primary key is still being referenced, and the default `RESTRICT` constraint is set, will lead to the following error:
 > ORA-02292: integrity constraint (ADMIN.SYS_C0028304) violated - child record found
-

@@ -16,3 +16,5 @@ gem "webrick", "~> 1.7"
 gem "kramdown-syntax-coderay", "~> 1.0"
 
 gem "rouge", "~> 3.27"
+
+gem 'jemoji'
