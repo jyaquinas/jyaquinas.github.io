@@ -25,7 +25,11 @@ tags: []
         * https://stackoverflow.com/questions/26387399/javax-transaction-transactional-vs-org-springframework-transaction-annotation-tr
         * Transactional (readOnly = true)
     * @Autowired
-    * @Service
+    * @Service, @Controller, @Repository
+        * special types of @Component
+        * @Repository -> implements JPA repository with basic read/write operations for entities to the DB
+        * @Service -> hold business logic
+        * @Controller -> class that implements REST endpoints
 
 * Dirty checking - JPA entity
     * https://jojoldu.tistory.com/415
