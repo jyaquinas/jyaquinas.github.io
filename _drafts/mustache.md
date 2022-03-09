@@ -29,7 +29,7 @@ tags: [mustache, java]
 
 
 Notes.  
-* use `{{>}}` to bring another file into the current file, such as `{{>layout/header}}
+* use `{{>}}` to bring another file into the current file, such as `{{>layout/header}}`
 
 
 ---
