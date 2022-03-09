@@ -46,6 +46,13 @@ public class PostsService {
     public Long save(PostsSaveRequestDto requestDto){
         return postsRepository.save(requestDto.toEntity()).getId();
     }
+
+    public PostsResponseDto findById(Long id){
+        Posts entity = postsRepository.findById(id).orElseThrow(()->
+                new IllegalArgumentException("The post does not exist. id = " + id));
+
+        return new PostsResponseDto(entity);
+    }    
 }
 ```
 
