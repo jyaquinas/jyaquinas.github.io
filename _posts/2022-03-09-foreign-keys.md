@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Foreign Keys
-subtitle: 
-date: 2022-03-03 21:31:00 +0900
+subtitle: Foreign Keys in Oracle SQL
+date: 2022-03-09 21:04:00 +0900
 background: '/img/bg-post.jpg'
-category: "database"
+category: "Database"
 tags: [oracle sql, sql, database]
 ---
 
@@ -77,8 +77,3 @@ It is set to `RESTRICT` by default (if `ON DELETE` and `ON UPDATE` clauses are o
 Trying to delete a row from the parent table in which its primary key is still being referenced, and the default `RESTRICT` constraint is set, will lead to the following error:
 > ORA-02292: integrity constraint (ADMIN.SYS_C0028304) violated - child record found
 
-
-### Types of DB relationships
-* One-to-one: 
-* One-to-many: 
-* Many-to-many: 
