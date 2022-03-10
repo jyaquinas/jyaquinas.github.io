@@ -94,6 +94,10 @@ tags: []
     * edit sqlnet.ora and set update the directory
     * `sqlplus admin@dbname` -> dbname from tnsnames.ora
     * input password and voila
+* pass variable to sql script by using `&1 &2`
+    * `insert into authors (firstname, lastname) values ('&1', '&2');`
+    * then use `@script.sql var1 var2`
+    
 
 ### Application Layers?
 * it is not recommended to use the entity class as the request/response class
