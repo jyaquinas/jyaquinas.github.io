@@ -87,7 +87,13 @@ tags: []
     * find maxdepth
         * https://www.geeksforgeeks.org/mindepth-maxdepth-linux-find-command-limiting-search-specific-directory/
         
-        
+* Using sqlplus in cloud oracle with wallet
+    * download wallet, then upload to cloud storage
+    * unzip wallet to a directory
+    * set TNS_ADMIN variable to the directory `export TNS_ADMIN=/dir/`
+    * edit sqlnet.ora and set update the directory
+    * `sqlplus admin@dbname` -> dbname from tnsnames.ora
+    * input password and voila
 
 ### Application Layers?
 * it is not recommended to use the entity class as the request/response class
