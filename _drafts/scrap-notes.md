@@ -59,8 +59,10 @@ tags: []
     * ps -> lists processes
         * https://linuxize.com/post/ps-command-in-linux/
         * https://www.geeksforgeeks.org/ps-command-in-linux-with-examples/
+        * https://www.oreilly.com/library/view/linux-pocket-guide/9780596806347/re87.html
         * -e: list full process list
         * -f: full format
+        * -p: get for a particular process `ps -p 5553`
         * can be used with filter commands like `grep`
     * awk
         * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
@@ -86,6 +88,23 @@ tags: []
             * `` set array=`find . -maxdepth 1 -name '*.txt'` ``
     * find maxdepth
         * https://www.geeksforgeeks.org/mindepth-maxdepth-linux-find-command-limiting-search-specific-directory/
+* Shell scripts
+    * .sh files that usually have [shebangs](https://en.wikipedia.org/wiki/Shebang_(Unix)) on the first line
+    * `#!/bin/bash` or `#!/bin/csh`
+    * to run the scripts:
+        * `./scriptname.sh`, `sh scriptname.sh`, `bash scriptname.sh`
+    * make sure you have the executable permission, or update it using `chmod`
+    * loops and ifs?
+
+* Bash (bourne again shell) vs sh (bourne shell)
+    * what is shell? a CLI (command line interpreter) program that provides interface between user and os service
+        * lets you run linux commands
+        * sh converts human readable commands and converts them to commands for kernel
+    * sh with more features
+    * bash scripting is only for bash, but sh scripting is for any shell
+    * bash is the default SHELL (can check in your linux by `ps -p $$`)
+* 
+
         
 * Using sqlplus in cloud oracle with wallet
     * download wallet, then upload to cloud storage
