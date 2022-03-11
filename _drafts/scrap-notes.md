@@ -95,6 +95,7 @@ tags: []
         * `./scriptname.sh`, `sh scriptname.sh`, `bash scriptname.sh`
     * make sure you have the executable permission, or update it using `chmod`
     * loops and ifs?
+        * https://linuxconfig.org/bash-scripting-tutorial
 
 * Bash (bourne again shell) vs sh (bourne shell)
     * what is shell? a CLI (command line interpreter) program that provides interface between user and os service
