@@ -105,8 +105,7 @@ tags: []
     * sh with more features
     * bash scripting is only for bash, but sh scripting is for any shell
     * bash is the default SHELL (can check in your linux by `ps -p $$`)
-* 
-        
+
 * Using sqlplus in cloud oracle with wallet
     * download wallet, then upload to cloud storage
     * unzip wallet to a directory
@@ -114,6 +113,7 @@ tags: []
     * edit sqlnet.ora and set update the directory
     * `sqlplus admin@dbname` -> dbname from tnsnames.ora
     * input password and voila
+
 * pass variable to sql script by using `&1 &2`
     * `insert into authors (firstname, lastname) values ('&1', '&2');`
     * then use `@script.sql var1 var2`
