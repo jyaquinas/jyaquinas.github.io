@@ -42,6 +42,19 @@ tags: []
     * ajax
     * CRUD -> html func (post, get, put, delete)
 
+* spring.profiles.include -> application.properties 
+* application.properties vs yaml
+* how oauth2 works 
+    * https://developers.google.com/identity/protocols/oauth2
+* What is tomcat?
+    * lightweight server - web server and servlet container (not a full application server) written in java -- is production ready
+* session persistence methods
+    * use tomcat sessions - but if multiple tomcat servers are used, extra configuration is required to synchronize user sessions across servers
+    * saving sessions to DB - but high login rates may create performance issues (due to high request to db)
+    * using caches (redis memcached) - mostly used in applications with large user base
+* creating annotations in java?
+    * https://docs.oracle.com/javase/tutorial/java/annotations/declaring.html
+
 
 ---
 ## Misc Subjects
@@ -75,7 +88,7 @@ tags: []
         * `tput smso` start 'standout' mode
         * `tput rmso` end 'standout' mode
         * `tput sgr0` turn off all attributes
-    * set
+    * set -> csh?
         * https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux
         *  we will get a list of all shell variables, environmental variables, local variables, and shell functions
     * `$$`
