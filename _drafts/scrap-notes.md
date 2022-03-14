@@ -136,6 +136,7 @@ tags: []
         * https://blogs.oracle.com/sql/post/better-loops-and-qualified-expressions-array-constructors-in-plsql
         * https://stackoverflow.com/questions/36325831/use-oracle-pl-sql-for-loop-to-iterate-through-comma-delimited-string
         * https://stackoverflow.com/questions/2242024/for-each-string-execute-a-function-procedure
+        * https://livesql.oracle.com/apex/livesql/file/tutorial_KS0KNKP218J86THKN85XU37.html
 
 ```sql
 DECLARE
