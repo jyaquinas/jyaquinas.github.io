@@ -74,7 +74,7 @@ chmod 777 directory   # gives full permission to all for the directory
 
 <br>
 
-### Bonus
+### Updating permissions for multiple files
 
 You can change the permissions for all the files and subdirectories of a folder by using the `-R`.
 ```linux
