@@ -89,6 +89,12 @@ tags: []
             * `` set array=`find . -maxdepth 1 -name '*.txt'` ``
     * find maxdepth
         * https://www.geeksforgeeks.org/mindepth-maxdepth-linux-find-command-limiting-search-specific-directory/
+* Crontab 
+    * https://www.adminschoice.com/crontab-quick-reference
+    * https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
+    * https://opensource.com/article/17/11/how-use-cron-linux
+    * files used to schedule the execution of programs 
+    * 
 * Shell scripts
     * .sh files that usually have [shebangs](https://en.wikipedia.org/wiki/Shebang_(Unix)) on the first line
     * `#!/bin/bash` or `#!/bin/csh`
@@ -118,3 +124,28 @@ tags: []
     * `insert into authors (firstname, lastname) values ('&1', '&2');`
     * then use `@script.sql var1 var2`
     
+* Oracle sql
+    * `:=` is used for assigning values to variables
+    * oracle sql vs pl/sql 
+        * https://www.tutorialspoint.com/difference-between-sql-and-pl-sql
+        * oracle sql is oracles version of SQL
+        * pl/sql -> procedural language SQL -- extension of oracle sql, has functionalities of functions, control structures, triggers, etc (a programming language that uses SQL, meant for DBs)
+        * cannot use pl/sql in mysql
+        * `;` ends sql statement, `/` executes whatever is in the buffer (usually for running plsql blocks defined by begin and end)
+    * plsql loops
+        * https://blogs.oracle.com/sql/post/better-loops-and-qualified-expressions-array-constructors-in-plsql
+        * https://stackoverflow.com/questions/36325831/use-oracle-pl-sql-for-loop-to-iterate-through-comma-delimited-string
+        * https://stackoverflow.com/questions/2242024/for-each-string-execute-a-function-procedure
+
+```sql
+DECLARE
+    type nt_arr is table of varchar2(50);
+    arr nt_arr := nt_arr ('1234','asdf','23g');
+BEGIN
+  FOR i IN 1..arr.count
+  LOOP
+    DBMS_OUTPUT.PUT_LINE( arr(i) );
+  END LOOP;
+END;
+```
+
