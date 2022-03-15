@@ -18,6 +18,7 @@ tags: []
     * jpa doesnt work in webmvctest? only inits controller and controller advice
     * HttpEntity
     * ResponseEntity
+    * How to test with spring security? creating mock users, etc
 
 * Spring/JPA Annotations 
     * @Transactional
@@ -32,11 +33,6 @@ tags: []
         * @Controller -> class that implements REST endpoints
     * @Controller vs @RestController
 
-* Dirty checking - JPA entity
-    * https://jojoldu.tistory.com/415
-    * https://www.netsurfingzone.com/hibernate/dirty-checking-in-hibernate/
-    * automatically checks if objects have been modified and will update regularly (when session flushed or transaction is commited)
-
 * why pass .class
 * look into index.js file (mustache)
     * ajax
@@ -46,12 +42,7 @@ tags: []
 * application.properties vs yaml
 * how oauth2 works 
     * https://developers.google.com/identity/protocols/oauth2
-* What is tomcat?
-    * lightweight server - web server and servlet container (not a full application server) written in java -- is production ready
-* session persistence methods
-    * use tomcat sessions - but if multiple tomcat servers are used, extra configuration is required to synchronize user sessions across servers
-    * saving sessions to DB - but high login rates may create performance issues (due to high request to db)
-    * using caches (redis memcached) - mostly used in applications with large user base
+
 * creating annotations in java?
     * https://docs.oracle.com/javase/tutorial/java/annotations/declaring.html
 
@@ -63,6 +54,19 @@ tags: []
 
 * for large projects with more complex data, it may be required to perform complex join operations for obtaining/searching for data
     * it is common to use spring data jpa for CUD operations, and use other frameworks for read operations (querydsl, jooq, mybatis)
+
+* Dirty checking - JPA entity
+    * https://jojoldu.tistory.com/415
+    * https://www.netsurfingzone.com/hibernate/dirty-checking-in-hibernate/
+    * automatically checks if objects have been modified and will update regularly (when session flushed or transaction is commited)
+
+* session persistence methods
+    * use tomcat sessions - but if multiple tomcat servers are used, extra configuration is required to synchronize user sessions across servers
+    * saving sessions to DB - but high login rates may create performance issues (due to high request to db)
+    * using caches (redis memcached) - mostly used in applications with large user base
+
+* What is tomcat?
+    * lightweight server - web server and servlet container (not a full application server) written in java -- is production ready
 
 * Crontab 
     * https://www.adminschoice.com/crontab-quick-reference
@@ -109,3 +113,20 @@ BEGIN
 END;
 ```
 
+* test with spring security
+    * test application.yml -> add mock settings
+    ```
+    # test oauth
+    security:
+        oauth2:
+        client:
+            registration:
+            google:
+                client-id: test
+                client-secret: test
+                scope: [profile, email]
+    ```
+    * add dependency to gradle -> `implementation 'org.springframework.security:spring-security-test'`
+    * use `@WithMockUser(roles="USER")` to create mock user with user authorization
+    * must also use MockMvc -> using only @SpringBootTest does not use MockMvc
+    
