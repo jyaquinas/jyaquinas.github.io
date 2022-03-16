@@ -5,7 +5,7 @@ subtitle: The data structure I've been neglecting
 date: 2022-02-07 13:18:00 +0900
 background: '/img/bg-post.jpg'
 category: "Data Structures"
-tags: [data structures, algorithms, trie]
+tags: [data structures, algorithms, trie, python]
 ---
 
 
