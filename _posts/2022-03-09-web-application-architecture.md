@@ -9,7 +9,7 @@ tags: [java, ddd, design, spring boot]
 ---
 
 ### Application Layers
-There are many different ways to design a web application. But I'll talk about the most common method, or the "classic" way, that is used by most.
+There are many different ways to design a web application. But I'll talk about the most common method, or the "classic" way.
 
 The application can be divided into 3 main layers: web, service, and repository layers.
 
