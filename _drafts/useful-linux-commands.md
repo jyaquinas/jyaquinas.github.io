@@ -31,6 +31,11 @@ tags: [linux]
     * -f: full format
     * -p: get for a particular process `ps -p 5553`
     * can be used with filter commands like `grep`
+* kill -> kill process
+    * https://phoenixnap.com/kb/how-to-kill-a-process-in-linux
+    * `kill [pid]` 
+    * `kill -9 [pid]` -> force kill (sends SIGKILL signal) -> `-SIGKILL` can also be used
+
 * awk
     * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
     * `awk '{print $2, $4}'` : prints 2nd and 4th word (whitespace separated) -> $0 represents entire line

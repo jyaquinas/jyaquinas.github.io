@@ -5,7 +5,7 @@ subtitle: ----
 date: 2022-03-16 22:03:00 +0900
 background: '/img/bg-post.jpg'
 category: "Java"
-tags: [java, gc, heap memory]
+tags: [java, garbage collection, heap memory]
 ---
 
 

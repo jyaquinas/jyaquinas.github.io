@@ -74,8 +74,10 @@ tags: []
     * https://opensource.com/article/17/11/how-use-cron-linux
     * files used to schedule the execution of programs 
     * 
-    
 
+* Failover and loadbalancing in oracle db
+    * https://docs.oracle.com/cd/E15217_01/doc.1014/e12490/failover.htm
+    * https://docs.oracle.com/cd/B28196_01/idmanage.1014/b25344/failover.htm
 
 * Using sqlplus in cloud oracle with wallet
     * download wallet, then upload to cloud storage
