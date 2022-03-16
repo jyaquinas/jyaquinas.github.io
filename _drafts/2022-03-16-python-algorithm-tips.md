@@ -21,7 +21,7 @@ So instead of appending to the string at every step, which would be **O(n)** tim
 
 
 ### Backtracking (Recursion)
-Let's look at the [permutation problem](https://leetcode.com/problems/permutations/) from LC. You will probably use some function similar to the following. Most of the backtracking problems have a very similar format.
+Let's look at the [permutation problem](https://leetcode.com/problems/permutations/) from LC. You will probably use a function similar to the one below. Most of the backtracking problems have a very similar format.
 
 ```python        
 def dfs(self, nums: List[int], path: List[int], ans: List[List[int]]):
@@ -32,7 +32,7 @@ def dfs(self, nums: List[int], path: List[int], ans: List[List[int]]):
         self.dfs(nums[:i]+nums[i+1:], path + [nums[i]], ans)
 ```
 
-Now, lets focus on this line:
+Now, let's focus on this line:
 
 `path + [nums[i]]` on the recursive call. 
 
