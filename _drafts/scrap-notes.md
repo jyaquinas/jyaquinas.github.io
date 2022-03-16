@@ -75,6 +75,8 @@ tags: []
     * files used to schedule the execution of programs 
     * 
     
+
+
 * Using sqlplus in cloud oracle with wallet
     * download wallet, then upload to cloud storage
     * unzip wallet to a directory

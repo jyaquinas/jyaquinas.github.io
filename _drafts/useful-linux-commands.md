@@ -17,7 +17,12 @@ tags: [linux]
     * ./tmp/* matches files and folders in ./tmp
     * ./tmp/** matches files, folders, and subfolders in ./tmp
     * https://stackoverflow.com/questions/3529997/unix-wildcard-selectors-asterisks
-
+* command substitution in linux
+    * `$()` is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells)
+    * linux will execute whatever is inside the `$()` before it executes the rest - allows you to input the results of the command into the text of the command
+    * `datevar=date` is going to assign the string date into the variable
+    * `echo $datevar` will give you `date`
+    * `datevar=$(date)` will give you the actual date
 * ps -> lists processes
     * https://linuxize.com/post/ps-command-in-linux/
     * https://www.geeksforgeeks.org/ps-command-in-linux-with-examples/

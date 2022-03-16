@@ -15,7 +15,8 @@ tags: [linux]
     * .sh files that usually have [shebangs](https://en.wikipedia.org/wiki/Shebang_(Unix)) on the first line
     * `#!/bin/bash` or `#!/bin/csh`
     * to run the scripts:
-        * `./scriptname.sh`, `sh scriptname.sh`, `bash scriptname.sh`
+        * `./scriptname.sh`, `sh scriptname.sh`, `bash scriptname.sh`, `. scriptname.sh`
+        * to run scripts within scripts, you can also do the same `. path/file.sh`
     * make sure you have the executable permission, or update it using `chmod`
     * loops and ifs?
         * https://linuxconfig.org/bash-scripting-tutorial
