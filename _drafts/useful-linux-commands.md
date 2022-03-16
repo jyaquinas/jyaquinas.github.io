@@ -9,7 +9,6 @@ tags: [linux]
 ---
 
 
-
 * Linux wildcards -> file searching
     * `*` match one or more occurrences of characters, including none
     * `?` match single occurrence of character
