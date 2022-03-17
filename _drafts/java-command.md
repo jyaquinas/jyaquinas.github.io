@@ -20,7 +20,9 @@ tags: [java, cli]
     * -verbose:gc -> display info about each garbage collection (GC) event
         * the alias `-XX:+PrintGC`, has been depracated in >= Java 9
     * -verbose:class -> display info about loaded class
-    * -verbose:module -> display info about modules in use
+    * -verbose:modul e -> display info about modules in use
+    * `-D[property]=[value]` -> set the system properties where property is a string with no spaces, value is a string but can contain spaces (if so, enclose in quotations)
+        * system properties: describes configuration of the current working environment (user info, current java version, etc.)
 * extra options
     * start with `-X` -> options for Java HotSpot Virtual Machine
     * `-Xms[size]` -> set minimum and initial size of heap
