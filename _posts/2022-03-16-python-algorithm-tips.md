@@ -19,6 +19,28 @@ print(id(a) == print(b)) # prints False
 
 So instead of appending to the string at every step, which would be **O(n)** time at every step (doing this n times will result in a time complexity of **O(n^2)**), append to a list first and then convert the result to a string only once at the end.
 
+For the sake of this example, let's look at this string concatenation function.
+
+```python
+def strConcat(str1, str2):
+    result = str1
+    n = len(str2)
+    for i in range(n):
+        result += str2[i]   # O(n)
+    return result
+    # Overall O(n^2)
+
+def strConcat2(str1, str2):
+    result = []
+    m, n = len(str1), len(str2)
+    for i in range(m):
+        result.append(str1[i])  # O(1)
+    for i in range(n):
+        result.append(str2[i])  # O(1)
+    return ''.join(result)  # O(m+n)
+    # Overall O(m+n)
+```
+If we consider a case where the length of str2 >> str1, then the overall time complexities will be O(n^2) vs O(n). 
 
 ### Backtracking (Recursion)
 Let's look at the [permutation problem](https://leetcode.com/problems/permutations/) from LC. You will probably use a function similar to the one below. Most of the backtracking problems have a very similar format.
