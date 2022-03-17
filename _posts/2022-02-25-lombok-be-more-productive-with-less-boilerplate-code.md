@@ -1,7 +1,7 @@
 ---
 layout: post
-title: What is Lombok?
-subtitle: Be more productive with less boilerplate code
+title: 'Lombok: Be More Productive With Less Boilerplate Code'
+subtitle: Lombok Basics
 date: 2022-02-25 12:55:00 +0900
 background: '/img/bg-post.jpg'
 category: "Java"

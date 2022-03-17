@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Foreign Keys
-subtitle: Foreign Keys in Oracle SQL
+title: Foreign Keys in Oracle SQL
+subtitle: Set relationships between tables
 date: 2022-03-09 21:04:00 +0900
 background: '/img/bg-post.jpg'
 category: "Database"
