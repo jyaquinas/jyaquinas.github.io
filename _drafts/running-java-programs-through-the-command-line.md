@@ -20,49 +20,103 @@ This is the basic syntax:
 
 *Note: this can only run compiled java programs, so make sure to compile your files first using the `javac` command.*
 
-The java command will start a java application by loading the java virtual machine (JVM), loading the specified main class, and calling the main method. The arguments specified in the command will be passed to the main method. 
+The java command will start a java application by loading the java virtual machine (JVM), loading the specified `mainclass`, and calling the main method. The arguments, `args`, specified in the command will be passed to the main method. 
 
-* java cli commands
-    * https://docs.oracle.com/en/java/javase/13/docs/specs/man/java.html#using-the-jdk_java_options-launcher-environment-variable
-* basic syntax:
-    * `java [options] mainclass [args...]`
-        * it starts a java runtime environment (JRE) or the java virtual machine (JVM), loads the specified main class, and calls the `main` method of that class
-        * passes in the program arguments as arguments for the main method
-* standard options
-    * -cp: class path -> sets the class path where the user-defined ("classes that are not java extensions or part of java platform") classes/packages are defined -> `;` separated list of directories, jar files,
-        * if -cp not used, defaults to the CLASSPATH environment variable, or the current directory if the variable isn't set
-    * -verbose:gc -> display info about each garbage collection (GC) event
-        * the alias `-XX:+PrintGC`, has been depracated in >= Java 9
-    * -verbose:class -> display info about loaded class
-    * -verbose:modul e -> display info about modules in use
-    * `-D[property]=[value]` -> set the system properties where property is a string with no spaces, value is a string but can contain spaces (if so, enclose in quotations)
-        * system properties: describes configuration of the current working environment (user info, current java version, etc.)
-* extra options
-    * start with `-X` -> options for Java HotSpot Virtual Machine
-    * `-Xms[size]` -> set minimum and initial size of heap
-        * must be multiple of 1024, greater than 1MB
-        * `-Xms4G`
-        * `-XX:MinHeapSize` and `-XX:InitialHeapSize` can be used instead 
-        to set min and init heap size, respectively
-        * if not set, it will be set to sum of young and old generation size
-    * `-Xmx[size]` -> set max size of heap
-        * can also use `-XX:MaxHeapSize`
-        * should not exceed the physical memory of the machine
-        * recommended to set so that heap is 30% full after a full GC (can check through GC log)
-    * `-Xloggc:[file]` -> outputs additional info about gc into the file
-        * depracated -> >= Java 9 `-Xlog:gc:[file]` is used
-* advanced options 
-    * start with `-XX` -> options for tuning specific areas (runtime behavior, dynamic just-in-time (JIT) compilation, gathering system info, garbage collection) of Java Hotspot VM
-    * Boolean options -> enable/disable options that are disabled/enabled by default
-        * enable using `-XX:+OptionName`
-        * disable using `-XX:-OptionName`
-    * if option requires an argument, separate from the option by a space, colon, or an equal sign (differs for each option)
-    * specifying size -> use no sufix, or suffix `k`, `K` for kb, `m`, `M` for mb, `g`, `G` for gb
-        * ex:  8g, 8192m, 8388608k, or 8589934592
-    * specifying percentage -> values from 0 to 1, e.g. 0.25 for 25%
-    * `-XX:NewRatio=[ratio]` -> set ratio between young and old generation sizes (default young-to-old ratio = 2)
-    * `-XX:NewSize=[size]` -> sets initial size of heap for young generation 
-        * java recommends keeping the size > 25% and < 50% of the overall heap size
-    * `-XX:SurvivorRatio=[ratio]` -> sets ratio between eden and survivor space size (within the young generation) ==> default is 8
-    * `-XX:[+-]UseAdaptiveSizePolicy` -> enabled by default, automatically resizes the generations (heap)
-    * `-XX:HeapDumpPath=[path]` -> sets the path/filename for writing the heap dump from heap profiles (HPROF), when the dumping of java heap on `OutOfMemoryError` exception is thrown (set by the `-XX:+HeapDumpOnOutOfMemoryError` -> disabled by default)
+Let's look at this simple java program.
+
+```java
+// HelloWorld.java
+public class HelloWorld{
+    public static void main(String[] args){
+        for(String s:args){
+            System.out.println(s);
+        }
+    }
+}
+```
+
+Let's compile and run this in the command line.
+```shell
+javac HelloWorld.java
+java HelloWorld hello world
+# hello
+# world
+```
+
+The arguments `hello` and `world` were passed to the main function and were printed out. 
+
+### Java Command Options
+The options can be mainly divided into 3 parts: standard, extra, and advanced.
+
+#### Standard Options
+These options are used for the most basic actions, such as setting the class path or the verbose output. Here are a few standard options.
+
+`-cp`  
+Sets the class path where the user-defined classes/packages are, i.e. classes that are not java extensions or part of the java platform. If this is not used, it will default to the `CLASSPATH` environment variable. If this variable isn't set, then it will default to the current directory.
+
+`-verbose:gc`  
+Displays info about each garbage collection (GC) event. Note that the alias `-XX:+PrintGC` has been depracated in >= Java 9
+
+`-verbose:class`  
+Displays info about loaded class.
+
+`-verbose:module`  
+Displays info about modules in use.
+
+`-D[property]=[value]`  
+Sets the system properties where `property` is a string with no spaces and `value` is a string but can contain spaces (if so, must be enclosed in quotations). This can be used for custom system properties, which can be used with external frameworks, if needed. 
+
+#### Extra Options
+These options start with `-X` and are options for the Java Hotspot VM.
+
+`Xms[size]`  
+Sets the minimum and initial size of heap. The `size` must be a multiple of 1024 and must be greater than 1MB, such as `-Xms4G`.  
+`-XX:MinHeapSize` and `-XX:InitialHeapSize` can be used instead to set min and init heap size, respectively.
+
+`-Xmx[size]`  
+Sets the max size of heap. The `size` shouldn't be greater than the phsical memory of the machine. Oracle also recommends to set this value so that the heap is 30% full after a full GC event (you can check through the GC log).  
+`-XX:MaxHeapSize` can also be used.
+
+`-Xlog:gc:[file]`  
+Outputs additional info about the gc into the file. You may also find `-Xloggc:[file]`, which has been depracated since Java 9.
+
+#### Advanced Options
+Advanced options start with `-XX` and they are used for specific areas (runtime behavior, gathering system info, garbage collection, etc) of the Java Hotspot VM.
+
+Different options will be used differently. But here are a few types of options that can be used.
+
+**Boolean Options**  
+These are enable/disable options that are disabled/enabled by default. You can set them by using the `+` or `-` sign, like the following:  
+`-XX:+OptionName` -> enable  
+`-XX:-OptionName` -> disable  
+
+**Options with Arguments**  
+If an option requires an argument, you can separate the option with the argument using a space, colon, or an equal sign.  
+Use the following suffixes to specify size:  
+* `k`, `K` for kb
+* `m`, `M` for mb
+* `g`, `G` for gb
+
+For example: 8g, 8192m, or 8589934592.
+
+`-XX:NewRatio=[ratio]`  
+Sets the ratio between the young and old generation[^gc] sizes. The default young-to-old ratio is 2.
+
+`-XX:NewSize=[size]`  
+Sets initial size of heap for young generation. Java recommends keeping the size > 25% and < 50% of the overall heap size.
+
+`-XX:SurvivorRatio=[ratio]`  
+Sets the ratio between eden and survivor space size[^ygc] (within the young generation). Default is 8.
+
+`-XX:[+-]UseAdaptiveSizePolicy`  
+Enabled by default, automatically resizes the generations (heap).
+
+`-XX:HeapDumpPath=[path]`  
+Sets the path/filename for writing the heap dump from heap profiles (HPROF), when the dumping of java heap on `OutOfMemoryError` exception is thrown (set by the `-XX:+HeapDumpOnOutOfMemoryError` -> disabled by default).
+
+### More Info
+There are tons more. You can check out the [documentation](https://docs.oracle.com/en/java/javase/13/docs/specs/man/java.html#using-the-jdk_java_options-launcher-environment-variable) for more information about the java command.
+
+---
+[^gc]: Young and old generation sizes refer to the heap sections in Java used for garbage collection. These can be tuned to optimize the java GC. Check out this [blog post](https://blog.devgenius.io/java-garbage-collection-what-is-the-young-generation-old-generation-and-permanent-generation-953462ae2598) for more info.  
+[^ygc]: The eden and survivor spaces are part of the young generation. Refer to the blog post mentioned above.
