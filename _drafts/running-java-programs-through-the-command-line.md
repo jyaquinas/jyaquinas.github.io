@@ -1,12 +1,26 @@
 ---
 layout: post
-title: Java Command
-subtitle: ----
+title: Running Java Programs Through the Command Line
+subtitle: 
 date: 2022-03-16 22:03:00 +0900
 background: '/img/bg-post.jpg'
 category: "Java"
 tags: [java, cli]
 ---
+
+### Why Run Java Through the Command Line Interface (CLI)?
+When you're developing on your computer, you can compile and run your java programs through the SDK. But when you're deploying it on a cloud server, in many cases, you will only have access to the CLI. 
+
+You might also have to run multiple java programs to get your application starting. So instead of manually executing them, you can write a short shell script where it will execute all of them for you. That way, you'll only have to run the script. 
+
+### Basics of Java Command
+This is the basic syntax:
+
+`java [options] mainclass [args...]`
+
+*Note: this can only run compiled java programs, so make sure to compile your files first using the `javac` command.*
+
+The java command will start a java application by loading the java virtual machine (JVM), loading the specified main class, and calling the main method. The arguments specified in the command will be passed to the main method. 
 
 * java cli commands
     * https://docs.oracle.com/en/java/javase/13/docs/specs/man/java.html#using-the-jdk_java_options-launcher-environment-variable
