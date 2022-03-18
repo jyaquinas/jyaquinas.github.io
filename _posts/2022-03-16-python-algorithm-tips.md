@@ -70,8 +70,6 @@ See the difference?
 
 You should choose the second method because `path + [nums[i]]` actually creates a new list and copies the value to the new variable. This operation itself is **O(n)**. Yea, it won't make a huge difference for such a small list, but it starts mattering when we're dealing with much larger ones.
 
-On the other hand, `path.append(nums[i])` and `path.pop()` are both **O(1)**. 
-
 We can quickly see this with this example:
 ```python
 a = [1,2,3]
@@ -79,6 +77,8 @@ b = a + [4]
 a.append(4)
 print(id(a) == id(b))   # prints False
 ```
+
+On the other hand, `path.append(nums[i])` and `path.pop()` are both **O(1)**. 
 
 The final code we get is:
 ```python
