@@ -49,6 +49,25 @@ tags: []
 
 ---
 ## Misc Subjects
+* python is pass by object reference:
+    * mutable objects (list, dic, set, etc) -> passed by ref
+    * immutable objects (str, int, tuple, etc) -> passed by val
+    ```python
+    # pass by value or ref -> in python pass by obj ref
+    def addMutable(obj):
+        obj.append(1)
+        obj[0]=0
+    l = [1,2]
+    addMutable(l)
+    print(l)
+
+    def addImmutable(obj):
+        obj+=2
+    a=5
+    addImmutable(a)
+    print(a)
+    ```
+
 * What is java bean?
     * objects that are managed by spring IoC container
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Running Java Programs Through the Command Line
-subtitle: 
+subtitle: Basics of java command
 date: 2022-03-19 09:28:00 +0900
 background: '/img/bg-post.jpg'
 category: "Java"
