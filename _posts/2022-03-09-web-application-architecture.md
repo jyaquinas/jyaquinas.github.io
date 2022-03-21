@@ -13,6 +13,7 @@ There are many different ways to design a web application. But I'll talk about t
 
 The application can be divided into 3 main layers: web, service, and repository layers.
 
+![Application Layers](/img/posts/web-application-architecture/application-layers.png){:class="img-fluid rounded"}
 
 #### Web Layer
 This layer is responsible for showing information to the user and handling their interactions. This layer will include the controller class, annotated by `@Controller`, to provide REST endpoints, as well as view templates for the UI.  
@@ -61,7 +62,7 @@ public class PostsService {
 }
 ```
 
-Notice how the service layer will only return DTOs and not the entity classes themselves. And when performing a task, like saving a post, it will receive the DTO, convert it to an entity, and save it to the DB through the repository class. 
+Notice how the service layer will only return DTOs and not the entity classes themselves. And when performing a task, like saving a post, it will receive the DTO, convert it to an entity, and save it to the DB through the repository class.
 
 #### Repository Layer
 Access to the database is achieved through this layer. Using the `@Repository` annotation (or inheriting from the JpaRepository or other similar interfaces), you can read or write to the DB through the basic CRUD operations it provides.
