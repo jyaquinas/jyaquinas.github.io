@@ -71,6 +71,10 @@ Access to the database is achieved through this layer. Using the `@Repository` a
 // PostsRepository.java
 public interface PostsRepository extends JpaRepository<Posts, Long> {
     // JpaRepository<EntityClass, PK type> -> Generates basic CRUD methods
+
+    // For custom queries:
+    // @Query("SELECT p from Posts p ORDER BY p.id DESC")
+    // List<Posts> findAllDesc();
 }
 ```
 
