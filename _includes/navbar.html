@@ -18,10 +18,20 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            href="#">Filter By</a>
+            href="#">Categories</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="nav-link dropdown-item" href="{{ "/categories" | relative_url }}">Categories</a>
-            <a class="nav-link dropdown-item" href="{{ "/tags" | relative_url }}">Tags</a>
+            {% for category in site.categories %}
+              <a class="nav-link dropdown-item" href="{{ "/categories" | relative_url }}/#{{ category[0] | slugify}}">{{ category[0] }}</a>
+            {% endfor %}
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            href="#">Tags</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for tag in site.tags %}
+              <a class="nav-link dropdown-item" href="{{ "/tags" | relative_url }}/#{{ tag[0] | slugify}}">{{ tag[0] }}</a>
+            {% endfor %}
           </div>
         </li>
         <!-- <li class="nav-item">

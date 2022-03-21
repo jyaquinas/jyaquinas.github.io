@@ -5,28 +5,6 @@ background: '/img/bg-post.jpg'
 permalink: "/categories/"
 ---
 
-<!-- Forked from https://github.com/codinfox/codinfox-lanyon -->
-
-{% assign rawcategories = "" %}
-{% for post in site.posts %}
-	{% assign categories = post.category | join:'|' | append:'|' %}
-	{% assign rawcategories = rawcategories | append:categories %}
-{% endfor %}
-{% assign rawcategories = rawcategories | split:'|' | sort %}
-
-
-{% assign category = "" %}
-{% for tag in rawcategories %}
-	{% if tag != "" %}
-		{% if category == "" %}
-			{% assign category = tag | split:'|' %}
-		{% endif %}
-		{% unless category contains tag %}
-			{% assign category = category | join:'|' | append:'|' | append:tag | split:'|' %}
-		{% endunless %}
-	{% endif %}
-{% endfor %}
-
 <div class="tags-expo">
   <div class="tags-expo-list">
     {% for tag in site.categories %}
