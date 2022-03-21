@@ -90,6 +90,35 @@ You can now connect with the hostname you set.
 `ssh yourAlias`
 
 
+### Changing Your Instance Hostname
+You'll notice that when you connect to your instance, it will show your instance ip.  
+
+`[ec2-user@ip-##-##-##-## ~]$`
+
+But this can be confusing when you have more than one servers. It'll be easier to differentiate between servers if you name them. 
+
+It will depend on your instance type. So you can check [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-hostname.html) for more info.
+
+For Amazon Linux 2, use the following command.
+
+`sudo hostnamectl set-hostname YourHostName`
+
+Then edit the file `/etc/hosts` using whatever editor you like.
+
+`sudo nano /etc/hosts`
+
+And add the following line:
+
+`127.0.0.1 YourHostName`
+
+Then reboot using `sudo reboot`.
+
+Once you log in again, you'll now see:  
+
+`[ec2-user@YourHostName ~]$`
+
+
+
 ---
 [^ami]: AMIs are image containers that contain all the necessary components to launch the instances.  
 [^vpc]: VPCs are virtual private networks, virtual versions of a physical network within the larger network. 
