@@ -71,7 +71,22 @@ tags: [linux]
 * `&` command
     * executes the command in the background - linux will not wait for the command to finish
     * `./shell.sh &` -> in the script, say there is sleep 5, then linux will execute on the background and not wait for it -> other commands can be run while it is running in the background
-    
+* `cut` command (newer than awk)
+    * https://linuxize.com/post/linux-cut-command/
+    * https://www.geeksforgeeks.org/cut-command-linux-examples/
+    * options: -f (fields), -b (bytes), -c (characters), -d (delimiter), -s (gets only lines with delimiters)
+    * arguments for the list: N (nth field), N- (nth field to the end), N-M (nth to mth field), -N (first to nth field)
+    * gets or cuts sections from each line and prints it out to the stout
+    * `cut -b 1,2,3 file.txt` -> gets 1,2,3rd byte from each line (tabs and backspaces are counted as 1 byte)
+        * mytext -> myt
+    * `cut -b 1-3,5-7 file.txt` 
+        * mytextbla -> mytxtb
+    * `cut -b 1- file.txt` -> 1st bite till the end
+    * `cut -b -3 file.txt` -> first byte to 3rd byte
+    * `cut -c 1,2,3 file.txt` -> gets the character in specified positions (tabs and backspaces count as 1 char)
+    * `cut -f 1,3 file.txt` -> gets 1st and 3rd field delimited by tab (by default)
+    * `cut -f 1,3 -d ':' file.txt` -> same as above but uses `:` as delimiter
+
 
 * export
     * https://linuxconfig.org/learning-linux-commands-export
