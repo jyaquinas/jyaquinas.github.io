@@ -13,6 +13,7 @@ tags: []
     * https://www.geeksforgeeks.org/builder-design-pattern/
     * https://refactoring.guru/design-patterns/builder
     * https://projectlombok.org/features/Builder
+* memento design patttern
 
 * @webmvctest vs @springboottest & testresttemplate
     * jpa doesnt work in webmvctest? only inits controller and controller advice
