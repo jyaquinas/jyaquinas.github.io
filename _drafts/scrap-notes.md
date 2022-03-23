@@ -154,3 +154,19 @@ END;
     * use `@WithMockUser(roles="USER")` to create mock user with user authorization
     * must also use MockMvc -> using only @SpringBootTest does not use MockMvc
     
+* TCP (Transmission Control Protocol) vs UDP (User/Universal Datagram Protocol)
+    * both are transport layer protocols of the TCP/IP protocol stack, both use IP protocol
+    * https://www.diffen.com/difference/TCP_vs_UDP
+    * TCP 
+        * connection orientated protocol
+        * typically used when requires guaranteed message delivery (high reliability)
+        * has built it error recovery and retransmission
+        * sets up connection using 3 way handshake 
+            * 1. send SYN (synchronize sequence number), informs server it wants to establish connection
+            * 2. server responds to client by sending SYN-ACK (acknowledgement) 
+            * 3. client responds to server with ACK -> reliable connection established, now two way data transfer is possible
+    * UDP
+        * connectionless protocol (no handshake mechanism)
+        * data can be sent but cannot know whether it was successfully delivered on not (typically for apps that require fast data transfers)
+        * error handling must be done on the receiving side
+        * faster than TCP because there is no connection setup (less network traffic) and does not consume resources on receiving side (does not keep connection open)
