@@ -142,7 +142,8 @@ Search for `collation` and set all the parameters to `utf8mb4_general_ci`. What 
 Once we save all the parameters, we need to change the DB settings so that it uses this newly created parameter group. Click on 'Databases' on the left sidebar and click on 'Modify', then update the parameter group accordingly. Reboot the DB. 
 
 ### Accessing RDS From Your Local PC
-To access the DB from your local PC, you must configure the security group. 
+To access the DB from your local PC, you must configure the security group. Also, make sure you make your DB as 'Publicly Accessible' when creating the RDS instance. 
+
 Add the following inbound rules:
 * Type: MySQL/Aurora, Source: MyIP
 * Type: MySQL/Aurora, Source: Custom -> Select the security group used for your EC2 instance (This will allow access from your EC2 instance)
