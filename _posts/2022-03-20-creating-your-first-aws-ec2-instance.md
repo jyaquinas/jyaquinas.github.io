@@ -117,9 +117,72 @@ Once you log in again, you'll now see:
 
 `[ec2-user@YourHostName ~]$`
 
+### Setting Up Your Database
+If you're going to set up a relational DB, you can use Amazon's RDS (Relational Database Service). The reason we want to create our DB through this instance is that manually setting it up on our EC2 instance is not only time-consuming, but we won't have the extra functionalities, like monitoring, that are provided by RDS. 
+
+These are the first few things to set up after creating your RDS instance:
+* Timezone
+* Character set
+* Max connection[^maxcon]
+
+We can set this up in the parameter group. On the left sidebar, click on "Parameter groups" and create a new group. Let's edit the parameters we mentioned above.
+
+Look for the `time_zone` parameter and set it to your timezone.
+
+Type in `character_set` and set all the parameters that show up to `utf8mb4`[^utf], which is the charset used if you want to support emojis. 
+
+The current `utf8` is an alias for `utf8mb3`, which encodes Unicode characters using 1-3 bytes per character. `utf8mb4`, on the other hand, uses 1-4 bytes per character. 
+
+> UTF-8 encoding the same as utf8mb3 but which stores supplementary characters in four bytes.
+
+Search for `collation` and set all the parameters to `utf8mb4_general_ci`. What is [collation](https://database.guide/what-is-collation-in-databases/#:~:text=In%20database%20systems%2C%20Collation%20specifies,the%20data%20in%20the%20database.)?
+
+> In database systems, Collation specifies how data is sorted and compared in a database. Collation provides the sorting rules, case, and accent sensitivity properties for the data in the database.
+
+Once we save all the parameters, we need to change the DB settings so that it uses this newly created parameter group. Click on 'Databases' on the left sidebar and click on 'Modify', then update the parameter group accordingly. Reboot the DB. 
+
+### Accessing RDS From Your Local PC
+To access the DB from your local PC, you must configure the security group. 
+Add the following inbound rules:
+* Type: MySQL/Aurora, Source: MyIP
+* Type: MySQL/Aurora, Source: Custom -> Select the security group used for your EC2 instance (This will allow access from your EC2 instance)
+
+Then connect to the DB using the 'Endpoint' show on your RDS console as the hostname. If you don't remember the username, you can find it under the 'Configuration' tab, under 'Master username'.
+
+Once you connect to your DB, you will see that some of the parameters (`character_set_database`, `collation_connection`) set from the parameter group haven't been properly set. You can check by running the following command:
+
+```sql
+use YourDBName; /* You can find it under the 'DBName' in your AWS console */
+show variables like 'c%';
+```
+
+You'll see that the parameters mentioned above will be set to `latin` or something similar. Let's update this to `utf8mb4`. 
+```sql
+ALTER DATABASE YourDBName
+CHARACTER SET = 'utf8mb4'
+COLLATE = 'utf8mb4_general_ci';
+```
+
+Check and see if the timezone has been properly set.
+
+`select @@time_zone, now();`
+
+### Accessing RDS From EC2
+Let's make sure we can access the RDS instance from the EC2 instance.
+
+Connect to your EC2 instance and install MySQL.
+
+`sudo yum install mysql`
+
+Now connect to your DB.
+
+`mysql -u [YourUserName] -p -h [YourDBEndpoint]`
+
+You should be able to connect to it. If you're not able to, double-check your security group and see if your inbound rules have been set properly. 
 
 
 ---
 [^ami]: AMIs are image containers that contain all the necessary components to launch the instances.  
 [^vpc]: VPCs are virtual private networks, virtual versions of a physical network within the larger network. 
-
+[^maxcon]: This is automatically calculated based on the instance, but we can also manually set it through the `max_connections` parameter. Check [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.MaxConnections) for more info.
+[^utf]: Check out this [stackoverflow post](https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql) for more info.
