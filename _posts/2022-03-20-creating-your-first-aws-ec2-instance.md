@@ -147,7 +147,7 @@ Add the following inbound rules:
 * Type: MySQL/Aurora, Source: MyIP
 * Type: MySQL/Aurora, Source: Custom -> Select the security group used for your EC2 instance (This will allow access from your EC2 instance)
 
-Then connect to the DB using the 'Endpoint' show on your RDS console as the hostname. If you don't remember the username, you can find it under the 'Configuration' tab, under 'Master username'.
+Then connect to the DB using the 'Endpoint' shown on your RDS console as the hostname. If you don't remember the username, you can find it under the 'Configuration' tab, under 'Master username'.
 
 Once you connect to your DB, you will see that some of the parameters (`character_set_database`, `collation_connection`) set from the parameter group haven't been properly set. You can check by running the following command:
 
