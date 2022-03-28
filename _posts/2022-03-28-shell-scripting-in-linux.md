@@ -233,4 +233,5 @@ We define the possible case values using the syntax `caseValue)`. So if the valu
 
 ---
 [^dot]: This is using the relative path of the file. This is not to be confused with the [dot command](https://en.wikipedia.org/wiki/Dot_(command)#:~:text=In%20a%20Unix%20shell%2C%20the,extended%22%20POSIX%20shells%20as%20well.), which can also be used to run scripts. The difference is that the dot command will execute it in the current shell, whereas the other methods will execute them in a new subshell. So changes, like new variable assignments, will affect your current environment if the dot command is used. Check out this [post](https://www.shell-tips.com/bash/source-dot-command/) for more info.  
+
 [^doublepar]: The [double parenthesis](https://tldp.org/LDP/abs/html/dblparens.html) is similar to the `let` command. It lets you perform arithmetic evaluations. 
