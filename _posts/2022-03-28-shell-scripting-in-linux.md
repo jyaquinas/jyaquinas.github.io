@@ -21,7 +21,7 @@ All executable shell script files have a file extension of `.sh` and will start 
 This tells the shell interpreter what shell language you'll be using. If not, it will use the system default, which you can check with `echo $SHELL`.
 
 ### Running Shell Scripts
-Make sure you have execution permission on the sript file. Here's another [post]({% link _posts/2022-02-17-linux-file-permissions.md %}) on linux file permissions.
+Make sure you have execution permission on the sript file. Check out this [post]({% link _posts/2022-02-17-linux-file-permissions.md %}) for more info on linux file permissions.
 
 `chmod +x [filename]`
 
