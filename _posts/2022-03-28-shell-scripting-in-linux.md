@@ -179,7 +179,7 @@ do
 done
 
 max=10
-for (( i=2; i <= $max; ++i ))[^doublepar]
+for (( i=2; i <= $max; ++i ))
 do
     echo $i
 done
@@ -189,6 +189,7 @@ do
     echo "-> $f"
 done
 ```
+***Note:** The double parenthesis[^doublepar] is for evaluating arithmetic expressions.*
 
 #### While/Until Loops
 Here's the basic syntax:
