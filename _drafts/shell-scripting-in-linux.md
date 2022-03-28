@@ -222,10 +222,10 @@ echo 3. c
 read selection
 
 case $selection in
-        a) echo 'You selected a';;
-        b) echo 'You selected b';;
-        c) echo 'You selected c';;
-        *) echo 'Wrong input';;     
+    a) echo 'You selected a';;
+    b) echo 'You selected b';;
+    c) echo 'You selected c';;
+    *) echo 'Wrong input';;     
 esac
 ```
 
