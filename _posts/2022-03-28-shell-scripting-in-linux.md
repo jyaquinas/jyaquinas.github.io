@@ -2,19 +2,19 @@
 layout: post
 title: Shell Scripting In Linux
 subtitle: Basic syntax for bash scripting
-date: 2022-03-15 22:03:00 +0900
+date: 2022-03-28 20:23:00 +0900
 background: '/img/bg-post.jpg'
 category: "Linux"
 tags: [linux, bash, shell script]
 ---
 
 ### Why Shell Scripting?
-It's just another way to improve your productivity. Just like how you'd write a program to do the repetitive tasks for your, you can achieve the same with shell scripts. Maybe you need to compile and deploy multiple applications. Instead of manually running these commands one by one, you can simply run a single shell script that will run all of the commands for you. 
+It's just another way to improve your productivity. Just like how you'd write a program to do the repetitive tasks for you, you can achieve the same with shell scripts. Maybe you need to compile and deploy multiple applications. Instead of manually running these commands one by one, you can simply run a single shell script that will run all of the commands for you. 
 
-There are various shell languages (bash, csh, zsh, etc) that you can choose from. You can check which languages are installed in your server by using the command `cat etc/shells`. But since bash is the most commonly used one, I'll be using bash syntax. 
+There are various shell languages (bash, csh, zsh, etc) that you can choose from. You can check which languages are installed on your server by using the command `cat etc/shells`. But since bash is the most commonly used one, I'll be using bash syntax. 
 
 ### Shell Script Files
-All executable shell script files have a file extension of `.sh` and  will start with a [shebangs](https://en.wikipedia.org/wiki/Shebang_(Unix)) on the first line. 
+All executable shell script files have a file extension of `.sh` and will start with a [shebangs](https://en.wikipedia.org/wiki/Shebang_(Unix)) on the first line. 
 
 `#!/bin/bash` or `#!/bin/csh` (depending on the language you're using)
 
@@ -62,7 +62,7 @@ func1
 func2
 ```
 
-In shell, you are limited to returning integer values, usually to signify the status of the executed function. If you want to pass in values, you will have pass it through a global variable. 
+In shell scripts, you are limited to returning integer values, usually to signify the status of the executed function. If you want to return some value, you will have to pass it through a global variable. 
 ```shell
 myfunc () {
     return 5
@@ -71,7 +71,7 @@ myfunc
 echo $? # exit status of the last command executed -> 5
 ```
 
-You can also pass in paramters to the function. The numbers signify the position of the arguments passed. `$@` will print out all the arguments. 
+You can also pass in parameters to the function. The numbers signify the position of the arguments passed. `$@` will print out all the arguments. 
 ```shell
 myfunc () {
     echo $1 $2
@@ -80,10 +80,10 @@ myfunc () {
 myfunc hello world  # outputs 'hello world'
 ```
 
-Functions can be defined on a single line as well, just separate the commands with semicolons. They also have to be defined before they are called on the script. 
+Functions can be defined on a single line as well. Just separate the commands with semicolons. They also have to be defined before they are called on the script. 
 
 ### Variables
-Global variables are variables that can be accessed anywhere in the script. Local variables are defined inside functions and its scope is only within the function. You can declare them using the word `local`.
+Global variables are variables that can be accessed anywhere in the script. Local variables are defined inside functions and their scope is only within the function. You can declare them using the word `local`.
 
 ```shell
 var=glo
@@ -209,7 +209,7 @@ do
 done
 ```
 
-The syntax is the same for `until` loops, but they simply run until the stated condition becomes true (or keeps executing while the condition is false). 
+The syntax is the same for until loops. They're similar to the while loops but instead will run until the stated condition becomes true (or keeps executing while the condition is false). 
 
 ### Case Statements
 Here is an example.
@@ -229,8 +229,8 @@ case $selection in
 esac
 ```
 
-Each option that the user can input can be set in the case statement along with the `)`. Since we have `a)`, if the case value is `a`, it will execute the corresponding statement. `*)` is similar to the default case and will execute when none of the other options were selected.
+We define the possible case values using the syntax `caseValue)`. So if the value of `selection` is `a`, the statement in `a)` will be executed. `*)` is similar to the default case and will execute when no values are matched.
 
 ---
-[^dot]: This is using the relative path of the file. This is not to be confused with the [dot command](https://en.wikipedia.org/wiki/Dot_(command)#:~:text=In%20a%20Unix%20shell%2C%20the,extended%22%20POSIX%20shells%20as%20well.), which can also be used to run scripts. The difference is that the dot command will execute it in the current shell, where as the other methods will execute them in a new subshell. So changes, like new variable assignments, will affect your current environment if the dot command is used. Check out this [post](https://www.shell-tips.com/bash/source-dot-command/) for more info.  
+[^dot]: This is using the relative path of the file. This is not to be confused with the [dot command](https://en.wikipedia.org/wiki/Dot_(command)#:~:text=In%20a%20Unix%20shell%2C%20the,extended%22%20POSIX%20shells%20as%20well.), which can also be used to run scripts. The difference is that the dot command will execute it in the current shell, whereas the other methods will execute them in a new subshell. So changes, like new variable assignments, will affect your current environment if the dot command is used. Check out this [post](https://www.shell-tips.com/bash/source-dot-command/) for more info.  
 [^doublepar]: The [double parenthesis](https://tldp.org/LDP/abs/html/dblparens.html) is similar to the `let` command. It lets you perform arithmetic evaluations. 
