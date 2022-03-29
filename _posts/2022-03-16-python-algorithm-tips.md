@@ -80,15 +80,22 @@ print(id(a) == id(b))   # prints False
 
 On the other hand, `path.append(nums[i])` and `path.pop()` are both **O(1)**. 
 
+Also notice that `nums[:i]+nums[i+1:]` is also doing the same, creating another copy of an array. Let's just pass the entire `nums` array and instead keep track of which numbers need to be skipped. We will use an array, `skip`, all initialized with a `False` value.
+
 The final code we get is:
 ```python
-def dfs(self, nums: List[int], path: List[int], ans: List[List[int]]):
-    if not nums:
-        ans.append(path[:])
+    def dfs(self, nums: List[int], skip: List[bool], path: List[int], ans: List[List[int]]):
+        if len(path) == len(nums):
+            ans.append(path[:])
 
-    for i in range(len(nums)):
-        path.append(nums[i])
-        self.dfs(nums[:i]+nums[i+1:], path, ans)
-        path.pop()
+        for i in range(len(nums)):
+            if skip[i]:
+                continue
+            path.append(nums[i])
+            skip[i] = True
+            self.dfs(nums, skip, path, ans)
+            # return to previous state (backtracking)
+            path.pop()
+            skip[i] = False
 ```
 
