@@ -174,4 +174,22 @@ END;
 
 * Oracle packages
     * > A package is a schema object that groups logically related PL/SQL types, variables, constants, subprograms, cursors, and exceptions. A package is compiled and stored in the database, where many applications can share its contents.
-    * 
+
+### MERGE INTO
+* Selects data from one or multiple tables and updates/inserts into target table
+
+Basic syntax:
+```sql
+MERGE INTO target_table
+    USING source_table
+    ON search_condition
+        WHEN MATCHED THEN
+            UPDATE SET col1 = val1, col2 = val2, ...
+            [WHERE condition]
+            [DELETE WHERE condition]
+        WHEN NOT MATCHED THEN
+            INSERT (col1, col2, ...)
+            values (val1, val2, ...)
+            [WHERE condition]
+```
+Oracle will go through each row in the target table and check the search condition. If the `search_condition` is true, then it will update the row with the set update conditions, and optionally delete the row based on a delete condition. If the `search_condition` is not true, then it will insert into the target table from the source table if the insert condition is met. 
