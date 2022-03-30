@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Other Linux Commands You Might Not Know
-subtitle: If you're a beginner like me
+title: Other Linux Commands You Might Find Useful
+subtitle: ----
 date: 2022-03-15 22:03:00 +0900
 background: '/img/bg-post.jpg'
 category: "Linux"
@@ -87,7 +87,6 @@ tags: [linux]
     * `cut -f 1,3 file.txt` -> gets 1st and 3rd field delimited by tab (by default)
     * `cut -f 1,3 -d ':' file.txt` -> same as above but uses `:` as delimiter
 
-
 * export
     * https://linuxconfig.org/learning-linux-commands-export
     * exports variables "globally" so that new subshells can have access to the variables
@@ -101,6 +100,20 @@ tags: [linux]
     * -f: export functions 
         * `printhello() { echo 'hello'; }`
         * `export -f printhello`
+* -head
+    * displays first 10 lines
+    * similar to -tail (opposite)
+    * `-q` -> quiet (does not display the filenames), `-v` -> verbose (displays filenames)
+* -tail
+    * command used for displaying last 10 lines of files, or monitoring file changes in real time, usually for reading/monitoring log files
+    * `tail [filename]` -> default displays last 10 lines
+    * `tail -n [number] [filename]` -> displays last n lines' 
+        * `tail -[number] [filename]` can also be used instead
+    * `tail -c [number] [filename]` -> displays last n bytes
+    * `tail -f [filename]` -> will start monitoring the file in real time, exit by pressing `ctrl + c`
+    * `tail [filename1] [filename2]` -> for multiple files
+    * can be used with other commands, like `ps -ef | tail -2`
+
 
 * csh - not recommended to use --> [why](https://www.grymoire.com/unix/CshTop10.txt) or [why](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
     * set -> csh?

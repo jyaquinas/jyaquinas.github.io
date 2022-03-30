@@ -87,6 +87,7 @@ tags: []
 
 * What is tomcat?
     * lightweight server - web server and servlet container (not a full application server) written in java -- is production ready
+* Web server vs web application server 
 
 * Crontab 
     * https://www.adminschoice.com/crontab-quick-reference
@@ -170,3 +171,7 @@ END;
         * data can be sent but cannot know whether it was successfully delivered on not (typically for apps that require fast data transfers)
         * error handling must be done on the receiving side
         * faster than TCP because there is no connection setup (less network traffic) and does not consume resources on receiving side (does not keep connection open)
+
+* Oracle packages
+    * > A package is a schema object that groups logically related PL/SQL types, variables, constants, subprograms, cursors, and exceptions. A package is compiled and stored in the database, where many applications can share its contents.
+    * 
