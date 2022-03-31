@@ -96,47 +96,6 @@ tags: []
     * files used to schedule the execution of programs 
     * 
 
-* Failover and loadbalancing in oracle db
-    * https://docs.oracle.com/cd/E15217_01/doc.1014/e12490/failover.htm
-    * https://docs.oracle.com/cd/B28196_01/idmanage.1014/b25344/failover.htm
-
-* Using sqlplus in cloud oracle with wallet
-    * download wallet, then upload to cloud storage
-    * unzip wallet to a directory
-    * set TNS_ADMIN variable to the directory `export TNS_ADMIN=/dir/`
-    * edit sqlnet.ora and set update the directory
-    * `sqlplus admin@dbname` -> dbname from tnsnames.ora
-    * input password and voila
-
-* pass variable to sql script by using `&1 &2`
-    * `insert into authors (firstname, lastname) values ('&1', '&2');`
-    * then use `@script.sql var1 var2`
-    
-* Oracle sql
-    * `:=` is used for assigning values to variables
-    * oracle sql vs pl/sql 
-        * https://www.tutorialspoint.com/difference-between-sql-and-pl-sql
-        * oracle sql is oracles version of SQL
-        * pl/sql -> procedural language SQL -- extension of oracle sql, has functionalities of functions, control structures, triggers, etc (a programming language that uses SQL, meant for DBs)
-        * cannot use pl/sql in mysql
-        * `;` ends sql statement, `/` executes whatever is in the buffer (usually for running plsql blocks defined by begin and end)
-    * plsql loops
-        * https://blogs.oracle.com/sql/post/better-loops-and-qualified-expressions-array-constructors-in-plsql
-        * https://stackoverflow.com/questions/36325831/use-oracle-pl-sql-for-loop-to-iterate-through-comma-delimited-string
-        * https://stackoverflow.com/questions/2242024/for-each-string-execute-a-function-procedure
-        * https://livesql.oracle.com/apex/livesql/file/tutorial_KS0KNKP218J86THKN85XU37.html
-
-```sql
-DECLARE
-    type nt_arr is table of varchar2(50);
-    arr nt_arr := nt_arr ('1234','asdf','23g');
-BEGIN
-  FOR i IN 1..arr.count
-  LOOP
-    DBMS_OUTPUT.PUT_LINE( arr(i) );
-  END LOOP;
-END;
-```
 
 * test with spring security
     * test application.yml -> add mock settings
@@ -172,24 +131,82 @@ END;
         * error handling must be done on the receiving side
         * faster than TCP because there is no connection setup (less network traffic) and does not consume resources on receiving side (does not keep connection open)
 
+
+* Failover and loadbalancing in oracle db
+    * https://docs.oracle.com/cd/E15217_01/doc.1014/e12490/failover.htm
+    * https://docs.oracle.com/cd/B28196_01/idmanage.1014/b25344/failover.htm
+
+* Using sqlplus in cloud oracle with wallet
+    * download wallet, then upload to cloud storage
+    * unzip wallet to a directory
+    * set TNS_ADMIN variable to the directory `export TNS_ADMIN=/dir/`
+    * edit sqlnet.ora and set update the directory
+    * `sqlplus admin@dbname` -> dbname from tnsnames.ora
+    * input password and voila
+
+* pass variable to sql script by using `&1 &2`
+    * `insert into authors (firstname, lastname) values ('&1', '&2');`
+    * then use `@script.sql var1 var2`
+    
+* Oracle sql
+    * `:=` is used for assigning values to variables
+    * oracle sql vs pl/sql 
+        * https://www.tutorialspoint.com/difference-between-sql-and-pl-sql
+        * oracle sql is oracles version of SQL
+        * pl/sql -> procedural language SQL -- extension of oracle sql, has functionalities of functions, control structures, triggers, etc (a programming language that uses SQL, meant for DBs)
+        * cannot use pl/sql in mysql
+        * `;` ends sql statement, `/` executes whatever is in the buffer (usually for running plsql blocks defined by begin and end)
+    * plsql loops
+        * https://blogs.oracle.com/sql/post/better-loops-and-qualified-expressions-array-constructors-in-plsql
+        * https://stackoverflow.com/questions/36325831/use-oracle-pl-sql-for-loop-to-iterate-through-comma-delimited-string
+        * https://stackoverflow.com/questions/2242024/for-each-string-execute-a-function-procedure
+        * https://livesql.oracle.com/apex/livesql/file/tutorial_KS0KNKP218J86THKN85XU37.html
+
+
+```sql
+DECLARE
+    type nt_arr is table of varchar2(50);
+    arr nt_arr := nt_arr ('1234','asdf','23g');
+BEGIN
+  FOR i IN 1..arr.count
+  LOOP
+    DBMS_OUTPUT.PUT_LINE( arr(i) );
+  END LOOP;
+END;
+```
+
 * Oracle packages
     * > A package is a schema object that groups logically related PL/SQL types, variables, constants, subprograms, cursors, and exceptions. A package is compiled and stored in the database, where many applications can share its contents.
 
-### MERGE INTO
-* Selects data from one or multiple tables and updates/inserts into target table
 
-Basic syntax:
+* subquery factoring (WITH CLAUSE) vs global temporary tables (GTT)
+    * used for improving query speed for complex subqueries
+    * typically used when subquery is executed multiple times
+* case expression
+    * https://docs.oracle.com/cd/B19306_01/server.102/b14200/expressions004.htm
+    * >CASE expressions let you use IF ... THEN ... ELSE logic in SQL statements without having to invoke procedures.
 ```sql
-MERGE INTO target_table
-    USING source_table
-    ON search_condition
-        WHEN MATCHED THEN
-            UPDATE SET col1 = val1, col2 = val2, ...
-            [WHERE condition]
-            [DELETE WHERE condition]
-        WHEN NOT MATCHED THEN
-            INSERT (col1, col2, ...)
-            values (val1, val2, ...)
-            [WHERE condition]
+    SELECT cust_last_name,
+    CASE credit_limit WHEN 100 THEN 'Low'
+    WHEN 5000 THEN 'High'
+    ELSE 'Medium' END
+    FROM customers;
 ```
-Oracle will go through each row in the target table and check the search condition. If the `search_condition` is true, then it will update the row with the set update conditions, and optionally delete the row based on a delete condition. If the `search_condition` is not true, then it will insert into the target table from the source table if the insert condition is met. 
+
+* lead
+    * https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions074.htm
+    * > LEAD is an analytic function. It provides access to more than one row of a table at the same time without a self join. Given a series of rows returned from a query and a position of the cursor, LEAD provides access to a row at a given physical offset beyond that position.
+```sql
+SELECT last_name, hire_date, 
+   LEAD(hire_date, 1) OVER (ORDER BY hire_date) AS "NextHired" 
+   FROM employees WHERE department_id = 30;
+
+LAST_NAME                 HIRE_DATE NextHired
+------------------------- --------- ---------
+Raphaely                  07-DEC-94 18-MAY-95
+Khoo                      18-MAY-95 24-JUL-97
+Tobias                    24-JUL-97 24-DEC-97
+Baida                     24-DEC-97 15-NOV-98
+Himuro                    15-NOV-98 10-AUG-99
+Colmenares                10-AUG-99
+```
