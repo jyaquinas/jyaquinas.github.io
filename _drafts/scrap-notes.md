@@ -175,6 +175,24 @@ BEGIN
 END;
 ```
 
+* test with spring security
+    * test application.yml -> add mock settings
+    ```
+    # test oauth
+    security:
+        oauth2:
+        client:
+            registration:
+            google:
+                client-id: test
+                client-secret: test
+                scope: [profile, email]
+    ```
+    * add dependency to gradle -> `implementation 'org.springframework.security:spring-security-test'`
+    * use `@WithMockUser(roles="USER")` to create mock user with user authorization
+    * must also use MockMvc -> using only @SpringBootTest does not use MockMvc
+    
+
 * Oracle packages
     * > A package is a schema object that groups logically related PL/SQL types, variables, constants, subprograms, cursors, and exceptions. A package is compiled and stored in the database, where many applications can share its contents.
 
