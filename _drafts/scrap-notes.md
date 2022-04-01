@@ -250,3 +250,23 @@ Baida                     24-DEC-97 15-NOV-98
 Himuro                    15-NOV-98 10-AUG-99
 Colmenares                10-AUG-99
 ```
+* trim 
+    * trim leading or trailing characters
+    * `TRIM( [ [ LEADING | TRAILING | BOTH ] trim_char FROM ] string)`
+    * `[ LEADING | TRAILING | BOTH ]` is optional, `BOTH` by default
+    * `trim_char` specifies the character to be removed, if none specified, space by default 
+    * 
+* substr
+    * returns substring starting from `position` with length `substring_length`
+    * `SUBSTR( str, position [, substring_length] );`
+    * `position`
+        * 0 -> treated as 1
+        * positive -> counts from left to right
+        * negative -> counts from right to left (backwards)
+    * if `substring_length` is omitted -> returns to end of string
+* instr
+    * search for substring in a string and returns the index of the first occurrence
+    * `INSTR(string , substring [, position [, occurrence]])`
+    * `position` -> integer that indicates at what position the search should start (pos -> left to right, neg -> right to left, backwards); default 1
+    * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
+

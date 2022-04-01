@@ -236,7 +236,6 @@ SELECT customers.first_name, customers.last_name, accounts.username
   FROM customer, accounts
   WHERE customers.customer_id = accounts.customer_id;
 ```
-But recognizing this as an inner join is not as obvious, so try to avoid this older syntax.
 
 You can also use the `USING` instead of `ON`, but this is only true for **equijoins** (join conditions using an equality operator):
 ```sql
@@ -349,5 +348,5 @@ SELECT customers
 
 
 ---
-[^1]: If multiple tables are used without any join operations, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations. This is rarely used, so if you get this type of join unintentionally, double-check your syntax.  
+[^1]: If multiple tables are used without any join operations and without any common columns used in the WHERE clause, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations. This is rarely used, so if you get this type of join unintentionally, double-check your syntax.  
 [^2]: `WHERE age BETWEEN 20 and 30` is equal to `WHERE age >= 20 AND age <= 30`
