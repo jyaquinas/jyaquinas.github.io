@@ -8,3 +8,12 @@ category: ""
 tags: []
 ---
 
+* What are indexes
+    * used for increasing the search speed (performance)
+    * 
+* B-TREE index
+    * normal index
+    * function based index
+    * index-organized table (IOT)
+    
+* BITMAP index

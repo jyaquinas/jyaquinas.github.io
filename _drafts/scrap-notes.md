@@ -196,6 +196,28 @@ END;
 * Oracle packages
     * > A package is a schema object that groups logically related PL/SQL types, variables, constants, subprograms, cursors, and exceptions. A package is compiled and stored in the database, where many applications can share its contents.
 
+* SQL Tuning
+    * selectivity = number of rows from query / total rows
+        * OR cardinality / total rows?
+        * selectivity of 1 -> all rows are unique, high selectivity
+        * full table scan for low selectivity 
+    * cardinality = selectivity * total rows 
+        * number of unique values in a column
+    * Analyzing execution plat
+        * explain plan
+            * `EXPLAIN PLAN FOR <QUERY>` -> saves to plan_table
+            * `SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY())`
+            * `EXPLAIN PLAN SET statement_id = 'MyID' FOR SELECT FROM EXPLOYEES where employee_id = 100;`
+            * `EXPLAIN PLAN SET statement_id = 'MyID' INTO MyPlanTable FOR SELECT FROM EMPLOYEES where employee_id = 100;`
+        * autotrace -> produces execution plan and statistics, uses plan_table like the explain plan
+            * `SET AUTOTRACE ON;`
+            * `SET AUTOTRACE ON [EXPLAIN|STATISTICS];`
+            * `SET AUTOTRACE TRACE[ONLY] ON [EXPLAIN|STATISTICS];`
+            * `SET AUTOTRACE OFF`
+        * v$SQL_PLAN -> actual execution plans stored here, similar to plan table, connected to V$SQL view
+            * `SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('****'));`
+            * look at cost, access methods, cardinality, join mehtods/join types, partition pruning, etc
+
 
 * subquery factoring (WITH CLAUSE) vs global temporary tables (GTT)
     * used for improving query speed for complex subqueries

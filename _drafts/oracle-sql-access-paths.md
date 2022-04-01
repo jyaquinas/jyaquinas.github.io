@@ -8,6 +8,8 @@ category: ""
 tags: []
 ---
 
+
+
 | Access Path | 
 | --- | 
 | Full Table Scan |
