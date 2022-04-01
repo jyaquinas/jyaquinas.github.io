@@ -348,5 +348,5 @@ SELECT customers
 
 
 ---
-[^1]: If multiple tables are used without any join operations and without any common columns used in the WHERE clause, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations. This is rarely used, so if you get this type of join unintentionally, double-check your syntax.  
+[^1]: If multiple tables are used without any join operations and without any common columns used in the WHERE clause, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations. This is rarely used, so if you get this type of join unintentionally, double-check your syntax. Refer to the Inner Join section for more info on the syntax.   
 [^2]: `WHERE age BETWEEN 20 and 30` is equal to `WHERE age >= 20 AND age <= 30`
