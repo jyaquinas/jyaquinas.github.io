@@ -225,31 +225,47 @@ END;
 * case expression
     * https://docs.oracle.com/cd/B19306_01/server.102/b14200/expressions004.htm
     * >CASE expressions let you use IF ... THEN ... ELSE logic in SQL statements without having to invoke procedures.
-```sql
-    SELECT cust_last_name,
-    CASE credit_limit WHEN 100 THEN 'Low'
-    WHEN 5000 THEN 'High'
-    ELSE 'Medium' END
-    FROM customers;
-```
+    ```sql
+        SELECT cust_last_name,
+        CASE credit_limit WHEN 100 THEN 'Low'
+        WHEN 5000 THEN 'High'
+        ELSE 'Medium' END
+        FROM customers;
+    ```
 
 * lead
     * https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions074.htm
     * > LEAD is an analytic function. It provides access to more than one row of a table at the same time without a self join. Given a series of rows returned from a query and a position of the cursor, LEAD provides access to a row at a given physical offset beyond that position.
-```sql
-SELECT last_name, hire_date, 
-   LEAD(hire_date, 1) OVER (ORDER BY hire_date) AS "NextHired" 
-   FROM employees WHERE department_id = 30;
+    * basic syntax:
+    ```sql
+    LEAD(expression [, offset ] [, default ])
+    OVER (
+        [ query_partition_clause ] 
+        order_by_clause
+    )
+    ```
+    
+    * `expression`: must return single value, expression that is evaluated for the row
+    * `offset`: offset value from current row, default is 1
+    * `default`: if offset goes beyond scope of partition, it will return this default value. NULL by default.
+    * `query_partition_clause`: this clause divides the rows into partitions to which the lead function will be applied (Think of it as applying the lead function on different categories, and each category being ordered by the condition stated in order_by_clause). It will treat the entire thing as single partition by default.
+    * `order_by_clause`: specifies order of rows in each partition
 
-LAST_NAME                 HIRE_DATE NextHired
-------------------------- --------- ---------
-Raphaely                  07-DEC-94 18-MAY-95
-Khoo                      18-MAY-95 24-JUL-97
-Tobias                    24-JUL-97 24-DEC-97
-Baida                     24-DEC-97 15-NOV-98
-Himuro                    15-NOV-98 10-AUG-99
-Colmenares                10-AUG-99
-```
+    ```sql
+    SELECT last_name, hire_date, 
+    LEAD(hire_date, 1) OVER (ORDER BY hire_date) AS "NextHired" 
+    FROM employees WHERE department_id = 30;
+
+    LAST_NAME                 HIRE_DATE NextHired
+    ------------------------- --------- ---------
+    Raphaely                  07-DEC-94 18-MAY-95
+    Khoo                      18-MAY-95 24-JUL-97
+    Tobias                    24-JUL-97 24-DEC-97
+    Baida                     24-DEC-97 15-NOV-98
+    Himuro                    15-NOV-98 10-AUG-99
+    Colmenares                10-AUG-99
+    ```
+
 * trim 
     * trim leading or trailing characters
     * `TRIM( [ [ LEADING | TRAILING | BOTH ] trim_char FROM ] string)`
