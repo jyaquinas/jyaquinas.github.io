@@ -57,6 +57,14 @@ print(heapq.nsmallest(3, maxHeap))
 heapq.heappush(maxHeap, -10)
 print(maxHeap[0])
 
+# heapreplace vs heappushpop
+a = [5,3,6,2,6]
+heapq.heapify(a)
+b = a[:]
+rep = heapq.heapreplace(a, -1)      # outputs 2
+pushpop = heapq.heappushpop(b, -1)  # outputs -1
+
+
 # iter()
 print('iter')
 vowels = ['a', 'e', 'i', 'o', 'u']
