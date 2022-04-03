@@ -138,6 +138,9 @@ Here are some of the conditions you can use in the if statement.
 | [ num1 -ne num2 ] | num1 != num2 |
 | [ str1 = str2 ] | str1 == str2 |
 | [ str1 != str2 ] | str1 != str2 |
+| [ str1 != str2 ] | str1 != str2 |
+| [ -n str ] | string length is greater than zero |
+| [ -z str ] | string length is zero (empty) |
 | [ -d file ] | file exists and is a directory |
 | [ -e file ] | file exists |
 | [ -r file ] | file exists and has read permission |

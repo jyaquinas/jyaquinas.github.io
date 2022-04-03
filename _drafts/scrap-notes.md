@@ -46,6 +46,34 @@ tags: []
 
 * creating annotations in java?
     * https://docs.oracle.com/javase/tutorial/java/annotations/declaring.html
+* changing default java version 
+    * `sudo /usr/sbin/alternatives --config java`, then select java version
+    * check with `java -version`
+* deploying project to server
+    * git clone project to server
+    * run tests using `./gradlew test` -> should successfully run
+    * build using `./gradlew build` 
+    * perform repetitive tasks through bash script
+```shell
+REPOSITORY=/home/ec2-user/app/step1
+PROJECT_NAME=springboot-webservice
+
+cd $REPOSITORY/$PROJECT_NAME/
+
+echo "> Git Pull"
+
+git pull
+
+echo "> Start building project"
+
+./gradlew build
+
+echo "> Copy build file"
+
+cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/
+
+
+```
 
 
 ---
