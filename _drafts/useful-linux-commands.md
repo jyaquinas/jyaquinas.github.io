@@ -34,6 +34,10 @@ tags: [linux]
     * https://phoenixnap.com/kb/how-to-kill-a-process-in-linux
     * `kill [pid]` 
     * `kill -9 [pid]` -> force kill (sends SIGKILL signal) -> `-SIGKILL` can also be used
+    * other kill options (see full list with `kill -l`)
+        * 1 Reload a process.
+        * 9 Kill a process.
+        * 15 Gracefully stop a process.
 
 * awk
     * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
@@ -113,6 +117,9 @@ tags: [linux]
     * `tail -f [filename]` -> will start monitoring the file in real time, exit by pressing `ctrl + c`
     * `tail [filename1] [filename2]` -> for multiple files
     * can be used with other commands, like `ps -ef | tail -2`
+* nohup 
+    * keeps process running even after terminal is closed
+    
 
 
 * csh - not recommended to use --> [why](https://www.grymoire.com/unix/CshTop10.txt) or [why](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)

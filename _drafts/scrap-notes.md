@@ -46,6 +46,9 @@ tags: []
 
 * creating annotations in java?
     * https://docs.oracle.com/javase/tutorial/java/annotations/declaring.html
+
+* yum install -> list available packages
+    * `yum list available packagename\*`
 * changing default java version 
     * `sudo /usr/sbin/alternatives --config java`, then select java version
     * check with `java -version`
@@ -54,26 +57,46 @@ tags: []
     * run tests using `./gradlew test` -> should successfully run
     * build using `./gradlew build` 
     * perform repetitive tasks through bash script
-```shell
-REPOSITORY=/home/ec2-user/app/step1
-PROJECT_NAME=springboot-webservice
+    ```shell
+    #!/bin/bash
 
-cd $REPOSITORY/$PROJECT_NAME/
+    REPOSITORY=/home/ec2-user/app/step1
+    PROJECT_NAME=springboot-webservice
 
-echo "> Git Pull"
+    cd $REPOSITORY/$PROJECT_NAME/
 
-git pull
+    echo "> Git Pull"
 
-echo "> Start building project"
+    git pull
 
-./gradlew build
+    echo "> Start building project"
 
-echo "> Copy build file"
+    ./gradlew build
 
-cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/
+    echo "> Copying build file"
 
+    cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/
 
-```
+    echo "> Checking pid of current application"
+
+    CURRENT_PID=$(pgrep -f ${PROJECT_NAME}.*.jar)
+
+    if [ -z "$CURRENT_PID" ]; then
+            echo "> Cannot kill process. There is no application running. "
+    else
+            echo "> kill -15 $CURRENT_PID"
+            kill -15 $CURRENT_PID
+            sleep 5
+    fi
+
+    echo "> Deploying new application"
+
+    JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
+
+    echo "> Jar Name: $JAR_NAME"
+
+    nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &
+    ```
 
 
 ---

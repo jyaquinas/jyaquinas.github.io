@@ -45,6 +45,9 @@ java HelloWorld hello world
 
 The arguments `hello` and `world` were passed to the main function and were printed out. 
 
+If you want to run the application using jar files, you need to use the `-jar` option.  
+`java [options] -jar jarfile [args...]`
+
 ### Java Command Options
 The options can be mainly divided into 3 parts: standard, extra, and advanced.
 

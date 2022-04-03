@@ -27,6 +27,8 @@ This command has a couple of command options. Here are a few important ones.
 * `ls -a`: list all files including hidden ones
 * `ls -l'`: list all files in long format (includes information like date created and permissions)[^ls]
 * `ls -R`: recursively lists all files in directory and subdirectory
+* `ls -t`: orders the files and directories by date
+* `ls -r`: returns the order in reverse
 
 You can also combine the commands, such as `ls -la`, which will list all files including the hidden ones in long format.
 
