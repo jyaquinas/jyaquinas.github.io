@@ -49,6 +49,8 @@ tags: []
 
 * yum install -> list available packages
     * `yum list available packagename\*`
+* `2>&1` -> [post](https://superuser.com/questions/71428/what-does-21-do-in-command-line#:~:text=The%201%20denotes%20standard%20output,is%20being%20redirected%20as%20well.)
+    * > The 1 denotes standard output (stdout). The 2 denotes standard error (stderr). So 2>&1 says to send standard error to where ever standard output is being redirected as well. Which since it's being sent to /dev/null is akin to ignoring any output at all.
 * changing default java version 
     * `sudo /usr/sbin/alternatives --config java`, then select java version
     * check with `java -version`
@@ -95,9 +97,39 @@ tags: []
 
     echo "> Jar Name: $JAR_NAME"
 
-    nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &
+    nohup java -jar -Dspring.config.location=classpath:/application.yml,/home/ec2-user/app/application-oauth.yml $REPOSITORY/$JAR_NAME 2>&1 &
     ```
+    * must add oauth properties file 
+        * edit deploy -> `nohum java -jar -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oath.prooperties $REPOSITORY/$JAR_NAME 2>&1 &` 
+        * absolute path is used for oauth becauase classpath points to the resources directory inside the jar file (and the oauth file is outside of the jar)
 
+    * When you check nohup.out and you get the following error: `NoClassDefFoundError`, you need to define the main class in your `build.gradle` file
+        ```groovy
+        jar {
+            manifest {
+                attributes(
+                        'Main-Class': 'com.example.springboot.Application'
+                )
+            }
+        }
+        ```
+    * gradlew build vs bootJar -> [post](https://stackoverflow.com/questions/64747475/difference-between-gradle-build-and-gradle-bootjar)
+        * build -> builds everything, including tests, generating documentation, etcs
+        * bootJar -> custom jar task from spring boot gradle plugin, that produces a spring boot executable jar
+    
+    * application-real-db.yml
+        ```groovy
+        spring:
+        jpa:
+            hibernate:
+            ddl-auto: none
+        datasource:
+            url: "jdbc:mariadb://springboot-webservice.c2vqrhmxmoa9.ap-northeast-2.rds.amazonaws.com:3306/springboot_webservice"
+            username: admin
+            password: ********
+            driver-class-name: org.mariadb.jdbc.Driver
+        ```
+    
 
 ---
 ## Misc Subjects
