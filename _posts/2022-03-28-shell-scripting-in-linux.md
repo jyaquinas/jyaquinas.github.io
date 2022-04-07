@@ -161,6 +161,15 @@ fi
 
 ***Note**: make sure to include spaces between the brackets*
 
+Double square brackets are an "upgraded" version of the single square brackets, which has additional functionality, such as pattern matching. 
+
+```shell
+# checks if string ends with '/' using pattern matching
+if [[ $path != */ ]]; then
+        path="$path/"
+fi
+```
+
 You can also have nested if statements. 
 
 ### Loops
@@ -244,6 +253,14 @@ esac
 ```
 
 We define the possible case values using the syntax `caseValue)`. So if the value of `selection` is `a`, the statement in `a)` will be executed. `*)` is similar to the default case and will execute when no values are matched.
+
+### Other Things
+If your line gets too long, you can continue on the next line by using a backslash.
+```shell
+arr=( a b c \
+d e f g h i )
+```
+
 
 ---
 [^dot]: This is using the relative path of the file. This is not to be confused with the [dot command](https://en.wikipedia.org/wiki/Dot_(command)#:~:text=In%20a%20Unix%20shell%2C%20the,extended%22%20POSIX%20shells%20as%20well.), which can also be used to run scripts. The difference is that the dot command will execute it in the current shell, whereas the other methods will execute them in a new subshell. So changes, like new variable assignments, will affect your current environment if the dot command is used. Check out this [post](https://www.shell-tips.com/bash/source-dot-command/) for more info.  
