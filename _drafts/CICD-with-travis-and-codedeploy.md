@@ -295,3 +295,5 @@ hooks:
 Let's now push this and see our project be deployed automatically.
 
 Something wrong? Check your nohup.out file and make sure all your settings and file paths have been set correctly. 
+
+***Note:** You can check CodeDeploy related files and logs in /opt/codedeploy-agent/deployment-root/*
