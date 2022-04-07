@@ -194,6 +194,17 @@ done
 ```
 ***Note:** The double parenthesis[^doublepar] is for evaluating arithmetic expressions.*
 
+If we want to loop through an array of strings:
+```shell
+arr=( a b c )
+for i in "${arr[@]}"
+do
+	echo "$i"
+done
+```
+***Note:** Make sure to use double quotes.*
+
+
 #### While/Until Loops
 Here's the basic syntax:
 ```shell
