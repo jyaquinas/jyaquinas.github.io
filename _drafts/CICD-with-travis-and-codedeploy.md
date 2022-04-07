@@ -165,7 +165,7 @@ cache: # caching location for dependencies (avoid redownloading existing depende
     - '$HOME/.gradle'
 
 # command to be executed when branch is pushed
-script: "./gradlew clean build"
+script: "./gradlew clean bootJar"
 
 # execute before deploy command
 before_deploy:
