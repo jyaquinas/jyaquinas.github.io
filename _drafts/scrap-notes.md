@@ -285,6 +285,7 @@ END;
         * v$SQL_PLAN -> actual execution plans stored here, similar to plan table, connected to V$SQL view
             * `SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('****'));`
             * look at cost, access methods, cardinality, join mehtods/join types, partition pruning, etc
+    * Note: comparing costs between 2 different queries is meaningless because the costs are relative to the specific query. 
 
 
 * subquery factoring (WITH CLAUSE) vs global temporary tables (GTT)
