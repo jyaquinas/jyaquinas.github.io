@@ -8,28 +8,35 @@ category: "Linux"
 tags: [linux]
 ---
 
+### Linux Wildcards
+You can use these wildcards for pattern matching. They can be quite useful when searching for patterns in filenames, directories, etc. 
+* `*` match one or more occurrences of characters, including none  
+    * `ls *.txt` will look for all files that have the txt extension
+* `?` match single occurrence of character
+    * `l?st` -> list, lost, last are matches
+* `[]` match any occurrence of characters in the enclosed bracket
+    * `l[ao]st` -> last, lost are matches
+* ./tmp/* matches files and folders in ./tmp
+* ./tmp/** matches files, folders, and subfolders in ./tmp
 
-* Linux wildcards -> file searching
-    * `*` match one or more occurrences of characters, including none
-    * `?` match single occurrence of character
-    * `[]` match any occurrence of characters in the enclosed bracket
-    * ./tmp/* matches files and folders in ./tmp
-    * ./tmp/** matches files, folders, and subfolders in ./tmp
-    * https://stackoverflow.com/questions/3529997/unix-wildcard-selectors-asterisks
-* command substitution in linux
-    * `$()` is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells)
-    * linux will execute whatever is inside the `$()` before it executes the rest - allows you to input the results of the command into the text of the command
-    * `datevar=date` is going to assign the string date into the variable
-    * `echo $datevar` will give you `date`
-    * `datevar=$(date)` will give you the actual date
-* ps -> lists processes
-    * https://linuxize.com/post/ps-command-in-linux/
-    * https://www.geeksforgeeks.org/ps-command-in-linux-with-examples/
-    * https://www.oreilly.com/library/view/linux-pocket-guide/9780596806347/re87.html
-    * -e: list full process list
-    * -f: full format
-    * -p: get for a particular process `ps -p 5553`
-    * can be used with filter commands like `grep`
+### Command Substitution
+* `$()` is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells)
+* linux will execute whatever is inside the `$()` before it executes the rest - allows you to input the results of the command into the text of the command
+* `datevar=date` is going to assign the string date into the variable
+* `echo $datevar` will give you `date`
+* `datevar=$(date)` will give you the actual date
+
+### ps
+`ps` will list the processes that are currently running. These are the different options you can use with the command.
+* -e: list full process list
+* -f: full format
+* -p: get a particular process id, `ps -p 5553`
+
+It can also be used with other commands like `grep`. 
+
+`ps -ef | grep *.jar` will get all the processes with the jar extension. 
+
+### kill
 * kill -> kill process
     * https://phoenixnap.com/kb/how-to-kill-a-process-in-linux
     * `kill [pid]` 
