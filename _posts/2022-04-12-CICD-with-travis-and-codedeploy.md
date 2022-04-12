@@ -1,21 +1,21 @@
 ---
 layout: post
 title: CI/CD with Travis and AWS CodeDeploy
-subtitle: ---
-date: 2022-04-06 22:03:00 +0900
+subtitle: Automating your deployment process
+date: 2022-04-12 21:11:00 +0900
 background: '/img/bg-post.jpg'
 category: "CICD"
 tags: [cicd, travis, codedeploy]
 ---
 
 ### What is CI/CD?
---
+CI/CD stands for continuous integration and continuous deployment (or delivery), respectively. I've you've tried merging your current branch to some old branch, you know how hectic it can become. CI tries to solve this problem by automatically building, merging, and testing your commits to some main branch. And CD will automatically deploy the most recent version of the project so that the developers won't have to do this manually every time. This is all so that the developers can focus on developing, and spend less time on these repetitive tasks. 
 
 ### What is Travis?
---
+[Travis](https://www.travis-ci.com/about-us/) is a CI tool that offers free plans for open-source projects. It is widely used and easily integrates with your Github account. Another popular alternative is [Jenkins](https://www.jenkins.io/). 
 
 ### Setting Up Travis
-Sign up with your github account and sync your repositories. It seems like Travis has new pricing plans, and you have to specifically select the Free Plan in order to start using it. This isn't done by default, so you'll have to sign up and select a plan in your account settings. 
+Sign up with your GitHub account and sync your repositories. It seems like Travis has new pricing plans, and you have to specifically select the Free Plan to start using it. This isn't done by default, so you'll have to sign up and select a plan in your account settings. 
 
 You will then need to create a `.travis.yml` file in the same location as your `build.gradle` file. 
 
@@ -52,9 +52,9 @@ notifications:
 Once you commit and push this to your master branch, you'll notice in your Travis dashboard that it will start building your project automatically. 
 
 ### What is CodeDeploy?
-CodeDeploy is a service provided by AWS that is responsible for deploying your applications. It can actually perform both build and deployment processes, but it is recommended to keep them separate since there are times when we only want to perform only one of them. 
+CodeDeploy is a service provided by AWS that is responsible for deploying your applications. It can perform both build and deployment processes, but it is recommended to keep them separate since there are times when we only want to perform only one of them. 
 
-However, AWS CodeDeploy doesn't have storage function. So we will need to connect it with our S3 instance to store the jar files. So you'll need to also create an S3 bucket instance (the default settings should be fine).
+However, AWS CodeDeploy doesn't have a storage function. So we will need to connect it with our S3 instance to store the jar files. So let's create an S3 bucket instance (the default settings should be fine).
 
 ### Linking Travis To Your AWS S3
 You first need to create an IAM user to allow external services like Travis to have access to your AWS account. Use the following settings:
@@ -64,7 +64,7 @@ You first need to create an IAM user to allow external services like Travis to h
     * AWSCodeDeployFullAccess
     * AmazonS3FullAccess
 
-Then using the newly generated Access Key ID and Secret Access Key, add them to the environment variables (under your repository settings in Travis). You can then access these on your `.travis.yml` file using then variable name you set. For instance, if your variable name is AWS_ACCESS_KEY, you can access it through $AWS_ACCESS_KEY.
+Then using the newly generated Access Key ID and Secret Access Key, add them to the environment variables (under your repository settings in Travis). You can then access these on your `.travis.yml` file using then the variable name you set. For instance, if your variable name is AWS_ACCESS_KEY, you can access it through $AWS_ACCESS_KEY.
 
 We'll add the following to our `.travis.yml` file:
 
@@ -96,23 +96,23 @@ After you push, you'll notice that Travis will start building your project and d
 ### Linking CodeDeploy
 Since EC2 is our target instance for code deployment, we will assign a new role to it. Create a new role under IAM, and look for the `AmazonEC2RoleforAWSCodeDeply` permission policy. 
 
-Now go to your EC2 instance, right click and go to Security -> Modify IAM role. Select the newly created role and reboot.
+Now go to your EC2 instance, right-click and go to Security -> Modify IAM role. Select the newly created role and reboot.
 
 #### Installing the CodeDeploy agent in your EC2 server
-The linux instance doesn't come with ruby preinstalled. So let's install that first.
+The Linux instance doesn't come with ruby preinstalled. So let's install that first.
 `sudo yum -y install ruby'
 
-Then let's install the code deploy agent.
-`aws s3 cp s3://aws-codedeploy-ap-northeast-2/latest/install to ./install`
+Then let's install the code deploy agent.  
+`aws s3 cp s3://aws-codedeploy-ap-northeast-2/latest/install to ./install`  
 `sudo ./install auto`
 
-Check if CodeDeploy was properly installed. 
+Check if CodeDeploy was properly installed.   
 `sudo service codedeploy-agent status`
 
 ### Creating a Code Deploy Application
-Create a new IAM role and select CodeDeploy as the service. Now let's create a new Code Deploy application (search for Code Deplooy in your AWS Console). Then create a new deployment group and select the newly created role. 
+Create a new IAM role and select CodeDeploy as the service. Now let's create a new Code Deploy application (search for Code Deploy in your AWS Console). Then create a new deployment group and select the newly created role. 
 
-The configurations for CodeDeploy will be set on the `apspec.yml` file, so let's create this file on the same directory as the `.travis.yml` file. 
+The configurations for CodeDeploy will be set on the `apspec.yml` file, so let's create this file in the same directory as the `.travis.yml` file. 
 
 ```yaml
 # File: appspec.yml
@@ -145,7 +145,7 @@ deploy:
     wait_until_deployed: true
 ```
 
-Our final travis file now looks like:
+Our final travis file now looks like this:
 ```yaml
 # File: .travis.yml
 # Travis Settings
@@ -209,10 +209,12 @@ notifications:
 
 ```
 
+***Note:** I used `bootJar` instead of `build` for gradle since it was a spring boot project.*
+
 Now if you commit and push the newly added and modified files, you should see travis building your project. The final deployment files should be sent to your EC2 instance under the directory that we specified in our file, `/home/ec2-users/app/step2/zip/`.
 
 ### Automating the Deployment Process
-In order to fully automate the deployment process, we will use bash script files. 
+To fully automate the deployment process, we will use bash script files. 
 
 ```bash
 #!/bin/bash
@@ -255,7 +257,7 @@ nohup java -jar \
   -Dspring.profiles.active=real \
   $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 ```
-***Note:** adding line breaks between the config file paths will lead to errors. Make sure all the config locations are comma separated (without backslashes).*
+***Note:** adding line breaks between the config file paths will lead to errors. Make sure all the config locations are comma-separated (without backslashes).*
 
 Then we'll make some changes to our travis and appspec files.
 ```yaml
