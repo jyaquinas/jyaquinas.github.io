@@ -40,6 +40,7 @@ It can also be used with other commands like `grep`.
 You can use this command to kill processes that are running. You will need the process id (pid). You can find pid using the `ps` command mentioned above. 
 * `kill [pid]` 
 * `kill -9 [pid]`: force kill (sends SIGKILL signal -> `-SIGKILL` can also be used instead of `-9`)
+* `kill -15 [pid]`: "gracefully" kill process
 * other kill options (see full list with `kill -l`)
     * 1 Reload a process.
     * 9 Kill a process.
