@@ -37,14 +37,13 @@ It can also be used with other commands like `grep`.
 `ps -ef | grep *.jar` will get all the processes with the jar extension. 
 
 ### kill
-* kill -> kill process
-    * https://phoenixnap.com/kb/how-to-kill-a-process-in-linux
-    * `kill [pid]` 
-    * `kill -9 [pid]` -> force kill (sends SIGKILL signal) -> `-SIGKILL` can also be used
-    * other kill options (see full list with `kill -l`)
-        * 1 Reload a process.
-        * 9 Kill a process.
-        * 15 Gracefully stop a process.
+You can use this command to kill processes that are running. You will need the process id (pid). You can find pid using the `ps` command mentioned above. 
+* `kill [pid]` 
+* `kill -9 [pid]`: force kill (sends SIGKILL signal -> `-SIGKILL` can also be used instead of `-9`)
+* other kill options (see full list with `kill -l`)
+    * 1 Reload a process.
+    * 9 Kill a process.
+    * 15 Gracefully stop a process.
 
 * awk
     * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
