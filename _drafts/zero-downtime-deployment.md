@@ -27,7 +27,7 @@ tags: [nginx, deployment]
     * nginx settings -> `sudo nano /etc/nginx/nginx.conf`
     ```bash
         server {
-        listen       80;
+            listen       80;
             listen       [::]:80;
             server_name  _;
             root         /usr/share/nginx/html;
