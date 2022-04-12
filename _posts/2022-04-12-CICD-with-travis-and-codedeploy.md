@@ -217,6 +217,7 @@ Now if you commit and push the newly added and modified files, you should see tr
 To fully automate the deployment process, we will use bash script files. 
 
 ```bash
+# File: deploy.sh
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
@@ -228,7 +229,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY
 
 echo "> Checking pid of current application running"
 
-CURRENT_PID=$(pgrep -fl webservice-springboot | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl webservice-springboot | awk '{print $1}')
 
 echo "> pid of current application running: $CURRENT_PID"
 

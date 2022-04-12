@@ -36,6 +36,13 @@ It can also be used with other commands like `grep`.
 
 `ps -ef | grep *.jar` will get all the processes with the jar extension. 
 
+* pgrep -> https://www.computerhope.com/unix/upgrep.htm#:~:text=On%20Unix%2Dlike%20operating%20systems,flexible%20selection%20methods%20as%20pgrep.
+    * look up by process name
+    * -f match against entire command line instead of just process name
+    * -l list only process name and id
+    * -x get processes with exact pattern match only
+    
+
 ### kill
 You can use this command to kill processes that are running. You will need the process id (pid). You can find pid using the `ps` command mentioned above. 
 * `kill [pid]` 
