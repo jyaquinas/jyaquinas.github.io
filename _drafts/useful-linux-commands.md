@@ -56,25 +56,57 @@ You can use this command to kill processes that are running. You will need the p
     * `-9`: Kill a process.
     * `-15`: Gracefully stop a process.
 
+### awk
 * awk
     * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
     * `awk '{print $2, $4}'` : prints 2nd and 4th word (whitespace separated) -> $0 represents entire line
     * by default `awk {print} filename.txt` prints entire file line by line
+
+### cut
+
+* `cut` command (newer than awk)
+    * https://linuxize.com/post/linux-cut-command/
+    * https://www.geeksforgeeks.org/cut-command-linux-examples/
+    * options: -f (fields), -b (bytes), -c (characters), -d (delimiter), -s (gets only lines with delimiters)
+    * arguments for the list: N (nth field), N- (nth field to the end), N-M (nth to mth field), -N (first to nth field)
+    * gets or cuts sections from each line and prints it out to the stout
+    * `cut -b 1,2,3 file.txt` -> gets 1,2,3rd byte from each line (tabs and backspaces are counted as 1 byte)
+        * mytext -> myt
+    * `cut -b 1-3,5-7 file.txt` 
+        * mytextbla -> mytxtb
+    * `cut -b 1- file.txt` -> 1st bite till the end
+    * `cut -b -3 file.txt` -> first byte to 3rd byte
+    * `cut -c 1,2,3 file.txt` -> gets the character in specified positions (tabs and backspaces count as 1 char)
+    * `cut -f 1,3 file.txt` -> gets 1st and 3rd field delimited by tab (by default)
+    * `cut -f 1,3 -d ':' file.txt` -> same as above but uses `:` as delimiter
+
+### head
+* -head
+    * displays first 10 lines
+    * similar to -tail (opposite)
+    * `-q` -> quiet (does not display the filenames), `-v` -> verbose (displays filenames)
+
+### tail
+* -tail
+    * command used for displaying last 10 lines of files, or monitoring file changes in real time, usually for reading/monitoring log files
+    * `tail [filename]` -> default displays last 10 lines
+    * `tail -n [number] [filename]` -> displays last n lines' 
+        * `tail -[number] [filename]` can also be used instead
+    * `tail -c [number] [filename]` -> displays last n bytes
+    * `tail -f [filename]` -> will start monitoring the file in real time, exit by pressing `ctrl + c`
+    * `tail [filename1] [filename2]` -> for multiple files
+    * can be used with other commands, like `ps -ef | tail -2`
+* nohup (no hangup)
+    * keeps process running even after terminal is closed
+
+### tput
 * tput
     * https://linuxcommand.org/lc3_adv_tput.php
     * can manipulate the terminal's appearance, like color, etc
     * `tput smso` start 'standout' mode
     * `tput rmso` end 'standout' mode
     * `tput sgr0` turn off all attributes
-* `$$`
-    * https://tldp.org/LDP/abs/html/internalvariables.html
-    * process id of script itself
-* assigning results of a command to a variable
-    * wrap around ``
-    * `` array=`find . -maxdepth 1 -name '*.txt'` ``
-    * results are saved into the array variable
-    * use the command `set` in csh
-        * `` set array=`find . -maxdepth 1 -name '*.txt'` ``
+
 * find 
     * https://www.tecmint.com/35-practical-examples-of-linux-find-command/#:~:text=The%20Linux%20find%20command%20is,files%20that%20match%20the%20arguments.
     * by default current directory, or specify the path by `find [path] ..`
@@ -92,21 +124,6 @@ You can use this command to kill processes that are running. You will need the p
 * `&` command
     * executes the command in the background - linux will not wait for the command to finish
     * `./shell.sh &` -> in the script, say there is sleep 5, then linux will execute on the background and not wait for it -> other commands can be run while it is running in the background
-* `cut` command (newer than awk)
-    * https://linuxize.com/post/linux-cut-command/
-    * https://www.geeksforgeeks.org/cut-command-linux-examples/
-    * options: -f (fields), -b (bytes), -c (characters), -d (delimiter), -s (gets only lines with delimiters)
-    * arguments for the list: N (nth field), N- (nth field to the end), N-M (nth to mth field), -N (first to nth field)
-    * gets or cuts sections from each line and prints it out to the stout
-    * `cut -b 1,2,3 file.txt` -> gets 1,2,3rd byte from each line (tabs and backspaces are counted as 1 byte)
-        * mytext -> myt
-    * `cut -b 1-3,5-7 file.txt` 
-        * mytextbla -> mytxtb
-    * `cut -b 1- file.txt` -> 1st bite till the end
-    * `cut -b -3 file.txt` -> first byte to 3rd byte
-    * `cut -c 1,2,3 file.txt` -> gets the character in specified positions (tabs and backspaces count as 1 char)
-    * `cut -f 1,3 file.txt` -> gets 1st and 3rd field delimited by tab (by default)
-    * `cut -f 1,3 -d ':' file.txt` -> same as above but uses `:` as delimiter
 
 * export
     * https://linuxconfig.org/learning-linux-commands-export
@@ -121,22 +138,16 @@ You can use this command to kill processes that are running. You will need the p
     * -f: export functions 
         * `printhello() { echo 'hello'; }`
         * `export -f printhello`
-* -head
-    * displays first 10 lines
-    * similar to -tail (opposite)
-    * `-q` -> quiet (does not display the filenames), `-v` -> verbose (displays filenames)
-* -tail
-    * command used for displaying last 10 lines of files, or monitoring file changes in real time, usually for reading/monitoring log files
-    * `tail [filename]` -> default displays last 10 lines
-    * `tail -n [number] [filename]` -> displays last n lines' 
-        * `tail -[number] [filename]` can also be used instead
-    * `tail -c [number] [filename]` -> displays last n bytes
-    * `tail -f [filename]` -> will start monitoring the file in real time, exit by pressing `ctrl + c`
-    * `tail [filename1] [filename2]` -> for multiple files
-    * can be used with other commands, like `ps -ef | tail -2`
-* nohup (no hangup)
-    * keeps process running even after terminal is closed
-    
+
+* `$$`
+    * https://tldp.org/LDP/abs/html/internalvariables.html
+    * process id of script itself
+* assigning results of a command to a variable
+    * wrap around ``
+    * `` array=`find . -maxdepth 1 -name '*.txt'` ``
+    * results are saved into the array variable
+    * use the command `set` in csh
+        * `` set array=`find . -maxdepth 1 -name '*.txt'` `` 
 
 * csh - not recommended to use --> [why](https://www.grymoire.com/unix/CshTop10.txt) or [why](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
     * set -> csh?
