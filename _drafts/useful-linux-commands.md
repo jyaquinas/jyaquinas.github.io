@@ -10,48 +10,51 @@ tags: [linux]
 
 ### Linux Wildcards
 You can use these wildcards for pattern matching. They can be quite useful when searching for patterns in filenames, directories, etc. 
-* `*` match one or more occurrences of characters, including none  
+* `*`: match one or more occurrences of characters, including none  
     * `ls *.txt` will look for all files that have the txt extension
-* `?` match single occurrence of character
+* `?`: match single occurrence of character
     * `l?st` -> list, lost, last are matches
-* `[]` match any occurrence of characters in the enclosed bracket
+* `[]`: match any occurrence of characters in the enclosed bracket
     * `l[ao]st` -> last, lost are matches
-* ./tmp/* matches files and folders in ./tmp
-* ./tmp/** matches files, folders, and subfolders in ./tmp
+* `./tmp/*`: matches files and folders in ./tmp
+* `./tmp/**`: matches files, folders, and subfolders in ./tmp
 
 ### Command Substitution
 * `$()` is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells)
 * linux will execute whatever is inside the `$()` before it executes the rest - allows you to input the results of the command into the text of the command
-* `datevar=date` is going to assign the string date into the variable
-* `echo $datevar` will give you `date`
-* `datevar=$(date)` will give you the actual date
 
-### ps
+```bash
+# Saves the string "date" 
+datevar=date
+echo $datevar # will output "date"
+
+# Saves the actual date into the variable
+datevar=$(date)
+echo $datevar # will output the date
+```
+
+### ps, pgrep
 `ps` will list the processes that are currently running. These are the different options you can use with the command.
-* -e: list full process list
-* -f: full format
-* -p: get a particular process id, `ps -p 5553`
+* `-e`: list full process list
+* `-f`: full format
+* `-p`: get a particular process id, `ps -p 5553`
 
 It can also be used with other commands like `grep`. 
 
 `ps -ef | grep *.jar` will get all the processes with the jar extension. 
 
-* pgrep -> https://www.computerhope.com/unix/upgrep.htm#:~:text=On%20Unix%2Dlike%20operating%20systems,flexible%20selection%20methods%20as%20pgrep.
-    * look up by process name
-    * -f match against entire command line instead of just process name
-    * -l list only process name and id
-    * -x get processes with exact pattern match only
-    
+Another option would be to use `pgrep`, which lets you look up processes using the process name. Some options are:
+* `-f`: match against entire command line instead of just process name
+* `-l`: list only process name and id
+* `-x`: get processes with exact pattern match only
 
 ### kill
 You can use this command to kill processes that are running. You will need the process id (pid). You can find pid using the `ps` command mentioned above. 
-* `kill [pid]` 
-* `kill -9 [pid]`: force kill (sends SIGKILL signal -> `-SIGKILL` can also be used instead of `-9`)
-* `kill -15 [pid]`: "gracefully" kill process
+* `kill [option] [pid]` 
 * other kill options (see full list with `kill -l`)
-    * 1 Reload a process.
-    * 9 Kill a process.
-    * 15 Gracefully stop a process.
+    * `-1`: Reload a process.
+    * `-9`: Kill a process.
+    * `-15`: Gracefully stop a process.
 
 * awk
     * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
@@ -131,10 +134,9 @@ You can use this command to kill processes that are running. You will need the p
     * `tail -f [filename]` -> will start monitoring the file in real time, exit by pressing `ctrl + c`
     * `tail [filename1] [filename2]` -> for multiple files
     * can be used with other commands, like `ps -ef | tail -2`
-* nohup 
+* nohup (no hangup)
     * keeps process running even after terminal is closed
     
-
 
 * csh - not recommended to use --> [why](https://www.grymoire.com/unix/CshTop10.txt) or [why](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
     * set -> csh?
