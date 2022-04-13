@@ -22,6 +22,7 @@ You can use these wildcards for pattern matching. They can be quite useful when 
 ### Command Substitution
 * `$()` is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells)
 * linux will execute whatever is inside the `$()` before it executes the rest - allows you to input the results of the command into the text of the command
+* `${}` vs `$()`????
 
 ```bash
 # Saves the string "date" 
@@ -147,7 +148,55 @@ You can use this command to kill processes that are running. You will need the p
     * `` array=`find . -maxdepth 1 -name '*.txt'` ``
     * results are saved into the array variable
     * use the command `set` in csh
-        * `` set array=`find . -maxdepth 1 -name '*.txt'` `` 
+        * `` set array=`find . -maxdepth 1 -name '*.txt'` ``
+* curl
+    * `-s`: silent mode, outputs the data but omits progress meter or error messages
+    * `-w [format]`: output info to stdout in the specified format
+        * `curl -w '%{http_code}\n' https://example.com` -> outputs html code, like 200
+    * `-o [file]`: store output on a file
+    * https://phoenixnap.com/kb/curl-command#:~:text=apt%20install%20curl-,What%20Is%20the%20curl%20Command%3F,to%20be%20sent%20or%20received.
+
+* file descriptors
+    * 1: stdout
+    * 2: stderr
+    * `aefaes 2> error.txt` -> unknown command `aefaes` will throw an error, we can output that error to the error.txt file using the stderr descriptor, 2
+* `/dev/null` -> virtual file that can be written on, used for discarding useless info
+    * ex: `grep -r hello /sys/` will generate lots of permission denied error messages. We can get rid of all the error messages and only leave the meaningful data we're looking for by writing the error to /dev/null
+    * `grep -r hello /sys/ 2>/dev/null`
+    * similarly, we can dump stdout and leave only errors using `1>/dev/null`
+    * dump everything with `>/dev/null 2>&1` (dumps sterr to stdout, then stdout to null)
+* #!/usr/bin/env bash vs #!/bin/bash
+    * https://stackoverflow.com/questions/16365130/what-is-the-difference-between-usr-bin-env-bash-and-usr-bin-bash
+    * env -> more flexibility on diff systems, will use the first executable that appears on the users `$PATH`
+        * con: diff executables can lead to script running differently or unexpectedly
+
+* absolute path of file
+    * readlink
+        * > print value of a symbolic link or canonical file name
+        * gets the absolute path of the link or file
+        * `readlink -f [filename]`
+        * option `-f`
+            * > -f, --canonicalize canonicalize by following every symlink in every component of the given name recursively; all but the last component must exist
+        * symbolic link (symlink, soft link) 
+            * similar to shortcuts in windows, points to some directory or file (even on a different filesystem or partition)
+        * can be used with dirname to get absolute path of a certain file
+    * dirname
+        * prints directory of of the supplied path
+        * `dirname /home/ec2-user/app` -> outputs `/home/ec2-user`
+    * combine to get absolute path
+        *  `dirname $(readlink -f [filename])`
+* source
+    * similar to import in java
+    * can use the functions defined in the source file
+    * 
+    * https://linuxize.com/post/bash-source-command/#:~:text=The%20source%20command%20reads%20and,Linux%20and%20UNIX%20operating%20systems.
+* `lsof`
+    * list all files that are open
+    * `lsof [option] [username]`
+    * `-i`: list files that match a specific network address or port
+        * `lsof -i tcp:80`
+    
+
 
 * csh - not recommended to use --> [why](https://www.grymoire.com/unix/CshTop10.txt) or [why](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
     * set -> csh?

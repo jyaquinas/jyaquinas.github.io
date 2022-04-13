@@ -354,3 +354,6 @@ END;
     * `INSTR(string , substring [, position [, occurrence]])`
     * `position` -> integer that indicates at what position the search should start (pos -> left to right, neg -> right to left, backwards); default 1
     * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
+
+---
+* 
