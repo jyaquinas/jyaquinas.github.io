@@ -99,7 +99,7 @@ Since EC2 is our target instance for code deployment, we will assign a new role 
 Now go to your EC2 instance, right-click and go to Security -> Modify IAM role. Select the newly created role and reboot.
 
 #### Installing the CodeDeploy agent in your EC2 server
-The Linux instance doesn't come with ruby preinstalled. So let's install that first.
+The Linux instance doesn't come with ruby preinstalled. So let's install that first.  
 `sudo yum -y install ruby`
 
 Then let's install the code deploy agent.  
