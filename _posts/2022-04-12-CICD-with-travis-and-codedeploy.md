@@ -9,7 +9,7 @@ tags: [cicd, travis, codedeploy]
 ---
 
 ### What is CI/CD?
-CI/CD stands for continuous integration and continuous deployment (or delivery), respectively. I've you've tried merging your current branch to some old branch, you know how hectic it can become. CI tries to solve this problem by automatically building, merging, and testing your commits to some main branch. And CD will automatically deploy the most recent version of the project so that the developers won't have to do this manually every time. This is all so that the developers can focus on developing, and spend less time on these repetitive tasks. 
+CI/CD stands for continuous integration and continuous deployment (or delivery), respectively. I've you've tried merging your current branch to some old branch, you know how hectic it can become. CI tries to solve this problem by automatically building, merging, and testing your commits to some main branch. CD will automatically deploy the most recent version of the project so that the developers won't have to do this manually every time. This is all so that the developers can focus on developing, and spend less time on these repetitive tasks. 
 
 ### What is Travis?
 [Travis](https://www.travis-ci.com/about-us/) is a CI tool that offers free plans for open-source projects. It is widely used and easily integrates with your Github account. Another popular alternative is [Jenkins](https://www.jenkins.io/). 
@@ -64,7 +64,7 @@ You first need to create an IAM user to allow external services like Travis to h
     * AWSCodeDeployFullAccess
     * AmazonS3FullAccess
 
-Then using the newly generated Access Key ID and Secret Access Key, add them to the environment variables (under your repository settings in Travis). You can then access these on your `.travis.yml` file using then the variable name you set. For instance, if your variable name is AWS_ACCESS_KEY, you can access it through $AWS_ACCESS_KEY.
+Then using the newly generated Access Key ID and Secret Access Key, add them to the environment variables (under your repository settings in Travis). You can then access these on your `.travis.yml` file using the variable name you set. For instance, if your variable name is AWS_ACCESS_KEY, you can access it through $AWS_ACCESS_KEY.
 
 We'll add the following to our `.travis.yml` file:
 
@@ -100,7 +100,7 @@ Now go to your EC2 instance, right-click and go to Security -> Modify IAM role. 
 
 #### Installing the CodeDeploy agent in your EC2 server
 The Linux instance doesn't come with ruby preinstalled. So let's install that first.
-`sudo yum -y install ruby'
+`sudo yum -y install ruby`
 
 Then let's install the code deploy agent.  
 `aws s3 cp s3://aws-codedeploy-ap-northeast-2/latest/install to ./install`  
@@ -130,7 +130,7 @@ files:
 Let's add our CodeDeploy info to our travis file under `deploy`:
 ```yaml
 deploy:
-  ...
+
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
@@ -211,7 +211,7 @@ notifications:
 
 ***Note:** I used `bootJar` instead of `build` for gradle since it was a spring boot project.*
 
-Now if you commit and push the newly added and modified files, you should see travis building your project. The final deployment files should be sent to your EC2 instance under the directory that we specified in our file, `/home/ec2-users/app/step2/zip/`.
+Now if you commit and push the newly added and modified files, you should see travis building your project. The final deployment files should be sent to your EC2 instance under the directory that we specified in our file, `/home/ec2-user/app/step2/zip/`.
 
 ### Automating the Deployment Process
 To fully automate the deployment process, we will use bash script files. 
@@ -258,7 +258,7 @@ nohup java -jar \
   -Dspring.profiles.active=real \
   $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 ```
-***Note:** adding line breaks between the config file paths will lead to errors. Make sure all the config locations are comma-separated (without backslashes).*
+***Note:** adding line breaks or spaces between the config file paths will lead to errors. Make sure all the config locations are comma-separated (without backslashes).*
 
 Then we'll make some changes to our travis and appspec files.
 ```yaml

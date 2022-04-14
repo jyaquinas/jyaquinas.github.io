@@ -188,13 +188,18 @@ You can use this command to kill processes that are running. You will need the p
 * source
     * similar to import in java
     * can use the functions defined in the source file
-    * 
     * https://linuxize.com/post/bash-source-command/#:~:text=The%20source%20command%20reads%20and,Linux%20and%20UNIX%20operating%20systems.
 * `lsof`
     * list all files that are open
     * `lsof [option] [username]`
     * `-i`: list files that match a specific network address or port
         * `lsof -i tcp:80`
+* `$0`
+    * gets name of shell or shell script
+* `wc`
+    * word count -> outputs 4 columns (number of lines, words, characters/bytes, filename)
+    * `wc -l [filename]`: outputs number of lines present in the file
+    * https://www.geeksforgeeks.org/wc-command-linux-examples/
     
 
 
