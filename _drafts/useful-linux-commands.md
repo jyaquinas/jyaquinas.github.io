@@ -20,9 +20,7 @@ You can use these wildcards for pattern matching. They can be quite useful when 
 * `./tmp/**`: matches files, folders, and subfolders in ./tmp
 
 ### Command Substitution
-* `$()` is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells)
-* linux will execute whatever is inside the `$()` before it executes the rest - allows you to input the results of the command into the text of the command
-* `${}` vs `$()`????
+This allows us to execute some command and use the command result in another command. The syntax, `$()`, is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells). Linux will execute whatever is inside the `$()` before it executes the rest.
 
 ```bash
 # Saves the string "date" 
@@ -32,6 +30,16 @@ echo $datevar # will output "date"
 # Saves the actual date into the variable
 datevar=$(date)
 echo $datevar # will output the date
+```
+
+### Variable Substitution
+There can be situations where other parts of the command could be mistaken to be part of the variable name, leading to errors. We can use parameter expansion to differentiate the variables. The basic syntax is `${}`.
+
+```bash
+weight=80
+echo "$weightKG"    # error: weightKG variable doesn't exist
+
+echo "${weight}KG"  # outputs 80KG
 ```
 
 ### ps, pgrep
@@ -50,63 +58,95 @@ Another option would be to use `pgrep`, which lets you look up processes using t
 * `-x`: get processes with exact pattern match only
 
 ### kill
-You can use this command to kill processes that are running. You will need the process id (pid). You can find pid using the `ps` command mentioned above. 
-* `kill [option] [pid]` 
-* other kill options (see full list with `kill -l`)
-    * `-1`: Reload a process.
-    * `-9`: Kill a process.
-    * `-15`: Gracefully stop a process.
+You can use this command to kill processes that are running. You will need the process id (pid). You can find pid using the `ps` command mentioned above.  
 
-### awk
-* awk
-    * https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
-    * `awk '{print $2, $4}'` : prints 2nd and 4th word (whitespace separated) -> $0 represents entire line
-    * by default `awk {print} filename.txt` prints entire file line by line
+`kill [option] [pid]` 
+
+Options (see full list with `kill -l`):
+* `-1`: Reload a process.
+* `-9`: Kill a process.
+* `-15`: Gracefully stop a process.
 
 ### cut
+This command cuts or splits each line and returning the results to the standard ouput. 
 
-* `cut` command (newer than awk)
-    * https://linuxize.com/post/linux-cut-command/
-    * https://www.geeksforgeeks.org/cut-command-linux-examples/
-    * options: -f (fields), -b (bytes), -c (characters), -d (delimiter), -s (gets only lines with delimiters)
-    * arguments for the list: N (nth field), N- (nth field to the end), N-M (nth to mth field), -N (first to nth field)
-    * gets or cuts sections from each line and prints it out to the stout
-    * `cut -b 1,2,3 file.txt` -> gets 1,2,3rd byte from each line (tabs and backspaces are counted as 1 byte)
-        * mytext -> myt
-    * `cut -b 1-3,5-7 file.txt` 
-        * mytextbla -> mytxtb
-    * `cut -b 1- file.txt` -> 1st bite till the end
-    * `cut -b -3 file.txt` -> first byte to 3rd byte
-    * `cut -c 1,2,3 file.txt` -> gets the character in specified positions (tabs and backspaces count as 1 char)
-    * `cut -f 1,3 file.txt` -> gets 1st and 3rd field delimited by tab (by default)
-    * `cut -f 1,3 -d ':' file.txt` -> same as above but uses `:` as delimiter
+`cut [option] [arguments] [filename]`
 
-### head
-* -head
-    * displays first 10 lines
-    * similar to -tail (opposite)
-    * `-q` -> quiet (does not display the filenames), `-v` -> verbose (displays filenames)
+Options:
+* `-f`: fields
+* `-b`: bytes
+* `-c`: characters
+* `-d`: delimiter
+* `-s`: gets only lines with delimiters
+
+Arguments for the list: 
+* `N`: nth field
+* `N-`: nth field to the end
+* `N-M`: nth to mth field
+* `-N`: first to nth field
+        
+Here are some examples:
+```bash
+# gets 1,2,3rd byte from each line (tabs and backspaces are counted as 1 byte)
+cut -b 1,2,3 file.txt   # mytext -> myt
+cut -b 1-3,5-7 file.txt # mytextbla -> mytxtb
+cut -b 1- file.txt      # 1st bite till the end
+cut -b -3 file.txt      # first byte to 3rd byte
+
+# gets the character in specified positions (tabs and backspaces count as 1 char)
+cut -c 1,2,3 file.txt
+
+# gets 1st and 3rd field delimited by tab (by default)
+cut -f 1,3 file.txt 
+cut -f 1,3 -d ':' file.txt # same as above but uses `:` as delimiter
+```
 
 ### tail
-* -tail
-    * command used for displaying last 10 lines of files, or monitoring file changes in real time, usually for reading/monitoring log files
-    * `tail [filename]` -> default displays last 10 lines
-    * `tail -n [number] [filename]` -> displays last n lines' 
-        * `tail -[number] [filename]` can also be used instead
-    * `tail -c [number] [filename]` -> displays last n bytes
-    * `tail -f [filename]` -> will start monitoring the file in real time, exit by pressing `ctrl + c`
-    * `tail [filename1] [filename2]` -> for multiple files
-    * can be used with other commands, like `ps -ef | tail -2`
+`tail` is used for displaying last 10 lines of files. It is quite useful for monitoring file changes in real time, usually for reading/monitoring log files, using the `-f` option.
+
+`tail [option] [filename]`
+
+Options:
+* `-n [number]` or `-[number]`: displays last n lines
+* `-c [number]`: displays last n bytes/characters
+* `-f`: monitors file changes in real time (exit by pressing `ctrl + c`)
+
+```bash
+# display last 10 lines by default
+tail file.txt 
+tail -n 5 file.txt  # display last 5 lines
+tail -5 file.txt    # same as above
+
+# displays last 5 bytes
+tail -c 5 file.txt
+
+# will start monitoring the file in real time, exit by pressing Ctrl + c
+tail -f file.txt
+
+# for multiple files
+tail file1.txt file2.txt
+
+# can be used with other commands
+ps -ef | tail -2    # gets last 2 lines of command result
+```
+
+### head
+`head` is similar to tail but the opposite. It displays the first 10 lines. It uses the same `-n` and `-c` options as tail. It doesn't have the `-f` option, but instead has additional options: `-v` and `-q`, for verbose and quite mode, respectively. 
+
+`head [option] [filename]`
+
+```bash
+# Does not display filename before each result (-q is usually used with multiple files)
+head -q file1.txt file2.txt
+# Displays filename before each result
+head file1.txt file2.txt
+# Always displays filename before each result, even for single files
+head -v file1.txt
+``` 
+
 * nohup (no hangup)
     * keeps process running even after terminal is closed
 
-### tput
-* tput
-    * https://linuxcommand.org/lc3_adv_tput.php
-    * can manipulate the terminal's appearance, like color, etc
-    * `tput smso` start 'standout' mode
-    * `tput rmso` end 'standout' mode
-    * `tput sgr0` turn off all attributes
 
 * find 
     * https://www.tecmint.com/35-practical-examples-of-linux-find-command/#:~:text=The%20Linux%20find%20command%20is,files%20that%20match%20the%20arguments.
