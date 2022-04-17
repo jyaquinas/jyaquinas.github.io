@@ -356,27 +356,3 @@ END;
     * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
 
 ---
-### Spring Boot Profiles
-We can externalize our spring boot configurations so that we can use the same code under different conditions or environments. One example would be to run the application on different ports to achieve zero downtime deployment, or more specifically, a blue/green deployment strategy. We can externalize our configurations through `application.properties` or `applications.yml` files. 
-
-Spring Boot has a specific order of loading/overriding these property files, so we can actually use multiple configuration files for different purposes. Here is the overriding order, the first ones on the list being higher in priority. You can find the full list on their [docs](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/boot-features-external-config.html).
-
-> Profile-specific application properties outside of your packaged jar (`application-{profile}.properties` and YAML variants).
-> Profile-specific application properties packaged inside your jar (`application-{profile}.properties` and YAML variants).
-> Application properties outside of your packaged jar (`application.properties` and YAML variants).
-> Application properties packaged inside your jar (`application.properties` and YAML variants).
-> `@PropertySource` annotations on your `@Configuration` classes.
-> Default properties (specified by setting `SpringApplication.setDefaultProperties`).
-
-For instance, let's look at these two files. 
-```yaml
-# File: application.yml
-server:
-    port: 8080
-```
-```yaml
-# File: application-prod.yml
-server:
-    port: 8081
-```
-
