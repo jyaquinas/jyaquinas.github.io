@@ -8,6 +8,9 @@ category: "CICD"
 tags: [nginx, deployment]
 ---
 
+### What is Zero Downtime Deployment?
+
+
 * zero downtime deployment
     * app is never down or unstable during deployment process 
     * nginx, docker, kubernetes, blue green
