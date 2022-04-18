@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Other Linux Commands You Might Find Useful
-subtitle: ----
+subtitle: Boost your productivity with these commands
 date: 2022-03-15 22:03:00 +0900
 background: '/img/bg-post.jpg'
 category: "Linux"
@@ -243,7 +243,7 @@ find -type f -perm 777 -exec chmod 644 {} \;
 find -type f -name *.sh -exec grep 'hello world' {} \;
 ```
 
-You can find the full doc about find [here](https://man7.org/linux/man-pages/man1/find.1.html).
+You can find more info about `find` [here](https://man7.org/linux/man-pages/man1/find.1.html).
 
 ### tee
 `tee` is used to write to the stdout or other files. It is similar to the `echo` command followed by `>` or `>>`, but the difference is that the `tee` command will also output to the stdout as well. 
@@ -320,61 +320,77 @@ For example, `grep -r hello /sys/` will generate lots of permission denied error
 
 Or we can dump everything with `>/dev/null 2>&1`.
 
+### Absolute File Path
+We can get the absolute file path using a combination of two commands, `readlink` and `dirname`.
 
-* assigning results of a command to a variable
-    * wrap around ``
-    * `` array=`find . -maxdepth 1 -name '*.txt'` ``
-    * results are saved into the array variable
-    * use the command `set` in csh
-        * `` set array=`find . -maxdepth 1 -name '*.txt'` ``
+#### readlink
+`readlink` gets the absolute path of the link or file.  
+> print value of a symbolic link or canonical file name
 
-* `$$`
-    * https://tldp.org/LDP/abs/html/internalvariables.html
-    * process id of script itself
+`readlink -f [filename]`
 
-* #!/usr/bin/env bash vs #!/bin/bash
-    * https://stackoverflow.com/questions/16365130/what-is-the-difference-between-usr-bin-env-bash-and-usr-bin-bash
-    * env -> more flexibility on diff systems, will use the first executable that appears on the users `$PATH`
-        * con: diff executables can lead to script running differently or unexpectedly
+Option `-f`:
+> canonicalize by following every symlink[^symlink] in every component of the given name recursively; all but the last component must exist
 
-* absolute path of file
-    * readlink
-        * > print value of a symbolic link or canonical file name
-        * gets the absolute path of the link or file
-        * `readlink -f [filename]`
-        * option `-f`
-            * > -f, --canonicalize canonicalize by following every symlink in every component of the given name recursively; all but the last component must exist
-        * symbolic link (symlink, soft link) 
-            * similar to shortcuts in windows, points to some directory or file (even on a different filesystem or partition)
-        * can be used with dirname to get absolute path of a certain file
-    * dirname
-        * prints directory of of the supplied path
-        * `dirname /home/ec2-user/app` -> outputs `/home/ec2-user`
-    * combine to get absolute path
-        *  `dirname $(readlink -f [filename])`
-* source
-    * similar to import in java
-    * can use the functions defined in the source file
-    * https://linuxize.com/post/bash-source-command/#:~:text=The%20source%20command%20reads%20and,Linux%20and%20UNIX%20operating%20systems.
-* `lsof`
-    * list all files that are open
-    * `lsof [option] [username]`
-    * `-i`: list files that match a specific network address or port
-        * `lsof -i tcp:80`
-* `$0`
-    * gets name of shell or shell script
-* `wc`
-    * word count -> outputs 4 columns (number of lines, words, characters/bytes, filename)
-    * `wc -l [filename]`: outputs number of lines present in the file
-    * https://www.geeksforgeeks.org/wc-command-linux-examples/
-    
+#### dirname
+This command prints the directory of of the supplied path.
+
+`dirname /home/ec2-user/app` outputs `/home/ec2-user`
+
+#### Getting the Absolute Path
+Let's now combine the two to get the absolute path of the file. 
+
+`dirname $(readlink -f [filename])`
 
 
-* csh - not recommended to use --> [why](https://www.grymoire.com/unix/CshTop10.txt) or [why](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
-    * set -> csh?
-        * https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux
-        *  we will get a list of all shell variables, environmental variables, local variables, and shell functions
-    * set vs setenv
-        * setenv -> variables exported to subshell
-        * set -> not exported to subshell
-        * setenv ==> `export` in bash
+### source
+This is similar to `import` in java. It let's you use the functions defined in another source file.
+For instance, we can have a function defined in the `function.sh` file.
+
+```bash
+# File: function.sh
+#!/bin/bash
+
+function myfunc() {
+    echo 'this is from function.sh'
+}
+```
+
+Then we'll source `function.sh` in our `sourcefunction.sh` file to utilize `myfunc`.
+
+```bash
+# File: sourcefunction.sh
+#!/bin/bash
+
+source function.sh 
+
+myfunc  # executes myfunc from function.sh
+```
+
+Note: the relative path was used for the source file for the sake of simplicity. But since files can move locations, using the absolute path is recommended. 
+
+### lsof
+`lsof` (stands for LiSt of Open File) lists all files that are open. Here's how "file" is defined:
+
+> An open file may be a regular file, a directory, a block special file, a character special file, an executing text reference, a library, a stream or a network file (Internet socket, NFS file or UNIX domain socket.)
+
+`lsof [option] [username]`
+
+Options:
+* `-i`: list files that match a specific network address or port
+    * `lsof -i tcp:80` 
+
+### wc
+This command will count and output the number of lines, words, characters, and bytes of the specified files, depending on the option used. 
+
+`wc [option] [filename/s]`
+
+Options:
+* `-l`: output number of lines
+* `-w`: output number of words
+* `-c`: output number of bytes
+* `-m`: output number of characters
+* `-L`: output length of longest line
+
+---
+[^symlink]: a symbolic link (symlink, soft link), is similar to shortcuts in windows. It points to some directory or file (even on a different filesystem or partition).
