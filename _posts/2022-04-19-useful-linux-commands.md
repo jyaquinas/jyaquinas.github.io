@@ -2,7 +2,7 @@
 layout: post
 title: Other Linux Commands You Might Find Useful
 subtitle: Boost your productivity with these commands
-date: 2022-03-15 22:03:00 +0900
+date: 2022-04-19 20:39:00 +0900
 background: '/img/bg-post.jpg'
 category: "Linux"
 tags: [linux]
@@ -20,7 +20,7 @@ You can use these wildcards for pattern matching. They can be quite useful when 
 * `./tmp/**`: matches files, folders, and subfolders in ./tmp
 
 ### Command Substitution
-This allows us to execute some command and use the command result in another command. The syntax, `$()`, is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells). Linux will execute whatever is inside the `$()` before it executes the rest.
+This allows us to execute some commands and use the command result in another command. The syntax, `$()`, is commonly used but you may find other syntaxes, like ` `` ` (former is recommended as it's more readable, and supported in most shells). Linux will execute whatever is inside the `$()` before it executes the rest.
 
 ```bash
 # Saves the string "date" 
@@ -68,7 +68,7 @@ Options (see full list with `kill -l`):
 * `-15`: Gracefully stop a process.
 
 ### cut
-This command cuts or splits each line and returning the results to the standard ouput. 
+This command cuts or splits each line and returns the results to the standard output. 
 
 `cut [option] [arguments] [filename]`
 
@@ -102,7 +102,7 @@ cut -f 1,3 -d ':' file.txt # same as above but uses `:` as delimiter
 ```
 
 ### tail
-`tail` is used for displaying last 10 lines of files. It is quite useful for monitoring file changes in real time, usually for reading/monitoring log files, using the `-f` option.
+`tail` is used for displaying the last 10 lines of files. It is quite useful for monitoring file changes in real-time, usually for reading/monitoring log files, using the `-f` option.
 
 `tail [option] [filename]`
 
@@ -120,7 +120,7 @@ tail -5 file.txt    # same as above
 # displays last 5 bytes
 tail -c 5 file.txt
 
-# will start monitoring the file in real time, exit by pressing Ctrl + c
+# will start monitoring the file in real-time, exit by pressing Ctrl + c
 tail -f file.txt
 
 # for multiple files
@@ -131,7 +131,7 @@ ps -ef | tail -2    # gets last 2 lines of command result
 ```
 
 ### head
-`head` is similar to tail but the opposite. It displays the first 10 lines. It uses the same `-n` and `-c` options as tail. It doesn't have the `-f` option, but instead has additional options: `-v` and `-q`, for verbose and quite mode, respectively. 
+`head` is similar to tail but the opposite. It displays the first 10 lines. It uses the same `-n` and `-c` options as `tail`. It doesn't have the `-f` option, but instead has additional options: `-v` and `-q`, for verbose and quiet mode, respectively. 
 
 `head [option] [filename]`
 
@@ -147,7 +147,7 @@ head -v file1.txt
 ``` 
 
 ### File Descriptors
-File descriptors are unique identifiers for files. There are three standard file descriptors associated for each processes. 
+File descriptors are unique identifiers for files. There are three standard file descriptors associated with each process. 
 * 0: stdin (standard input)
 * 1: stdout (standard output)
 * 2: stderr (standard error)
@@ -163,7 +163,7 @@ We can also output the error to the stdout using the `2>&1` command, and have th
 `[command] > output.txt 2>&1`
 
 ### &
-This command will execute the command in the background in a subshell. This means that the command will immediately return a status of 0 and will not wait for it to finish. This allows you to run multiple processes while the others are running on the background. 
+This command will execute the command in the background in a subshell. This means that the command will immediately return a status of 0 and will not wait for it to finish. This allows you to run multiple processes while the others are running in the background. 
 
 Simply append `&` at the end of the command.  
 
@@ -189,7 +189,7 @@ The stderr and stdout can be output on separate files as well.
 `nohup [command] > output.out 2> output.err &`
 
 ### find
-This is one of the most frequently used commands in linux. It searches for files and directories based on a variety of conditions. 
+This is one of the most frequently used commands in Linux. It searches for files and directories based on a variety of conditions. 
 
 `find [path/s] [options] [expression]`
 
@@ -246,11 +246,11 @@ find -type f -name *.sh -exec grep 'hello world' {} \;
 You can find more info about `find` [here](https://man7.org/linux/man-pages/man1/find.1.html).
 
 ### tee
-`tee` is used to write to the stdout or other files. It is similar to the `echo` command followed by `>` or `>>`, but the difference is that the `tee` command will also output to the stdout as well. 
+`tee` is used to write to the stdout or other files. It is similar to the `echo` command followed by `>` or `>>`, but the difference is that the `tee` command will also output to the stdout. 
 
 `[command] | tee [option] [filename/s...]`
 
-The output from the `command` will be redirected to the `filename` (or multiple files if more that one is specified). The option `-a` can be used to append to some file instead of overwritting it. 
+The output from the `command` will be redirected to the `filename` (or multiple files if more than one is specified). The option `-a` can be used to append to some file instead of overwriting it. 
 
 ### export
 This command exports variables so that new subshells (child processes) can have access to the exported variables. 
@@ -325,7 +325,7 @@ We can get the absolute file path using a combination of two commands, `readlink
 
 #### readlink
 `readlink` gets the absolute path of the link or file.  
-> print value of a symbolic link or canonical file name
+> print value of a symbolic link or canonical filename
 
 `readlink -f [filename]`
 
@@ -333,7 +333,7 @@ Option `-f`:
 > canonicalize by following every symlink[^symlink] in every component of the given name recursively; all but the last component must exist
 
 #### dirname
-This command prints the directory of of the supplied path.
+This command prints the directory of the supplied path.
 
 `dirname /home/ec2-user/app` outputs `/home/ec2-user`
 
@@ -344,7 +344,7 @@ Let's now combine the two to get the absolute path of the file.
 
 
 ### source
-This is similar to `import` in java. It let's you use the functions defined in another source file.
+This is similar to `import` in java. It lets you use the functions defined in another source file.
 For instance, we can have a function defined in the `function.sh` file.
 
 ```bash
@@ -370,7 +370,7 @@ myfunc  # executes myfunc from function.sh
 Note: the relative path was used for the source file for the sake of simplicity. But since files can move locations, using the absolute path is recommended. 
 
 ### lsof
-`lsof` (stands for LiSt of Open File) lists all files that are open. Here's how "file" is defined:
+`lsof` (stands for LiSt of Open File) lists all open files. Here's how "file" is defined:
 
 > An open file may be a regular file, a directory, a block special file, a character special file, an executing text reference, a library, a stream or a network file (Internet socket, NFS file or UNIX domain socket.)
 

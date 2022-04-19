@@ -2,7 +2,7 @@
 layout: post
 title: Spring Boot Profiles
 subtitle: Externalizing your app configurations
-date: 2022-04-17 21:27:00 +0900
+date: 2022-04-19 20:33:00 +0900
 background: '/img/bg-post.jpg'
 category: "Java"
 tags: [spring boot, java]

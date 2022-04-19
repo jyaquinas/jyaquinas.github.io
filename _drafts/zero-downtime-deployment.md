@@ -9,7 +9,7 @@ tags: [nginx, deployment]
 ---
 
 ### What is Zero Downtime Deployment?
-
+lkj
 
 * zero downtime deployment
     * app is never down or unstable during deployment process 
@@ -58,3 +58,9 @@ tags: [nginx, deployment]
     ```
     * restart `sudo service nginx restart`
     
+* https://vaadin.com/blog/a-minimal-zero-downtime-deployment-using-nginx-spring-boot
+* https://syshero.org/2016-06-09-zero-downtime-deployments-using-nginx/#:~:text=To%20be%20able%20to%20execute,to%20receive%20all%20the%20new
+* https://medium.com/sipios/blue-green-deployment-spring-applications-b214dfe4ea5d
+* https://stackoverflow.com/questions/53535670/how-to-re-deploy-springboot-application-without-down-time
+* https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/bluegreen-deployments.html
+* https://martinfowler.com/bliki/BlueGreenDeployment.html
