@@ -2,14 +2,14 @@
 layout: post
 title: Merging Tables
 subtitle: ---
-date: 2022-02-22 22:03:00 +0900
+date: 2022-04-19 22:33:00 +0900
 background: '/img/bg-post.jpg'
-category: ""
-tags: []
+category: "Database"
+tags: [oracle, sql, database]
 ---
 
 ### MERGE
-`MERGE` selects data from one or multiple tables and updates/inserts into a target table. This can be useful when you want to perform multiple operations at once. However, we can only update each row only once, i.e. multiple updates on a single row cannot be done using a single `MERGE` statement.
+`MERGE` selects data from one or multiple tables and updates/inserts it into a target table. This can be useful when you want to perform multiple operations at once. However, we can only update each row only once, i.e. multiple updates on a single row cannot be done using a single `MERGE` statement.
 
 Here's the basic syntax:
 ```sql
@@ -28,7 +28,7 @@ MERGE INTO target_table
 
 Oracle will go through each row in the target table and check the search condition. If the `search_condition` is true, then it will update the row with the update conditions, and optionally delete the row based on a delete condition[^delete]. If the `search_condition` is not true, then it will insert into the target table from the source table if the insert condition is met. 
 
-Say we have table of users that contains their information. We have another table that contains new users, but also existing users with new information that needs to be updated. Instead of performing multiple `INSERT` and `UPDATE` statements, we can do these simultaneously with `MERGE`.
+Say we have a table of users that contains their information. We have another table that contains new users, but also existing users with new information that needs to be updated. Instead of performing multiple `INSERT` and `UPDATE` statements, we can do these simultaneously with `MERGE`.
 
 We want to update/insert info from USERS_MIGRATE to our target table, USERS.
 
