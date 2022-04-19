@@ -122,7 +122,7 @@ tags: []
         spring:
         jpa:
             hibernate:
-            ddl-auto: none
+                ddl-auto: none
         datasource:
             url: "jdbc:mariadb://springboot-webservice.c2vqrhmxmoa9.ap-northeast-2.rds.amazonaws.com:3306/springboot_webservice"
             username: admin
@@ -271,7 +271,7 @@ END;
         * full table scan for low selectivity 
     * cardinality = selectivity * total rows 
         * number of unique values in a column
-    * Analyzing execution plat
+    * Analyzing execution plan
         * explain plan
             * `EXPLAIN PLAN FOR <QUERY>` -> saves to plan_table
             * `SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY())`
@@ -286,7 +286,19 @@ END;
             * `SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('****'));`
             * look at cost, access methods, cardinality, join mehtods/join types, partition pruning, etc
     * Note: comparing costs between 2 different queries is meaningless because the costs are relative to the specific query. 
-
+        * More accurate to compare consistent gets (from autotrace) -> physical reads that the DB performs to get data from data block (disk I/O)
+    * access predicate vs filter predicate
+        * access predicate: only fetch matching rows (usually through index)
+        * filter predicates: discard non-matching rows (after fetching more rows than needed)
+    * Tuning strategies
+        * Parse time reduction 
+        * execution plan comparison and analysis
+        * query analysis strategy
+            * update statistics (must have DBA access) - outdated statistics may mislead the optimizer 
+            * improve query structure
+            * use optimizer hints
+            * changing access path 
+            * improve join order and join methods
 
 * subquery factoring (WITH CLAUSE) vs global temporary tables (GTT)
     * used for improving query speed for complex subqueries

@@ -10,16 +10,17 @@ tags: []
 
 * What are indexes
     * used for increasing the search speed (performance)
-    * 
+
 * creating indexes
     * basic syntax
     * `CREATE INDEX index_name ON table_name(column1[,column2,...])`
     * `DROP INDEX index_name` to delete index
     * 
-* B-TREE index
+* B-TREE (Balanced Trees) index 
     * normal index
     * function based index
     * index-organized table (IOT)
+    * Most common type of index
     
 * BITMAP index
     * smaller than b-tree
