@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Merging Tables
-subtitle: ---
+title: Merging Tables In Oracle
+subtitle: Performing multiple operations with a single statement
 date: 2022-04-19 22:33:00 +0900
 background: '/img/bg-post.jpg'
 category: "Database"
