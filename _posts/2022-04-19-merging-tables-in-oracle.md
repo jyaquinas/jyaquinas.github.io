@@ -57,7 +57,7 @@ We want to update/insert info from USERS_MIGRATE to our target table, USERS.
 
 ```sql
 MERGE INTO USERS u
-    USING USER_MIGRATE um
+    USING USERS_MIGRATE um
     ON (u.first_name = um.first_name AND u.last_name = um.last_name)
         WHEN MATCHED THEN
             UPDATE SET u.age = um.age 
