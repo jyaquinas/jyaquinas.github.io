@@ -32,7 +32,8 @@ Say we have a table of users that contains their information. We have another ta
 
 We want to update/insert info from USERS_MIGRATE to our target table, USERS.
 
-USERS
+**USERS**
+
 | first_name | last_name | age |
 | --- | --- | --- | 
 | John | Smith | 19 |
@@ -41,7 +42,8 @@ USERS
 | Bill | Gates | 25 |
 | Jeff | Bezos | 26 |
 
-USERS_MIGRATE
+**USERS_MIGRATE**
+
 | first_name | last_name | age |
 | --- | --- | --- | 
 | John | Smith | 19 |
