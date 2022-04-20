@@ -68,7 +68,7 @@ MERGE INTO USERS u
         VALUES (um.first_name, um.last_name, um.age);
 ```
 
-Result:
+Result:  
 **USERS**
 
 | first_name | last_name | age |
