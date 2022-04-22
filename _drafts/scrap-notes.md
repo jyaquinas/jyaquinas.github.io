@@ -367,4 +367,19 @@ END;
     * `position` -> integer that indicates at what position the search should start (pos -> left to right, neg -> right to left, backwards); default 1
     * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
 
----
+    
+* inheritance vs composition
+    * inheritance: car is a vehicle 
+    * composition: car has a steering wheel
+    * inheritance - considered tightest form of coupling in OOP (changing base class can cause undesirable side effects on subclasses)
+    * composition is more loose in coupling - achieved through dependency injection
+    * https://betterprogramming.pub/inheritance-vs-composition-2fa0cdd2f939#:~:text=Composition%20is%20in%20contrast%20to,that%20implement%20the%20desired%20functionality.
+    
+* UML
+    * Relationships:
+        * generalization (class inheritance): shown by line with empty arrow head (bear inherits from animal class)
+        * realization (interface implementation): shown by dashed line with empty arrow head (logger class implements ILogger interface)
+        * dependency (through method parameter, class variable, etc): shown by dashed line and flat arrow
+        * association:
+        * aggregation: 
+        * composition: 
