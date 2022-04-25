@@ -2,7 +2,7 @@
 layout: post
 title: '[LC 740] Delete and Earn'
 subtitle: ---
-date: 2022-04-08 22:03:00 +0900
+date: 2022-04-25 22:03:00 +0900
 background: '/img/bg-post.jpg'
 category: "LeetCode"
 tags: [leetcode, algorithm, dynamic programming]
