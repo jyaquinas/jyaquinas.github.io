@@ -379,7 +379,7 @@ END;
     * Relationships:
         * generalization (class inheritance): shown by line with empty arrow head (bear inherits from animal class)
         * realization (interface implementation): shown by dashed line with empty arrow head (logger class implements ILogger interface)
-        * dependency (through method parameter, class variable, etc): shown by dashed line and flat arrow
-        * association:
-        * aggregation: 
-        * composition: 
+        * dependency (through method parameter, return type, etc): shown by dashed line and flat arrow, change to an element will likely affect the other elements
+        * association: shown by a simple line, relationship between classes (can show multiplicity)
+        * aggregation: shown by a line with an empty diamond head, type of association, a "has a" relationship, but where each can exist on its own (car, tire)
+        * composition: shown by a line with a filled diamond head, special type of aggregation but the 'parent' class will control the lifetime of the child class, meaning that if the parent is destroyed, so will the child class
