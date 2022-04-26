@@ -65,11 +65,21 @@ When multiple values are possible from a where condition (and it is selective en
 Since the index is already sorted, it will start from the starting point of the where condition and scan the index in order until all the values have been retrieved. Doing this in descending order will not affect the performance as it only scans the index in reverse order. 
 
 Here are some examples of the conditions that might trigger an index range scan:
+
 * `column1 = :val`
 * `column1 < :val`
 * `column1 > :val`
 * combination of the conditions above
 * when wildcard searches are not in a leading position, e.g. `'%abc` will not use an index scan
+
+```sql
+-- There could be multiple 30 yr old customers
+SELECT * FROM customer WHERE age=30;
+-- This wildcard search will use an index scan since we know the starting point in the index
+SELECT * FROM customer WHERE name like 'jen%';
+-- Anything can come before 'as' so the index scan will not be used
+SELECT * FROM customer WHERE name like '%as';
+```
 
 ### Index Full Scan
 This type of scan will scan the entire index in order. Because an index is already ordered, an `ORDER BY` clause can trigger an index full scan. But here are a few other reasons why the optimizer might choose this:
@@ -78,7 +88,15 @@ This type of scan will scan the entire index in order. Because an index is alrea
 * all columns in the table and query are in an index and one of the indexed columns is not null
 * contains an `ORDER BY` clause on a non-nullable column
 
+### Index Fast Full Scan
+
+
 ### Index Skip Scan
+An index skip scan typically occurs when a composite index is used but the leading column in skipped or not used in the query. But it can also occur if the leading column contains few distinct values as opposed to the nonleading columns of the index. 
+
+For example, let's say we have an index on these two columns, (`gender`, `age`), but we only search using the `age` column. Since the index will have sorted the columns in gender first, and then by age, it will search through the `male` gender first, and then through the `female` gender, until all the customers of age `30` have been retrieved. 
+
+### Index Join Scan
 
 
 ### Reference
