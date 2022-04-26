@@ -57,10 +57,29 @@ SELECT * FROM myTable SAMPLE BLOCK (10);
 ```
 
 ### Index Unique Scan
-When the condition uses an equality operator, such as `WHERE number=10`, and the column has a unique index, it will use an index unique scan to return **a single row**. If there is a chance that the result contains multiple rows, the optimizer will not use this access path. 
+When the condition uses an equality operator, such as `WHERE number=10`, and the column has a unique index, it will use an index unique scan to return **a single row**. If there is a chance that the result contains multiple rows, the optimizer will not use this access path. It'll probably resort to something like an index range scan instead.
 
 ### Index Range Scan
+When multiple values are possible from a where condition (and it is selective enough), it will perform an index range scan. Of course, it must be on a column with an index, or be a leading column of a compositite index. 
+
+Since the index is already sorted, it will start from the starting point of the where condition and scan the index in order until all the values have been retrieved. Doing this in descending order will not affect the performance as it only scans the index in reverse order. 
+
+Here are some examples of the conditions that might trigger an index range scan:
+* `column1 = :val`
+* `column1 < :val`
+* `column1 > :val`
+* combination of the conditions above
+* when wildcard searches are not in a leading position, e.g. `'%abc` will not use an index scan
+
+### Index Full Scan
+This type of scan will scan the entire index in order. Because an index is already ordered, an `ORDER BY` clause can trigger an index full scan. But here are a few other reasons why the optimizer might choose this:
+
+* condition uses a column from a composite index but is not the leading column
+* all columns in the table and query are in an index and one of the indexed columns is not null
+* contains an `ORDER BY` clause on a non-nullable column
+
+### Index Skip Scan
 
 
-
+### Reference
 * https://docs.oracle.com/database/121/TGSQL/tgsql_optop.htm#GUID-CDC8B946-2375-4E5F-B50E-DE1E79EAE4CD
