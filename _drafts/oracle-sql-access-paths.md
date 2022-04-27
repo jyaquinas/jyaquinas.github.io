@@ -89,6 +89,7 @@ This type of scan will scan the entire index in order. Because an index is alrea
 * contains an `ORDER BY` clause on a non-nullable column
 
 ### Index Fast Full Scan
+The optimizer might opt for an index fast full scan if the query consists of only columns that are part of the index. This type of scan is fast because it will read from multiple blocks simultaenously and read directly from the index instead of the table. This means that the order is not guaranteed, so an additional sort operation might be needed if the results need to be in order. 
 
 
 ### Index Skip Scan
@@ -97,7 +98,7 @@ An index skip scan typically occurs when a composite index is used but the leadi
 For example, let's say we have an index on these two columns, (`gender`, `age`), but we only search using the `age` column. Since the index will have sorted the columns in gender first, and then by age, it will search through the `male` gender first, and then through the `female` gender, until all the customers of age `30` have been retrieved. 
 
 ### Index Join Scan
-
+If the columns in the query are part of different indexes, an index join scan will be performed. It first performs an index scan (whichever the optimizer chooses) on each of the indexes and retrieves the rowids. Then using these rowids, it performs a hash join to form the rows. The rows will be read directly from these results and not from the table. 
 
 ### Reference
 * https://docs.oracle.com/database/121/TGSQL/tgsql_optop.htm#GUID-CDC8B946-2375-4E5F-B50E-DE1E79EAE4CD
