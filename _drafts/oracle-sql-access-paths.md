@@ -21,8 +21,8 @@ Two main access paths: table access path, index access path.
 | Index Range Scan | Scans a range of index values in order |
 | Index Full Scan | Reads the entire index in order |
 | Index Fast Full Scan | Reads the entire index in unsorted order |
-| Index Skip Scan |
-| Index Join Scan |
+| Index Skip Scan | Skips certain ranges when nonleading column is used |
+| Index Join Scan | Reads from hash join on multiple indexes |
 | Bitmap Index Single Value |
 | Bitmap Index Range Scan |
 | Bitmap Merge |
