@@ -10,7 +10,7 @@ tags: []
 
 Access path: method by which a query retrieves rows from a row source (table, view, temporary tables resulting from join operations, etc). 
 
-Two main access paths: table access path, index access path. 
+There are two main access paths: table access path, index access path. 
 
 | Access Path | Description |
 | --- | --- |
