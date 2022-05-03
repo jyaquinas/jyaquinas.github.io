@@ -346,6 +346,25 @@ SELECT customers
   WHERE customer_id = 1;
 ```
 
+### DELETE
+This is for deleting one or more rows in a table. Here's the syntax.
+```sql
+DELETE 
+  FROM tablename
+  WHERE condition;
+```
+
+So this `delete` clause will delete all the rows with matching condition. If we don't specify a condition, it will simply delete all the rows from the table. 
+
+```sql
+-- customerid is unique, so this will delete one row
+DELETE FROM customers
+  WHERE customerid = '1234';
+
+-- this will delete all customers with age 30
+DELETE FROM customers
+  WHERE age = 30;
+```
 
 ---
 [^1]: If multiple tables are used without any join operations and without any common columns used in the WHERE clause, it will simply do a cross join (or a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)) to create all possible combinations. This is rarely used, so if you get this type of join unintentionally, double-check your syntax. Refer to the Inner Join section for more info on the syntax.   
