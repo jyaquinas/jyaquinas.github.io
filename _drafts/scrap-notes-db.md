@@ -156,3 +156,33 @@ END;
     * `INSTR(string , substring [, position [, occurrence]])`
     * `position` -> integer that indicates at what position the search should start (pos -> left to right, neg -> right to left, backwards); default 1
     * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
+
+## Cassandra
+* partition key
+    * made up of one or more fields used for partitioning data across multiple nodes (uses consistent hashing for uniformly distributing data)
+    * querying without a partition key in the where clause results in inefficient full cluster scan (must visit all nodes) - it also applies to composite partition keys (must include all and in the same order)
+
+* clustering key
+    * made up of one or more fields use for grouping rows with same partition key, and is stored in order
+    * defines how data is stored and sorted within a partition
+* partition key always comes first in the primary key definition (shown by double parenthesis), followed by the clustering key/s
+
+```sql
+ create table example (
+      k_part_one text,
+      k_part_two int,
+      k_clust_one text,
+      k_clust_two int,
+      k_clust_three uuid,
+      data text,
+      PRIMARY KEY((k_part_one, k_part_two), k_clust_one, k_clust_two, k_clust_three)      
+  );
+```
+
+* best practices
+    * each partition should be < 100mb (ideally < 10mb )
+    * goal is to design tables with partition/clustering keys that will evenly distribute the partitions, and support the needed queries
+
+* example
+    * https://www.baeldung.com/cassandra-data-modeling
+    
