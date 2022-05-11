@@ -392,5 +392,13 @@ Options:
 * `-m`: output number of characters
 * `-L`: output length of longest line
 
+
+### nc
+To check if a specific ip address and port is working, you can easily check with the following command.
+
+`nc -zv [hostname] [port]`
+
+You will get an outp
+
 ---
 [^symlink]: a symbolic link (symlink, soft link), is similar to shortcuts in windows. It points to some directory or file (even on a different filesystem or partition).
