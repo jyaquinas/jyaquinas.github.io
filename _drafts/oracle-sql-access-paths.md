@@ -23,12 +23,9 @@ There are two main access paths: table access path, index access path.
 | Index Fast Full Scan | Reads the entire index in unsorted order |
 | Index Skip Scan | Skips certain ranges when nonleading column is used |
 | Index Join Scan | Reads from hash join on multiple indexes |
-| Bitmap Index Single Value |
-| Bitmap Index Range Scan |
-| Bitmap Merge |
-| Bitmap Index Range Scan |
-| Cluster Scan |
-| Hash Scan |
+| Bitmap Index Single Value | Reads single key value from bitmap index |
+| Bitmap Index Range Scan | Reads multiple key values form bitmap index |
+| Bitmap Merge | Merges multilple bitmaps and returns a single bitmap |
 
 ### Full Table Scan
 This is a costly operation since it will read the entire table and then filter out the irrelevant rows. This access path will be used when there isn't a better option, either other access paths are not available or they are more costly. 
@@ -99,6 +96,39 @@ For example, let's say we have an index on these two columns, (`gender`, `age`),
 
 ### Index Join Scan
 If the columns in the query are part of different indexes, an index join scan will be performed. It first performs an index scan (whichever the optimizer chooses) on each of the indexes and retrieves the rowids. Then using these rowids, it performs a hash join to form the rows. The rows will be read directly from these results and not from the table. 
+
+### Bitmap Index Single Value
+This type of scan is used when an equality operator is used in the predicate and the target column has a bitmap index. Since it is scanning for a single value, it only needs to process a single bitmap. The database will go through the bitmap and obtain the rowids for all the values that correspond to 1. 
+
+Let's say we have the the following users table. 
+
+| Name | Gender | Role |
+| --- | --- | --- | 
+| John | M | Admin |
+| Maria | F | Guest |
+| Janice | F | Admin |
+| Jake | M | Guest |
+| TestUser | Null | Guest |
+
+```
+Bitmap index on the gender column will give us the following bitmaps. 
+
+Null    0 0 0 0 1
+Male    1 0 0 1 0
+Female  0 1 1 0 0
+```
+
+If we perform the following query:
+```sql
+SELECT * FROM users WHERE gender='Male';
+```
+
+The database will go through the male bitmap and get the rows for all the values that are 1, giving us the 1st and the 4th row, which correspond to John and Jake, respectively.
+
+### Bitmap Index Range Scan
+If multiple values are searched for in the where clause, the optimizer will opt for this type of scan, which scans through all the corresponding bitmaps of the bitmap index. It works similar to the bitmap index single value scan, but performs this operation on all the relevant values of the column.
+
+
 
 ### Reference
 * https://docs.oracle.com/database/121/TGSQL/tgsql_optop.htm#GUID-CDC8B946-2375-4E5F-B50E-DE1E79EAE4CD
