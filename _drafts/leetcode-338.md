@@ -9,6 +9,7 @@ tags: [leetcode, algorithm, dynamic programming]
 ---
 
 
+
 ```python
 class Solution:
     def countBits(self, n: int) -> List[int]:
@@ -30,4 +31,21 @@ class Solution:
         # 6 110 - 1 + dp[2] = 1 + dp[6 - 4]
         # 7 111 - 1 + dp[3] = 1 + dp[7 - 4]
         # 8 1000 - 1 + dp[8 - 8] (offset 8)
+
+
+        # other solution         
+        res = [0] * (n + 1)
+        for i in range(n + 1):
+            val = i
+            cnt = 0
+            while val:
+                val &= (val -1)
+                cnt += 1
+            res[i] = cnt
+        return res
+        
+        
+        # set lowest bit to 0 -> n & (n-1)
+        # repeat until value is 0 (keep track of count)
+        
 ```
