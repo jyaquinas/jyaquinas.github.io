@@ -27,6 +27,8 @@ There are two main access paths: table access path, and index access path.
 | Bitmap Index Range Scan | Reads multiple key values from bitmap index |
 | Bitmap Merge | Merges multiple bitmaps and returns a single bitmap |
 
+<br>
+
 ### Full Table Scan
 This is a costly operation since it will read the entire table and then filter out the irrelevant rows. This access path will be used when there isn't a better option, either other access paths are not available or they are more costly. 
 
@@ -109,6 +111,7 @@ Let's say we have the following users table.
 | Janice | F | Admin |
 | Jake | M | Guest |
 | TestUser | Null | Guest |
+
 
 ```
 The bitmap index on the gender column will give us the following bitmaps. 
