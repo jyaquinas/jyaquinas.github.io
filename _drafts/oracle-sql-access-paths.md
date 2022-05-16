@@ -129,13 +129,16 @@ The database will go through the male bitmap and get the rows for all the values
 If multiple values are searched for in the where clause, the optimizer will opt for this type of scan, which scans through all the corresponding bitmaps of the bitmap index. It works similar to the bitmap index single value scan, but performs this operation on all the relevant values of the column.
 
 ### Bitmap Merge
-A bitmap merge will typically be used if multiple results from a bitmap index range scan have to be combined. If we use the same example as above and we query for non null values, the DB will perform an `OR` operation on the target bitmaps. 
+A bitmap merge will typically be used if multiple results from a bitmap index range scan have to be combined for a parent operation. Let's use the same example as above and query for Admin users with non null gender values.
 
 ```sql
-SELECT * FROM users WHERE gender IS NOT NULL;
+SELECT * FROM users WHERE role = 'Admin' and gender IS NOT NULL;
 ```
 
+The DB will perform an OR operation on the bitmap range scans for all the non null `gender` columns first. The resulting single `gender` bitmap is then used to perform a bitmap AND operation with the `role` bitmap. 
+
 ```
+Role    1 0 1 0 0
 Male    1 0 0 1 0
 Female  0 1 1 0 0
 --- OR ---
