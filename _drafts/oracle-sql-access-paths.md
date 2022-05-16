@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Oracle SQL Access Paths
-subtitle: ---
+subtitle: Understanding access paths to improve your queries
 date: 2022-03-28 22:03:00 +0900
 background: '/img/bg-post.jpg'
-category: ""
-tags: []
+category: "Database"
+tags: [oracle, database, access paths]
 ---
 
 Access path: method by which a query retrieves rows from a row source (table, view, temporary tables resulting from join operations, etc). 
@@ -128,7 +128,16 @@ The database will go through the male bitmap and get the rows for all the values
 ### Bitmap Index Range Scan
 If multiple values are searched for in the where clause, the optimizer will opt for this type of scan, which scans through all the corresponding bitmaps of the bitmap index. It works similar to the bitmap index single value scan, but performs this operation on all the relevant values of the column.
 
+### Bitmap Merge
+A bitmap merge will typically be used if multiple results from a bitmap index range scan have to be combined. If we use the same example as above and we query for non null values, the DB will perform an `OR` operation on the target bitmaps. 
 
+```sql
+SELECT * FROM users WHERE gender IS NOT NULL;
+```
 
-### Reference
-* https://docs.oracle.com/database/121/TGSQL/tgsql_optop.htm#GUID-CDC8B946-2375-4E5F-B50E-DE1E79EAE4CD
+```
+Male    1 0 0 1 0
+Female  0 1 1 0 0
+--- OR ---
+Result  1 1 1 1 0
+```
