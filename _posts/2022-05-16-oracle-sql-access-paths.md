@@ -2,7 +2,7 @@
 layout: post
 title: Oracle SQL Access Paths
 subtitle: Understanding access paths to improve your queries
-date: 2022-03-28 22:03:00 +0900
+date: 2022-05-16 20:16:00 +0900
 background: '/img/bg-post.jpg'
 category: "Database"
 tags: [oracle, database, access paths]
@@ -10,22 +10,22 @@ tags: [oracle, database, access paths]
 
 Access path: method by which a query retrieves rows from a row source (table, view, temporary tables resulting from join operations, etc). 
 
-There are two main access paths: table access path, index access path. 
+There are two main access paths: table access path, and index access path. 
 
 | Access Path | Description |
 | --- | --- |
-| Full Table Scan | Read entire table and filter out irrelevant rows |
-| Table Access by RowID | Access row by internal representation of storage location of data | 
-| Sample Table Scan | Read from random sample of data |
-| Index Unique Scan | Search for a unique index value |
+| Full Table Scan | Reads entire table and filters out irrelevant rows |
+| Table Access by RowID | Accesses row by internal representation of storage location of data | 
+| Sample Table Scan | Reads from random sample of data |
+| Index Unique Scan | Searches for a unique index value |
 | Index Range Scan | Scans a range of index values in order |
 | Index Full Scan | Reads the entire index in order |
 | Index Fast Full Scan | Reads the entire index in unsorted order |
 | Index Skip Scan | Skips certain ranges when nonleading column is used |
 | Index Join Scan | Reads from hash join on multiple indexes |
-| Bitmap Index Single Value | Reads single key value from bitmap index |
-| Bitmap Index Range Scan | Reads multiple key values form bitmap index |
-| Bitmap Merge | Merges multilple bitmaps and returns a single bitmap |
+| Bitmap Index Single Value | Reads single key-value from bitmap index |
+| Bitmap Index Range Scan | Reads multiple key values from bitmap index |
+| Bitmap Merge | Merges multiple bitmaps and returns a single bitmap |
 
 ### Full Table Scan
 This is a costly operation since it will read the entire table and then filter out the irrelevant rows. This access path will be used when there isn't a better option, either other access paths are not available or they are more costly. 
@@ -57,7 +57,7 @@ SELECT * FROM myTable SAMPLE BLOCK (10);
 When the condition uses an equality operator, such as `WHERE number=10`, and the column has a unique index, it will use an index unique scan to return **a single row**. If there is a chance that the result contains multiple rows, the optimizer will not use this access path. It'll probably resort to something like an index range scan instead.
 
 ### Index Range Scan
-When multiple values are possible from a where condition (and it is selective enough), it will perform an index range scan. Of course, it must be on a column with an index, or be a leading column of a compositite index. 
+When multiple values are possible from a where condition (and it is selective enough), it will perform an index range scan. Of course, it must be on a column with an index or be a leading column of a composite index. 
 
 Since the index is already sorted, it will start from the starting point of the where condition and scan the index in order until all the values have been retrieved. Doing this in descending order will not affect the performance as it only scans the index in reverse order. 
 
@@ -86,11 +86,11 @@ This type of scan will scan the entire index in order. Because an index is alrea
 * contains an `ORDER BY` clause on a non-nullable column
 
 ### Index Fast Full Scan
-The optimizer might opt for an index fast full scan if the query consists of only columns that are part of the index. This type of scan is fast because it will read from multiple blocks simultaenously and read directly from the index instead of the table. This means that the order is not guaranteed, so an additional sort operation might be needed if the results need to be in order. 
+The optimizer might opt for an index fast full scan if the query consists of only columns that are part of the index. This type of scan is fast because it will read from multiple blocks simultaneously and read directly from the index instead of the table. This means that the order is not guaranteed, so an additional sort operation might be needed if the results need to be in order. 
 
 
 ### Index Skip Scan
-An index skip scan typically occurs when a composite index is used but the leading column in skipped or not used in the query. But it can also occur if the leading column contains few distinct values as opposed to the nonleading columns of the index. 
+An index skip scan typically occurs when a composite index is used but the leading column is skipped or not used in the query. But it can also occur if the leading column contains few distinct values as opposed to the nonleading columns of the index. 
 
 For example, let's say we have an index on these two columns, (`gender`, `age`), but we only search using the `age` column. Since the index will have sorted the columns in gender first, and then by age, it will search through the `male` gender first, and then through the `female` gender, until all the customers of age `30` have been retrieved. 
 
@@ -100,7 +100,7 @@ If the columns in the query are part of different indexes, an index join scan wi
 ### Bitmap Index Single Value
 This type of scan is used when an equality operator is used in the predicate and the target column has a bitmap index. Since it is scanning for a single value, it only needs to process a single bitmap. The database will go through the bitmap and obtain the rowids for all the values that correspond to 1. 
 
-Let's say we have the the following users table. 
+Let's say we have the following users table. 
 
 | Name | Gender | Role |
 | --- | --- | --- | 
@@ -111,7 +111,7 @@ Let's say we have the the following users table.
 | TestUser | Null | Guest |
 
 ```
-Bitmap index on the gender column will give us the following bitmaps. 
+The bitmap index on the gender column will give us the following bitmaps. 
 
 Null    0 0 0 0 1
 Male    1 0 0 1 0
@@ -126,16 +126,16 @@ SELECT * FROM users WHERE gender='Male';
 The database will go through the male bitmap and get the rows for all the values that are 1, giving us the 1st and the 4th row, which correspond to John and Jake, respectively.
 
 ### Bitmap Index Range Scan
-If multiple values are searched for in the where clause, the optimizer will opt for this type of scan, which scans through all the corresponding bitmaps of the bitmap index. It works similar to the bitmap index single value scan, but performs this operation on all the relevant values of the column.
+If multiple values are searched for in the where clause, the optimizer will opt for this type of scan, which scans through all the corresponding bitmaps of the bitmap index. It works similar to the bitmap index single value scan but performs this operation on all the relevant values of the column.
 
 ### Bitmap Merge
-A bitmap merge will typically be used if multiple results from a bitmap index range scan have to be combined for a parent operation. Let's use the same example as above and query for Admin users with non null gender values.
+A bitmap merge will typically be used if multiple results from a bitmap index range scan have to be combined for a parent operation. Let's use the same example as above and query for Admin users with non-null gender values.
 
 ```sql
 SELECT * FROM users WHERE role = 'Admin' and gender IS NOT NULL;
 ```
 
-The DB will perform an OR operation on the bitmap range scans for all the non null `gender` columns first. The resulting single `gender` bitmap is then used to perform a bitmap AND operation with the `role` bitmap. 
+The DB will perform an OR operation on the bitmap range scans for all the non-null `gender` columns first. The resulting single `gender` bitmap is then used to perform a bitmap AND operation with the `role` bitmap. 
 
 ```
 Role    1 0 1 0 0
