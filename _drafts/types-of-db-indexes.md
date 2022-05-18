@@ -93,12 +93,22 @@ These bitmaps will typically be partitioned into ranges if the row numbers becom
 This is the basic syntax for creating new indexes.
 
 ```sql
-CREATE [BITMAP] INDEX index_name ON table_name([column/s])
+CREATE [BITMAP/UNIQUE] INDEX index_name ON table_name([column/s])
 ```
 
-Add the keyword `BITMAP` for bitmap indexes. 
+Add the keyword `BITMAP` for bitmap indexes. You can also add the `UNIQUE` keyword if it's guaranteed that the values of the column are unique. By default, the indexes created are nonunique, and those with the same column values will be sorted by ascending rowid. 
 
-* `DROP INDEX index_name` to delete index
+To delete an index:
+
+```sql
+DROP INDEX index_name
+```
+
+The DB will assume that this index is in your current schema. If you want to delete an index from another schema, use the following syntax:
+
+```sql
+DROP INDEX schema_name.index_name
+```
 
 
 #### Reference
