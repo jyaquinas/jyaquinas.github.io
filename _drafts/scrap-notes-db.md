@@ -157,6 +157,20 @@ END;
     * `position` -> integer that indicates at what position the search should start (pos -> left to right, neg -> right to left, backwards); default 1
     * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
 
+## Data Warehouse, or OLAP (online analytical processing) DB vs OLTP (Online Transaction Processing) DB
+* Data Warehouse
+    * mostly used for providing data (read heavy)
+    * gathers/collects data form different sources into a central repository
+    * few concurrent users (relative to OLTP)
+    * stores large amounts of data
+    * data denomalization is common
+    * bitmap indexes might be more suitable
+* OLTP
+    * supports large numbers of concurrent transactions (insert, update, delete)
+    * large number of concurrent users
+    * data is typically normalized
+    * b-tree indexes might be more suitable
+
 ## Cassandra
 * partition key
     * made up of one or more fields used for partitioning data across multiple nodes (uses consistent hashing for uniformly distributing data)

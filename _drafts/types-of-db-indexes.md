@@ -47,6 +47,8 @@ Because each bitmap represents a column value, bitmap indexes are typically used
 
 Also, because the entire bitmap represents a range of rowids, an DML operation on a bitmap index blocks the entire range of rows until the operation is finished. So another insert operation on another row that is part of th same range of rowids will be blocked. This is another reason why bitmap indexes are typically used for tables that are read heavy and don't require many writes. 
 
+Note that bitmap indexes can also be created for multiple columns. It will then create a bitmap for all the combinations of the column values. 
+
 But aside from this disadvantage, bitmap indexes are efficient for `AND`, `OR, `NOT`, `COUNT` operations. 
 
 Let's look at the following example. 
