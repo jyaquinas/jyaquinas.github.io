@@ -39,7 +39,7 @@ The B-tree index is the default index used in Oracle. It is also the most common
 Also, one thing to note is that B-tree indexes cannot contain null values (we can't sort null values, can we?).
 
 #### Bitmap Index
-Bitmap indexes also store indexed values, but unlike B-tree indexes, bitmap indexes map to a range of rowids. Each column value is associated with a bitmap, and each bit in the bitmap represents a rowid. If the rows are too large, multiple bitmaps can be generated for the same column value, each representing a different range of rowids. 
+Bitmap indexes are also stored in a b-tree, but unlike B-tree indexes, bitmap indexes map to a range of rowids. Each column value is associated with a bitmap, and each bit in the bitmap represents a rowid. If the rows are too large, multiple bitmaps can be generated for the same column value, each representing a different range of rowids. Each of the leaf nodes hold the column value, start rowid, end rowid, and the bitmaps for the corresponding rowids. 
 
 Because each bitmap represents a column value, bitmap indexes are typically used for low cardinality data, i.e. there are few distinct column values out of the total number of rows. An example would be the gender column for users, where the possible values are limited to `Male`, `Female`, and `NULL`. And yes, unlike b-tree indexes, bitmap indexes can take null values. 
 
