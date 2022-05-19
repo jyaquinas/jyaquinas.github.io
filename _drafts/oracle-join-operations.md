@@ -23,6 +23,7 @@ Determined by join condition.
 * Nested loop joins
     * efficient when row sources are small
     * optimizer may select this when bigger table has an index
+    * similar to nested for loop 
     > To perform a nested loops join, Oracle follows these steps:
     > 1. The optimizer chooses one of the tables as the outer table, or the driving table. The other table is called the inner table.
     > 2. For each row in the outer table, Oracle finds all rows in the inner table that satisfy the join condition.
