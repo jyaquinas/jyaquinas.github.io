@@ -8,7 +8,8 @@ category: "Database"
 tags: [oracle, database, access paths]
 ---
 
-Access path: method by which a query retrieves rows from a row source (table, view, temporary tables resulting from join operations, etc). 
+### What is an access path?
+Access paths are methods by which a query retrieves rows from a row source (table, view, temporary tables resulting from join operations, etc). 
 
 There are two main access paths: table access path, and index access path. 
 
@@ -26,6 +27,7 @@ There are two main access paths: table access path, and index access path.
 | Bitmap Index Single Value | Reads single key-value from bitmap index |
 | Bitmap Index Range Scan | Reads multiple key values from bitmap index |
 | Bitmap Merge | Merges multiple bitmaps and returns a single bitmap |
+
 
 ### Full Table Scan
 This is a costly operation since it will read the entire table and then filter out the irrelevant rows. This access path will be used when there isn't a better option, either other access paths are not available or they are more costly. 
