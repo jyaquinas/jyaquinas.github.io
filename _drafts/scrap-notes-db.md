@@ -171,6 +171,10 @@ END;
     * data is typically normalized
     * b-tree indexes might be more suitable
 
+## Oracle Index
+* btree indexes should be created based on how often that column is used for querying (where clause), and how selective it is (more selective the better it is)
+
+
 ## Cassandra
 * partition key
     * made up of one or more fields used for partitioning data across multiple nodes (uses consistent hashing for uniformly distributing data)
