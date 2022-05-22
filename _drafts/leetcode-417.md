@@ -14,8 +14,8 @@ class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         
         m, n = len(heights), len(heights[0])
-        pacific = [[0] * n for _ in range(m)]
-        atlantic = [[0] * n for _ in range(m)]
+        pacific = set()
+        atlantic = set()
         res = []
         
         for i in range(m):
@@ -27,19 +27,21 @@ class Solution:
         
         for i in range(m):
             for j in range(n):
-                if pacific[i][j] and atlantic[i][j]:
+                if (i,j) in pacific and (i,j) in atlantic:
                     res.append([i,j])
         return res
                     
-    def bfs(self, heights, matrix, r, c, m, n):
-        visited = set((r,c))
+    def bfs(self, heights, visited, r, c, m, n):
         q = deque([[r,c]])
         while q:
             i, j = q.popleft()
-            matrix[i][j] = 1
+            if (i,j) in visited: 
+                continue
+            visited.add((i,j))
             for x,y in [[0, 1], [1, 0], [0, -1], [-1, 0]]:
                 nr, nc = i + y, j + x
-                if 0 <= nr < m and 0 <= nc < n and (nr,nc) not in visited and heights[nr][nc] >= heights[i][j]:
+                if (0 <= nr < m and 0 <= nc < n 
+                    and (nr,nc) not in visited 
+                    and heights[nr][nc] >= heights[i][j]):
                     q.append([nr, nc])
-                    visited.add((nr, nc))
 ```
