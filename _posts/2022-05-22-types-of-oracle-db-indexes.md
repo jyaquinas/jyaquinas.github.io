@@ -2,7 +2,7 @@
 layout: post
 title: Types of Oracle Database Indexes
 subtitle: Understanding B-Tree and Bitmap Indexes
-date: 2022-03-28 22:03:00 +0900
+date: 2022-05-22 16:39:00 +0900
 background: '/img/bg-post.jpg'
 category: "Database"
 tags: [database, oracle, indexes]
@@ -15,13 +15,14 @@ Indexes are used for increasing the search speed of databases. It creates a sepa
 There are two main types of indexes: B-Tree and bitmap indexes. 
 
 #### B-Tree Index
-B-Tree stands for balanced tree, meaning that the indexed values are stored in a balance tree structure, allowing any lookup to take **O(logn)** time. 
+B-Tree stands for "balanced tree", meaning that the indexed values are stored in a balanced tree structure, allowing any lookup to take **O(logn)** time. 
 
-The indexed values are always stored in a sorted order. Each node contains a range of indexed values, with each of the child nodes further dividing each of the ranges. The leaf nodes contain the actual indexed values, each mapped to a rowid, which is then used to lookup the actual row from the table. Notice how the leaf nodes are also doubly linked with each other. This allows scanning through the indexed values in a sequential order. 
+The indexed values are always stored in sorted order. Each node contains a range of indexed values, with each of the child nodes further dividing each of the ranges. The leaf nodes contain the actual indexed values, each mapped to a rowid, which is then used to look up the actual row from the table. Notice how the leaf nodes are also doubly linked with each other. This allows scanning through the indexed values in sequential order. 
 
-[INSERT BTREE INDEX IMAGE]
+![B-tree Index](/img/posts/types-of-oracle-db-indexes/b-tree-index.gif){:class="img-fluid rounded"}
+*Source: [Oracle](https://docs.oracle.com/cd/E11882_01/server.112/e40540/img/cncpt244.gif)* 
 
-Indexes can also be created for multiple columns simultatenously. These are referred to composite indexes. The order of the columns used for creating the composite indexes are important because they define how the indexes will be stored and ordered. The leading column is used as the primary sort order. The following columns are used as secondary, tertiary orders.
+Indexes can also be created for multiple columns simultaneously. These are referred to as composite indexes. The order of the columns used for creating the composite indexes is important because they define how the indexes will be stored and ordered. The leading column is used as the primary sort order. The following columns are used in secondary, and tertiary orders.
 
 So because of this characteristic, we can only query the table using the index if we use the leading portions of the index. 
 
@@ -32,20 +33,18 @@ These are some combinations of the columns that will trigger the optimizer to us
 * a, b
 * a, b, c
 
-Anything that doesn't use the leading portion of the index, such as (b, c), will not use the index. The tree is stored in a way that a is sorted first, before b and c are.
+Anything that doesn't use the leading portion of the index, such as (b, c), will not use the index. The tree is stored in a way that a is sorted first before b and c are.
 
 The B-tree index is the default index used in Oracle. It is also the most common type of index. 
 
 Also, one thing to note is that B-tree indexes cannot contain null values (we can't sort null values, can we?).
 
 #### Bitmap Index
-Bitmap indexes are also stored in a b-tree, but unlike B-tree indexes, bitmap indexes map to a range of rowids. Each column value is associated with a bitmap, and each bit in the bitmap represents a rowid. If the rows are too large, multiple bitmaps can be generated for the same column value, each representing a different range of rowids. Each of the leaf nodes hold the column value, start rowid, end rowid, and the bitmaps for the corresponding rowids. 
-
-[INSERT BITMAP INDEX IMAGE]
+Bitmap indexes are also stored in a b-tree, but unlike B-tree indexes, bitmap indexes map to a range of rowids. Each column value is associated with a bitmap, and each bit in the bitmap represents a rowid. If the rows are too large, multiple bitmaps can be generated for the same column value, each representing a different range of rowids. Each of the leaf nodes holds the column value, start rowid, end rowid, and the bitmaps for the corresponding rowids. 
 
 Because each bitmap represents a column value, bitmap indexes are typically used for low cardinality data, i.e. there are few distinct column values out of the total number of rows. An example would be the gender column for users, where the possible values are limited to `Male`, `Female`, and `NULL`. And yes, unlike b-tree indexes, bitmap indexes can take null values. 
 
-Also, because the entire bitmap represents a range of rowids, an DML operation on a bitmap index blocks the entire range of rows until the operation is finished. So another insert operation on another row that is part of th same range of rowids will be blocked. This is another reason why bitmap indexes are typically used for tables that are read heavy and don't require many writes. 
+Also, because the entire bitmap represents a range of rowids, a DML operation on a bitmap index blocks the entire range of rows until the operation is finished. So another insert operation on another row that is part of the same range of rowids will be blocked. This is another reason why bitmap indexes are typically used for tables that are read-heavy and don't require many writes. 
 
 Note that bitmap indexes can also be created for multiple columns. It will then create a bitmap for all the combinations of the column values. 
 
@@ -91,7 +90,7 @@ Which will give us row 1, user `John`.
 
 As for the `COUNT` operation, it will simply go through the bitmap and count all the `1` values. 
 
-These bitmaps will typically be partitioned into ranges if the row numbers become large, such as Admin for rows 1 to 10, and Admin for rows 11 to 20, and so on. 
+These bitmaps will typically be partitioned into ranges if the row numbers become large, such as Admin for rows 1 to 10, Admin for rows 11 to 20, and so on. 
 
 ### Creating and Deleting Indexes
 This is the basic syntax for creating new indexes.
@@ -113,8 +112,3 @@ The DB will assume that this index is in your current schema. If you want to del
 ```sql
 DROP INDEX schema_name.index_name
 ```
-
-
-#### Reference
-* https://blogs.oracle.com/sql/post/how-to-create-and-use-indexes-in-oracle-database
-* https://docs.oracle.com/cd/E11882_01/server.112/e40540/indexiot.htm#CNCPT1170
