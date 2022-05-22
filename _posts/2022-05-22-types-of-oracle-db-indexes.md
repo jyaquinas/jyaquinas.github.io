@@ -48,7 +48,7 @@ Also, because the entire bitmap represents a range of rowids, a DML operation on
 
 Note that bitmap indexes can also be created for multiple columns. It will then create a bitmap for all the combinations of the column values. 
 
-But aside from this disadvantage, bitmap indexes are efficient for `AND`, `OR, `NOT`, `COUNT` operations. 
+But aside from this disadvantage, bitmap indexes are efficient for `AND`, `OR`, `NOT`, `COUNT` operations. 
 
 Let's look at the following example. 
 
