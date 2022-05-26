@@ -8,7 +8,7 @@ category: ""
 tags: []
 ---
 
-## Questions & Concepts To Cover
+
 * What does @builder do -> what is builder pattern
     * https://www.geeksforgeeks.org/builder-design-pattern/
     * https://refactoring.guru/design-patterns/builder
