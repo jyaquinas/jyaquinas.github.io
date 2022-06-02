@@ -25,7 +25,22 @@ tags: []
 * https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker
 
 ## Redis Persistence
-*    
+* Persistence options:
+    * RDB (redis DB)
+        * point in time snapshots
+        * good for backups and disaster recoveries
+        * faster restarts with big datasets compared to AOF
+        * supports partial resch after restart and failovers (for replicas)
+        * data after the snapshot can be lost
+    * AOF (Append only file)
+        * logs every write operation, dataset can be reconstructed from this
+        * supports different sync policies (every second by default)
+        * sync is done through a background thread
+        * AOF files are typically larger compared to those of RDB
+        
+    * RDB + AOF
+    * No persistence
+* https://redis.io/docs/manual/persistence/
 
 ## Microservices
 > In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.
