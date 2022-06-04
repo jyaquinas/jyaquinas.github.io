@@ -37,7 +37,6 @@ tags: []
         * supports different sync policies (every second by default)
         * sync is done through a background thread
         * AOF files are typically larger compared to those of RDB
-        
     * RDB + AOF
     * No persistence
 * https://redis.io/docs/manual/persistence/
@@ -55,3 +54,26 @@ tags: []
     * higher complexity (need to handle failures, load balancing, network latency, etc)
     * testing/debugging is more difficult
     
+## 301 vs 302 Redirect
+* 301
+    * means that requested url is "permanently" moved, so subsequent requests will be made to the new redirected url
+* 302
+    * means that requested url is "temporarily" moved, so requests are first sent to the first url before they are redirected again to the new url
+    * useful for things like analytics 
+    
+## CAP Theorem (Consistency, availability, partition tolerance)
+* Consistency: all users read the most recent write, all nodes will contain the same data simultaneously 
+* Availability: every request receives a non-error response, the system is operational at all times (even if some nodes are unavailable)
+* Partition Tolerance: system continues to function despite a network partition (communication break), it will not fail permanently
+* CAP theorem states that only 2 of these can be satisfied
+    * In a distributed system, network partiton is unavoidable, which leaves us with AP, or CP
+    * AP (no consistency): say we have a write request but a network partition occurs during the write operation. This will lead to data inconsistency. Because the system needs to be available, the read requests will simply be redirected to the available ones. But before all the data is synced, some users will receive stale data. 
+        * Ex: Cassandra (cluster of nodes where all take read/write operations, any node serves as a primary host, no single point of failure, but data across nodes take time to synchronize, "eventual consistency")
+    * CP (no availability): because only consistent data needs to be returned, if there is a network partition and some of the data is inconsistent, it must make the node with the inconsistent data unavailable. 
+        * Ex: MongoDB, Amazon DynamoDB (primary-secondary server structure, master receives all read/write operations, secondaries receive replicated data from primary to maintain identical data. Write operation is stopped until new master slave is selected during failovers. So there is a single point of failure, but there is a secondary or slave server on hot standby ready to take over, which will happen in a matter of seconds, but still some downtime nonetheless. it can be configured so that it can be read from secondary servers, but this will lead to data inconsistency)
+    * CA (not partition tolerance): in theory, this cannot exist in a distributed system. This is only possible in a single host where partition tolerance is not an issue.
+        * Ex: MySQL, other RDBMS (although now modern RDBS can be distributed)
+    * Note: Most DBs these days practically offer all three of these, with tunable configurations for various levels of consistencies (but technically they do still give up on one of these)
+
+## Consistent Hashing
+* 
