@@ -75,5 +75,26 @@ tags: []
         * Ex: MySQL, other RDBMS (although now modern RDBS can be distributed)
     * Note: Most DBs these days practically offer all three of these, with tunable configurations for various levels of consistencies (but technically they do still give up on one of these)
 
+## Message Queues
+* messages are stored in queue structures, they are processed only once by one consumer (works as a buffer that temporarily stores messages between two components)
+* messages can be anything from requests, replies, or other types of information
+* great for achieving asynchronous processing and decoupling components in complex systems
+* components
+    * producer: one creating the message and adding it to the msg queue
+    * consumer: taking the item from the queue and processing it
+    * message broker: component that stores messages in a queue (FIFO). Other functions include mesage validation, permission control, routing rules, failure recovery, etc.
+    * exchanger: 
+* types
+    * point to point: delivers one message to only one consumer application. Multiple consumers can exist but only one will consume one message at a time.
+    * publish/subscribe (pub/sub): delivers mesages to all subscribers that are subscribed to the corresponding topic (many consumers per message)
+    * pull vs push model: 
+        * push: queue notifies consumer when message is available
+        * pull: consumer polls the queue to check if there is any message available
+* load balancer vs message queue
+    * both can be used to handle more traffic and scale: lb can be used to balance load between multiple backend servers, message q can be used with multiple consumers to consume the queue more quickly
+    * load balancers will process things synchronously (ex. client requests image, it will wait for until image is retrieved before it responds back)
+    * message queues on the other hand process things asynchronously (ex. client can request uploading a video and it can respond immediately. The backend server will then do the uploading and the user won't be left hanging)
+
+
 ## Consistent Hashing
 * 
