@@ -95,6 +95,45 @@ tags: []
     * load balancers will process things synchronously (ex. client requests image, it will wait for until image is retrieved before it responds back)
     * message queues on the other hand process things asynchronously (ex. client can request uploading a video and it can respond immediately. The backend server will then do the uploading and the user won't be left hanging)
 
+## Polling vs. Web Sockets vs. Server-Sent Events
+* Polling:
+    * the client repeatedly checks and requests for data from the server
+    * inefficient since most requests don't receive data but still use resources (establish connection, parse header, query for new data, generate response and deliver)
+    * short vs long: long is the improved version of short, where a client establishes a connection with the server and keeps connection open until data is available (typically within a timeout period). It repeats this process after data is available or after a timeout -- wastes less resources
+    * server has no good way to tell if client is disconnected
+* Web Sockets:
+    * establishes persistent connection between client (browser) and server
+    * allows a two way communication between the two
+        * good for things like chat apps
+    * consumes less resources on the server
+    * lower latency compared to polling as it doesn't require establishing new connections
+    * connections are not automatically recovered and must be implemented separately 
+    * most common method used for sending updates from server to client asynchronously
+    * built on top of TCP/IP
+* Server-Sent Events (SSE)
+    * Unlike websockets, SSE connections can only send data to client (browser)
+        * ex) stock price updates, news feed, notifications, etc
+    * But what SSE can do can also be achieved with Web sockets, it is the more popular choice, more browsers support web sockets over SSEs
+    * stock price updates, twitter updates, news feed, notifications, etc
+    * sent over HTTP (doesn't require custom protocol)
+    * has a limit on maximum number of open connections
+
+## Stateful vs Stateless Systems
+* by state, it can mean any information about the client session, or about a particular point in time with regard to a process (ex. user authenticated or not? banking transfer only possible after successful authentication)
+* stateless:
+    * stateless means the information about the state is not kept in the server (typically stored on the client side)
+    * easier to scale stateless since the client request can be sent to any server (newly added server, or new server due to one of them being down, etc), since state info is kept with client
+* stateful
+    * stateful system/architecture keeps state data in the server, so it requires sending the client to the same server (or to keep all state info updated across all servers)
+
+## Sharding vs Partitioning
+* both imply splitting the data into smaller subsets
+* sharding (also referred to as horizontal partitioning) means splitting the data across multiple servers
+* partitioning means splitting the data into smaller subsets but within the same database
+
+## Ajax
+* ajax request/response does not refresh the whole web page
+* can exchange data with web server asynchronously
 
 ## Consistent Hashing
 * 
