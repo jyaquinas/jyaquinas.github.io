@@ -156,6 +156,20 @@ END;
     * `INSTR(string , substring [, position [, occurrence]])`
     * `position` -> integer that indicates at what position the search should start (pos -> left to right, neg -> right to left, backwards); default 1
     * `occurrence` -> determines which occurrence to search for, default 1 (first occurence)
+* listagg
+    * aggregates the result from multiple rows into a single list of values separated by a delimiter 
+    * syntax
+    ```sql
+    LISTAGG (
+        [ALL] column_name [,
+        delimiter]
+    ) WITHIN GROUP(
+        ORDER BY
+            sort_expressions
+    );
+    ```
+    * 
+
 
 ## Data Warehouse, or OLAP (online analytical processing) DB vs OLTP (Online Transaction Processing) DB
 * Data Warehouse
