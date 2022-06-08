@@ -28,3 +28,59 @@ Only query for the columns that you need. Using the `SELECT *` statement is typi
 
 If your table has an index on certain columns and you query for only those columns, the optimizer will use the index for better performance. But if you query for all the columns, the optimizer might decide to go for a full table scan instead. If you query for a non-indexed column very often, consider adding that column to the index for better performance.
 
+### Don't Perform Arithmetic Operations On Indexed Columns
+It is okay to use arithmetic operators in the `WHERE` clause, but be careful about where you use it. Performing arithmetic operations directly on the indexed columns may cause the optimizer to perform a full table scan. Perform the operations on the value side of the equation. 
+
+Let's say we have an index on the `age` column from our customers table. 
+
+```sql 
+-- Will not use index (full table scan)
+SELECT * FROM customers 
+    WHERE age + 10 = 30;
+
+-- Will use index
+SELECT * FROM customers
+    WHERE age = 30 + 10;
+```
+
+This also applies for other functions being performed on the indexed columns.
+Let's assume we have an index on `first_name` column. Try to find another query that will produce the same results without using the functions.
+
+```sql
+-- Will not use index
+SELECT * FROM customers
+    WHERE substr(first_name, 1, 2) = 'Th';
+
+-- Will use index
+SELECT * FROM customers
+    WHERE first_name LIKE 'Th%';
+```
+
+### Avoid Wildcard Characters on the Left Side
+When performing pattern-matching conditions using the `LIKE` clause, try to avoid using wildcard characters on the left side of the word. Remember that the indexes are sorted. If we use wildcards on the left side, any character can be the first character. We won't need a sorted list of items, so the optimizer will perform a full table scan. 
+
+If you want to use wildcards in the beginning of the word, use the reverse index while keeping the wildcard characters on the right side of the word. Remember that scanning through an index in reverse order has the same performance as scanning using the original order. 
+
+```sql
+-- Will not use index
+SELECT * FROM customes
+    WHERE first_name LIKE '_ar';
+
+SELECT * FROM customers
+    WHERE first_name LIKE '%ane%';
+
+-- Will use index
+SELECT * FROM customers
+    WHERE first_name LIKE 'Jo%';
+
+-- Using reverse index
+SELECT * FROM customers
+    WHERE reverse(first_name) LIKE 'naht%';
+```
+
+### Handling NULL Values
+Remember that B-Tree indexes cannot contain null values. So if your column contains null values, the optimizer opt for a full table scan. If you don't care about the null values not appearing on your results, add the `IS NOT NULL` constraint on your condition so that the optimizer will make use of the index. 
+
+Another option is to add a value that will represent the null value instead of actually leaving the value as null. For instance, for all the null values, you could simply insert a dash, `-`, to represent null values. This way, you can specifically look for null values while using the index. 
+
+If your column values have low cardinality, i.e. few unique values, maybe using a bitmap index would be more appropriate. And as you may know already, bitmap indexes can contain null values.
