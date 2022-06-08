@@ -69,8 +69,10 @@ tags: []
     * In a distributed system, network partiton is unavoidable, which leaves us with AP, or CP
     * AP (no consistency): say we have a write request but a network partition occurs during the write operation. This will lead to data inconsistency. Because the system needs to be available, the read requests will simply be redirected to the available ones. But before all the data is synced, some users will receive stale data. 
         * Ex: Cassandra (cluster of nodes where all take read/write operations, any node serves as a primary host, no single point of failure, but data across nodes take time to synchronize, "eventual consistency")
+            * quorum can be set (where it needs to read data from at least n number of nodes, the higher the quorum, higher the consistency, and lower the availability)
     * CP (no availability): because only consistent data needs to be returned, if there is a network partition and some of the data is inconsistent, it must make the node with the inconsistent data unavailable. 
         * Ex: MongoDB, Amazon DynamoDB (primary-secondary server structure, master receives all read/write operations, secondaries receive replicated data from primary to maintain identical data. Write operation is stopped until new master slave is selected during failovers. So there is a single point of failure, but there is a secondary or slave server on hot standby ready to take over, which will happen in a matter of seconds, but still some downtime nonetheless. it can be configured so that it can be read from secondary servers, but this will lead to data inconsistency)
+            * read availability can be tuned and increased by reading from secondary servers, but write cannot be always available
     * CA (not partition tolerance): in theory, this cannot exist in a distributed system. This is only possible in a single host where partition tolerance is not an issue.
         * Ex: MySQL, other RDBMS (although now modern RDBS can be distributed)
     * Note: Most DBs these days practically offer all three of these, with tunable configurations for various levels of consistencies (but technically they do still give up on one of these)
@@ -134,6 +136,21 @@ tags: []
 ## Ajax
 * ajax request/response does not refresh the whole web page
 * can exchange data with web server asynchronously
+
+## Rate Limiter Algorithms
+* Token bucket: tokens are refilled at a certain rate, and bucket has a max token capacity -- requests are only processed when there are available tokens
+    * pro: memory efficient since bucket has limited size, allows burst of traffic during short periods of time, simple algorithm
+    * cons: bursts of traffic may not be suitable for some applications, refill rate and bucket size might be difficult to tune
+* Leaking bucket: requests are added to a queue (bucket), and they are processed at a fixed rate only -- when bucket is full, requests are dropped
+    * pro: memory efficient due to fixed bucket size, fixed processing rate (stable outflow), simple algorithm
+    * con: difficult to tune the 2 parameters
+* Fixed window counter: only allows fixed amount of requests per set timeframe (5 requests per minute), reset at every set timeframe
+    * pro: memory efficient, easy to understand
+    * con: spike in traffic at edge of windows, might allow more requests that set quota
+* Sliding window log: allows certain number of requests per time frame, old requests outside of the timeframe are removed, requests over the limit are dropped
+    * pro: accurate rate limiting
+    * con: memory not as efficient because timestamp can be stored in memory even after it is rejected
+
 
 ## Consistent Hashing
 * 
