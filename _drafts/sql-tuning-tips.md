@@ -34,7 +34,7 @@ It is okay to use arithmetic operators in the `WHERE` clause, but be careful abo
 Let's say we have an index on the `age` column from our customers table. 
 
 ```sql 
--- Will not use index (full table scan)
+-- Will not use index 
 SELECT * FROM customers 
     WHERE age + 10 = 30;
 
@@ -84,3 +84,21 @@ Remember that B-Tree indexes cannot contain null values. So if your column conta
 Another option is to add a value that will represent the null value instead of actually leaving the value as null. For instance, for all the null values, you could simply insert a dash, `-`, to represent null values. This way, you can specifically look for null values while using the index. 
 
 If your column values have low cardinality, i.e. few unique values, maybe using a bitmap index would be more appropriate. And as you may know already, bitmap indexes can contain null values.
+
+### Union vs Union All
+`UNION` has a slightly lower performance compared to `UNION ALL` because it removes duplicate records. `UNION` will also perform a sort operation, which can be costly. Therefore, if you don't care about having duplicate records, use `UNION ALL` instead. 
+
+### Having vs Where
+`HAVING` acts as a filter for the `GROUP BY` clause. This filter is applied after all the rows have been read and grouped. So if the query can be converted by using a `WHERE` clause, the performance will improve because it will restrict the number of rows read before they are grouped.
+
+```sql
+-- Reads all rows first before applying filter for grouped rows
+SELECT age, COUNT(*) FROM customers
+    GROUP BY age
+    HAVING age > 30;
+
+-- Applies filter and returns fewer rows before being grouped
+SELECT age, COUNT(*) FROM customers
+    WHERE age > 30
+    GROUP BY age;
+```
