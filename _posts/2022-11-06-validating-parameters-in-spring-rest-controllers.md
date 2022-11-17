@@ -180,7 +180,7 @@ Shall we run some tests?
     }
 ```
 
-And again, the second test will through an error like this:
+And again, the second test will throw an error like this:
 > Request Param is not valid: org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in org.springframework.http.ResponseEntity<java.lang.String> com.springframework.springDemo.controller.ValidationController.validateBody(com.springframework.springDemo.dto.Person): [Field error in object 'person' on field 'lastName': rejected value []; codes [NotBlank.person.lastName,NotBlank.lastName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [person.lastName,lastName]; arguments []; default message [lastName]]; default message [must not be blank]]
 
 ### Controller Class
